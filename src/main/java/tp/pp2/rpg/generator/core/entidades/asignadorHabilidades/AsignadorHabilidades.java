@@ -9,7 +9,9 @@ import tp.pp2.rpg.generator.core.importadorHabilidades.ImportadorHabilidadesXLSX
 public class AsignadorHabilidades {
 	ImportadorHabilidades importadorHabilidades;
 	
-	public AsignadorHabilidades(File archivoLeer) {
+	public AsignadorHabilidades() {}
+	
+	public void asignarHabilidades(File archivoLeer) {
 		importadorHabilidades=new ImportadorHabilidadesXLSX();
 		try {
 			importadorHabilidades.importarHabilidades(archivoLeer);

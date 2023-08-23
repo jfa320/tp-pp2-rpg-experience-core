@@ -13,5 +13,4 @@ public class ImportadorHabilidadesTest {
 		ImportadorHabilidades classUnderTest = new ImportadorHabilidadesXLSX();
 		assertTrue("someLibraryMethod should return 'true'", true);
 	}
-
 }
