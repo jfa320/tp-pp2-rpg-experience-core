@@ -35,5 +35,8 @@ public class AsignadorHabilidades extends Observable {
 		 setChanged();
 	     notifyObservers(archivoLeido);
 	}
+	public boolean getSeLeyoArchivo() {
+		return this.archivoLeido;
+	}
 		
 }
