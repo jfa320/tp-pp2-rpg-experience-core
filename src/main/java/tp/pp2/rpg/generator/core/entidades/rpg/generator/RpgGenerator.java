@@ -9,18 +9,16 @@ import tp.pp2.rpg.generator.core.entidades.DTOHabilidad;
 import tp.pp2.rpg.generator.core.entidades.DTOPersonaje;
 
 public class RpgGenerator extends Observable {
-	//private boolean asigneHabilidades;
 	private DTOCombate combate;
 	private DTOPersonaje jugador1;
 	private DTOPersonaje jugadorEnemigo;
 
 	public RpgGenerator() {
-		//asigneHabilidades = false;
 		generarCombateBase();
 	}
 
 	private void generarCombateBase() {
-		// TODO recibir params?
+		// TODO recibir params aca?
 		jugador1=new DTOPersonaje("Mago oscuro", "Mago", 100,
 				Arrays.asList(
 						new DTOHabilidad(1, "Hechizo", "Mago", 10), 
@@ -53,25 +51,7 @@ public class RpgGenerator extends Observable {
     		notifyObservers(combate);
         }
 	}
-	/*private void asignarHabilidades() {
-		// TODO
-	}
-
-	public boolean isArchivoLeido() {
-		return asigneHabilidades;
-	}
-
-	public void setAsigneHabilidades(boolean asigneHabilidades) {
-		this.asigneHabilidades = asigneHabilidades;
-		// notifico a los observers del cambio
-		setChanged();
-		notifyObservers(asigneHabilidades);
-	}*/
-
-	/*public boolean getAsigneHabilidades() {
-		return this.asigneHabilidades;
-	}*/
-
+	
 	public DTOPersonaje getJugador1() {
 		return jugador1;
 	}
