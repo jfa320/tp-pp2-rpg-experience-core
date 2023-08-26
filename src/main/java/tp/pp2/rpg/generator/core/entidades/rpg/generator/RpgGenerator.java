@@ -23,7 +23,7 @@ public class RpgGenerator extends Observable {
 		// TODO recibir params?
 		jugador1=new DTOPersonaje("Mago oscuro", "Mago", 100,
 				Arrays.asList(
-						new DTOHabilidad(1, "Ilusión", "Mago", 10), 
+						new DTOHabilidad(1, "Hechizo", "Mago", 10), 
 						new DTOHabilidad(2, "Quemar", "Mago", 20),
 						new DTOHabilidad(3, "Congelar", "Mago", 30), 
 						new DTOHabilidad(4, "Terremoto", "Mago", 40))
