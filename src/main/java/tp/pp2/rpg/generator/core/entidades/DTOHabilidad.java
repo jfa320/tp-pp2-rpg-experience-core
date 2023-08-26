@@ -38,4 +38,9 @@ public class DTOHabilidad {
 	public void setDanio(int danio) {
 		this.danio = danio;
 	}
+	@Override
+	public String toString() {
+		return "DTOHabilidad [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", danio=" + danio + "]";
+	}
+	
 }

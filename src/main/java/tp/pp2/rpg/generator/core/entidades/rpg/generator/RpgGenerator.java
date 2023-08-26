@@ -36,7 +36,6 @@ public class RpgGenerator extends Observable {
 						new DTOHabilidad(4, "Glope de furia", "Espada", 40))
 				);
 		combate=new DTOCombate(jugador1, jugadorEnemigo, false, false);
-		
 	}
 	public void atacarJ2(DTOHabilidad habilidadUsada) {
 		int danioCausado= jugadorEnemigo.getVida()-habilidadUsada.getDanio();
