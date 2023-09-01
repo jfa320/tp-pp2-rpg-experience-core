@@ -1,14 +1,12 @@
 package tp.pp2.rpg.generator.core.entidades;
 
-public class DTOHabilidad {
-	private int id;
+public class Habilidad {
+	private Integer id;
 	private String nombre;
+	private Integer danio;
 	private String tipo;
-	private int danio;
 	
-	public DTOHabilidad() {
-	}
-	public DTOHabilidad(int id, String nombre, String tipo,int danio) {
+	public Habilidad(int id, String nombre, Integer danio, String tipo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -35,12 +33,12 @@ public class DTOHabilidad {
 	public int getDanio() {
 		return danio;
 	}
-	public void setDanio(int danio) {
+	public void setDanio(Integer danio) {
 		this.danio = danio;
 	}
 	@Override
 	public String toString() {
-		return "DTOHabilidad [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", danio=" + danio + "]";
+		return "Habilidad [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", danio=" + danio + "]";
 	}
 	
 }
