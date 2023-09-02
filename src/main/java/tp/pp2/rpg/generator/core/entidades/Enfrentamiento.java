@@ -78,4 +78,11 @@ public class Enfrentamiento {
 				break;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Enfrentamiento [personaje1=" + personaje1 + ", personaje2=" + personaje2 + ", personajeActivo="
+				+ personajeActivo + ", batallaFinalizada=" + batallaFinalizada + ", victoriaJugador=" + victoriaJugador
+				+ "]";
+	}
 }

@@ -1,16 +1,22 @@
 package tp.pp2.rpg.generator.core.entidades.rpg.generator;
 
+import java.util.List;
 import java.util.Observable;
 
 import tp.pp2.rpg.generator.core.entidades.Enfrentamiento;
 import tp.pp2.rpg.generator.core.entidades.Habilidad;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
+import tp.pp2.rpg.generator.core.utils.ParserJSON;
 
 public class RpgBattleGenerator extends Observable {
 	private Enfrentamiento enfrentamiento;
 
-	public RpgBattleGenerator(Personaje personaje1, Personaje personaje2) {
-		generarCombateBase(personaje1,personaje2);
+	public RpgBattleGenerator(String datos) {
+		List<Personaje> personajes=ParserJSON.parsearJSON(datos);
+		//TODO: revisar esto. Lanzar excepcion quizas?
+		if(personajes!=null) {
+			generarCombateBase(personajes.get(0),personajes.get(1));
+		}
 	}
 
 	
@@ -35,12 +41,12 @@ public class RpgBattleGenerator extends Observable {
 	}
 	
 	
-	public Enfrentamiento getCombate() {
+	public Enfrentamiento getEnfrentamiento() {
 		return enfrentamiento;
 	}
 
-	public void setCombate(Enfrentamiento combate) {
-		this.enfrentamiento = combate;
+	public void setEnfrentamiento(Enfrentamiento enfrentamiento) {
+		this.enfrentamiento = enfrentamiento;
 	}
 	
 	private void generarCombateBase(Personaje personaje1, Personaje personaje2) {

@@ -90,4 +90,12 @@ public class Personaje {
 	public void setDefensaEspecial(Integer defensaEspecial) {
 		this.defensaEspecial = defensaEspecial;
 	}
+
+	@Override
+	public String toString() {
+		return "Personaje [nombre=" + nombre + ", tipo=" + tipo + ", vidaInicial=" + vidaInicial + ", vidaActual="
+				+ vidaActual + ", ataqueFisico=" + ataqueFisico + ", ataqueEspecial=" + ataqueEspecial
+				+ ", defensaFisica=" + defensaFisica + ", defensaEspecial=" + defensaEspecial + ", habilidades="
+				+ habilidades + "]";
+	}
 }
