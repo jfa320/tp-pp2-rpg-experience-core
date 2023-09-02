@@ -54,7 +54,7 @@ public class Enfrentamiento {
 	public void setVictoriaJugador(String victoriaJugador) {
 		this.victoriaJugador = victoriaJugador;
 	}
-
+	//TODO Ver si es correcto tener lógica de negocio acá
 	public void ejecutarHabilidad(Habilidad habilidadUsada) {
 		int habilidadDanio=habilidadUsada.getDanio();
 		int danioProducido;
