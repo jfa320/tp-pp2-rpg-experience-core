@@ -57,21 +57,26 @@ public class Enfrentamiento {
 
 	public void ejecutarHabilidad(Habilidad habilidadUsada) {
 		int habilidadDanio=habilidadUsada.getDanio();
+		int danioProducido;
 		switch (personajeActivo) {
 		//TODO ARREGLAR ESTA REPETICION DE CODIGO
 			case "P1":
 				if(habilidadUsada.getTipo()=="F") {
-					personaje2.setVidaActual(habilidadDanio*(personaje1.getAtaqueFisico()/100)*(1-personaje2.getDefensaFisica()/100));
+					danioProducido=(int)Math.floor(habilidadDanio*((double)personaje1.getAtaqueFisico()/100)*(1-(double)personaje2.getDefensaFisica()/100));
+					personaje2.setVidaActual(personaje2.getVidaActual()-danioProducido);
 				}else {
-					personaje2.setVidaActual(habilidadDanio*(personaje1.getAtaqueEspecial()/100)*(1-personaje2.getDefensaEspecial()/100));
+					danioProducido=(int)Math.floor(habilidadDanio*((double)personaje1.getAtaqueEspecial()/100)*(1-(double)personaje2.getDefensaEspecial()/100));
+					personaje2.setVidaActual(personaje2.getVidaActual()-danioProducido);
 				}
 				
 				break;
 			case "P2":
 				if(habilidadUsada.getTipo()=="F") {
-					personaje1.setVidaActual(habilidadDanio*(personaje2.getAtaqueFisico()/100)*(1-personaje1.getDefensaFisica()/100));
+					danioProducido=(int)Math.floor(habilidadDanio*((double)personaje2.getAtaqueFisico()/100)*(1-(double)personaje1.getDefensaFisica()/100));
+					personaje1.setVidaActual(personaje1.getVidaActual()-danioProducido);
 				}else {
-					personaje1.setVidaActual(habilidadDanio*(personaje2.getAtaqueEspecial()/100)*(1-personaje1.getDefensaEspecial()/100));
+					danioProducido=(int)Math.floor(habilidadDanio*((double)personaje2.getAtaqueEspecial()/100)*(1-(double)personaje1.getDefensaEspecial()/100));
+					personaje1.setVidaActual(personaje1.getVidaActual()-danioProducido);
 				}
 				break;	
 			default:
