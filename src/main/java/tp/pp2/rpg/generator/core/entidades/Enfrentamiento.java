@@ -7,6 +7,7 @@ public class Enfrentamiento {
 	private Boolean batallaFinalizada;
 	private String victoriaJugador;
 	
+	public Enfrentamiento() {}
 	public Enfrentamiento(Personaje personaje1, Personaje personaje2, String personajeActivo) {
 		this.personaje1 = personaje1;
 		this.personaje2 = personaje2;
