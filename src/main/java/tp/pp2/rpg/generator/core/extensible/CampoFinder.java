@@ -14,9 +14,10 @@ public class CampoFinder {
   
 	@SuppressWarnings("deprecation")
 	public static Set<Object> findClasses(String path) throws Exception {
+		System.out.println(path);
 		Set<Object> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(path);
-
+		System.out.println(path);
 		if (!carpeta.exists())
 			throw new FileNotFoundException();
 
