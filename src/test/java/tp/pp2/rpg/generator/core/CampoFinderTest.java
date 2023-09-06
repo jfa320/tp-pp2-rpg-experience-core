@@ -12,13 +12,11 @@ public class CampoFinderTest {
     @Test
 	public void pruebaFind() throws Exception {
 
-        String path =  "bin\\main\\tp\\pp2\\rpg\\generator\\core\\entidades";
-
+        String path =  "C:\\Users\\Fabián\\Desktop\\UNGS\\Proyecto Profesional 2 - S2 2023\\TP PP2\\Core\\tp-pp2-rpg-generator-core\\plugins";
         CampoFinder campo = new CampoFinder();
-
+        //Set<Object> clases=campo.findClassesJAR(path);
         Set<Object> clases=campo.findClasses(path);
-        
-        clases.forEach(System.out::println);
+        clases.forEach(c->System.out.println(c.getClass()));
 	}
 
 }
