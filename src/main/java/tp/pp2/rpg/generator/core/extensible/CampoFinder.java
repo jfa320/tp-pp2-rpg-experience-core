@@ -2,6 +2,7 @@ package tp.pp2.rpg.generator.core.extensible;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
@@ -11,10 +12,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class CampoFinder {
-  
+
 	@SuppressWarnings("deprecation")
 	public static Set<Object> findClasses(String path) throws Exception {
-		System.out.println(path);
 		Set<Object> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(path);
 		System.out.println(path);
@@ -34,9 +34,15 @@ public class CampoFinder {
 			// Crea un ClassLoader basado en la URL
 			URLClassLoader classLoader = new URLClassLoader(new URL[] { classUrl });
 
-			// Carga la clase dinámicamente
-			Class<?> claseEncontrada = classLoader
-					.loadClass(archivo.getName().substring(0, archivo.getName().length() - ".class".length()));
+			// aca cargo las clases dinamicamente en runtime
+			File f = new File(path);
+			URL[] urls = new URL[] { f.toURI().toURL() };
+			DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls, ClassLoader.getSystemClassLoader());
+
+			// busco las clases
+			Class<?> claseEncontrada = Class.forName(
+					archivo.getName().substring(0, archivo.getName().length() - ".class".length()), false,
+					dynamicClassLoader);
 
 			clasesEncontradas.add(claseEncontrada.newInstance());
 		}
@@ -54,10 +60,17 @@ public class CampoFinder {
 					ZipInputStream zip = new ZipInputStream(Files.newInputStream(archivoPlugin.toPath()));
 					for (ZipEntry entry = zip.getNextEntry(); entry != null; entry = zip.getNextEntry()) {
 						if (!entry.isDirectory() && entry.getName().endsWith(".class")) {
+							System.out.println(entry.getName());
 							className = entry.getName().replace('/', '.'); // including ".class"
 							className = className.substring(0, className.length() - ".class".length());
-							ClassLoader loader = URLClassLoader.newInstance(new URL[] { archivoPlugin.toURL() });
-							Class<?> claseEncontrada = loader.loadClass(className);
+							// aca cargo las clases dinamicamente en runtime
+							URL[] urls = new URL[] { archivoPlugin.toURL() };
+							DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls,
+									ClassLoader.getSystemClassLoader());
+
+							// busco las clases
+							Class<?> claseEncontrada = Class.forName(className, false, dynamicClassLoader);
+
 							clasesEncontradas.add(claseEncontrada.newInstance());
 						}
 					}

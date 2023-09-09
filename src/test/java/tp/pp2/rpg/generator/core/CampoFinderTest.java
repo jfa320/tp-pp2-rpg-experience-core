@@ -11,11 +11,11 @@ public class CampoFinderTest {
     
     @Test
 	public void pruebaFind() throws Exception {
-    	//System.getProperty para pararme donde está el proyecto
-        String path =  System.getProperty("user.dir")+"\\plugins";
+    	//System.getProperty para pararme donde estï¿½ el proyecto
+        String path =  System.getProperty("user.dir")+"\\src\\test\\resources\\plugins";
         CampoFinder campo = new CampoFinder();
-        Set<Object> clases=campo.findClassesJAR(path);
-        //Set<Object> clases=campo.findClasses(path);
+     // Set<Object> clases=campo.findClassesJAR(path);
+        Set<Object> clases=campo.findClasses(path);
         clases.forEach(c->System.out.println(c.getClass()));
 	}
 
