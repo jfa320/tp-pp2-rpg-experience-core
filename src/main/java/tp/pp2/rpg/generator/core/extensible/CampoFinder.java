@@ -2,7 +2,6 @@ package tp.pp2.rpg.generator.core.extensible;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
@@ -14,8 +13,8 @@ import java.util.zip.ZipInputStream;
 public class CampoFinder {
 
 	@SuppressWarnings("deprecation")
-	public static Set<Object> findClasses(String path) throws Exception {
-		Set<Object> clasesEncontradas = new HashSet<>();
+	public static Set<Campo> findClasses(String path) throws Exception {
+		Set<Campo> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(path);
 		System.out.println(path);
 		if (!carpeta.exists())
@@ -44,14 +43,14 @@ public class CampoFinder {
 					archivo.getName().substring(0, archivo.getName().length() - ".class".length()), false,
 					dynamicClassLoader);
 
-			clasesEncontradas.add(claseEncontrada.newInstance());
+			clasesEncontradas.add((Campo)claseEncontrada.newInstance());
 		}
 		return clasesEncontradas;
 	}
 
 	@SuppressWarnings("deprecation")
-	public static Set<Object> findClassesJAR(String path) throws Exception {
-		Set<Object> clasesEncontradas = new HashSet<>();
+	public static Set<Campo> findClassesJAR(String path) throws Exception {
+		Set<Campo> clasesEncontradas = new HashSet<>();
 		File directorioPlugins = new File(path);
 		if (directorioPlugins.exists()) {
 			for (File archivoPlugin : directorioPlugins.listFiles()) {
@@ -71,7 +70,7 @@ public class CampoFinder {
 							// busco las clases
 							Class<?> claseEncontrada = Class.forName(className, false, dynamicClassLoader);
 
-							clasesEncontradas.add(claseEncontrada.newInstance());
+							clasesEncontradas.add((Campo)claseEncontrada.newInstance());
 						}
 					}
 
