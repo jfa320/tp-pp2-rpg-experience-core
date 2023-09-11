@@ -13,7 +13,7 @@ import java.util.zip.ZipInputStream;
 public class CampoFinder {
 
 	@SuppressWarnings("deprecation")
-	public static Set<Campo> findClasses(String path) throws Exception {
+	public Set<Campo> findClasses(String path) throws Exception {
 		Set<Campo> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(path);
 		System.out.println(path);
@@ -37,19 +37,18 @@ public class CampoFinder {
 			File f = new File(path);
 			URL[] urls = new URL[] { f.toURI().toURL() };
 			DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls, ClassLoader.getSystemClassLoader());
-
+			
 			// busco las clases
 			Class<?> claseEncontrada = Class.forName(
 					archivo.getName().substring(0, archivo.getName().length() - ".class".length()), false,
 					dynamicClassLoader);
-
 			clasesEncontradas.add((Campo)claseEncontrada.newInstance());
 		}
 		return clasesEncontradas;
 	}
 
 	@SuppressWarnings("deprecation")
-	public static Set<Campo> findClassesJAR(String path) throws Exception {
+	public Set<Campo> findClassesJAR(String path) throws Exception {
 		Set<Campo> clasesEncontradas = new HashSet<>();
 		File directorioPlugins = new File(path);
 		if (directorioPlugins.exists()) {
@@ -80,4 +79,5 @@ public class CampoFinder {
 		}
 		return clasesEncontradas;
 	}
+	
 }
