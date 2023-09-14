@@ -25,7 +25,7 @@ public class RpgBattleGenerator extends Observable {
 	}
 
 	public void jugar(Habilidad habilidad, Personaje personajeAtacante, Personaje personajeAtacado) {
-		batalla.calcularDaño(habilidad, personajeAtacante, personajeAtacado);
+		batalla.calcularDanio(habilidad, personajeAtacante, personajeAtacado);
 		setChanged();
 		notifyObservers(batalla);
 	}

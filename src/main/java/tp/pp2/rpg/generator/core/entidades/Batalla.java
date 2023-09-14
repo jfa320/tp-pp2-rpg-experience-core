@@ -46,7 +46,7 @@ public class Batalla {
 		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", personajeGanadorId=" + personajeGanadorId + "]";
 	};
 	
-	public void calcularDaño(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) {
-		habilidad.dañar(personajeAtacado);
+	public void calcularDanio(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) {
+		habilidad.daniar(personajeAtacado);
 	}
 }
