@@ -1,18 +1,25 @@
 package tp.pp2.rpg.generator.core.utils;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import tp.pp2.rpg.generator.core.entidades.Batalla;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
 
 public class ParserJSON {
-	public static List<Personaje> parsearJSON(String json) {
-		 // Crear una instancia de Gson
-        Gson gson = new Gson();
-        // Utilizar TypeToken para convertir el JSON en una lista de objetos Personaje
-        List<Personaje> personajes = gson.fromJson(json, new TypeToken<List<Personaje>>(){}.getType());
-        return personajes;
+	public static List<Personaje> parsearPersonajesJSON(String json) {
+		Gson gson = new Gson();
+        Map<String, Object> datos = gson.fromJson(json, Map.class);
+        List<Map<String, Object>> personajesData = (List<Map<String, Object>>) datos.get("personajes");
+        return gson.fromJson(gson.toJson(personajesData), new TypeToken<List<Personaje>>(){}.getType());
+	}
+	public static Batalla parsearBatallaJSON(String json) {
+		Gson gson = new Gson();
+        Map<String, Object> datos = gson.fromJson(json, Map.class);
+        Map<String, Object> batallaData = (Map<String, Object>) datos.get("batalla");
+        return gson.fromJson(gson.toJson(batallaData), Batalla.class);
 	}
 }
