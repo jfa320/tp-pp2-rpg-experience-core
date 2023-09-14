@@ -14,9 +14,10 @@ public class CampoFinder {
 
 	@SuppressWarnings("deprecation")
 	public Set<Campo> findClasses(String path) throws Exception {
+		String pathPackage=path.replace('.', '/');
 		Set<Campo> clasesEncontradas = new HashSet<>();
-		File carpeta = new File(path);
-		System.out.println(path);
+		File carpeta = new File(pathPackage);
+		System.out.println(pathPackage);
 		if (!carpeta.exists())
 			throw new FileNotFoundException();
 
@@ -27,22 +28,14 @@ public class CampoFinder {
 			if (!archivo.getName().endsWith(".class"))
 				continue;
 
-			// Crea una URL para el directorio que contiene el archivo Enfrentamiento.class
-			URL classUrl = new URL("file://" + path);
-
-			// Crea un ClassLoader basado en la URL
-			URLClassLoader classLoader = new URLClassLoader(new URL[] { classUrl });
-
 			// aca cargo las clases dinamicamente en runtime
-			File f = new File(path);
-			URL[] urls = new URL[] { f.toURI().toURL() };
+			URL[] urls = new URL[] { carpeta.toURI().toURL() };
 			DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls, ClassLoader.getSystemClassLoader());
-			
+			System.out.println(archivo.getName());
 			// busco las clases
-			Class<?> claseEncontrada = Class.forName(
-					archivo.getName().substring(0, archivo.getName().length() - ".class".length()), false,
+			Class<?> claseEncontrada = Class.forName("campo.agua."+archivo.getName().replace(".class", ""), false,
 					dynamicClassLoader);
-			clasesEncontradas.add((Campo)claseEncontrada.newInstance());
+			clasesEncontradas.add((Campo) claseEncontrada.newInstance());
 		}
 		return clasesEncontradas;
 	}
@@ -69,7 +62,7 @@ public class CampoFinder {
 							// busco las clases
 							Class<?> claseEncontrada = Class.forName(className, false, dynamicClassLoader);
 
-							clasesEncontradas.add((Campo)claseEncontrada.newInstance());
+							clasesEncontradas.add((Campo) claseEncontrada.newInstance());
 						}
 					}
 
@@ -79,5 +72,5 @@ public class CampoFinder {
 		}
 		return clasesEncontradas;
 	}
-	
+
 }
