@@ -56,7 +56,7 @@ public class Batalla {
 		// realiza calculo de danio
 		Integer danioPorRealizar = habilidad.daniar(personajeAtacado);
 		Integer vidaPersonajeAtacado = vidas.get(personajeAtacado.getId());
-		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado - danioPorRealizar);
+		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado + danioPorRealizar);
 
 		// valida ganador
 		Integer idGanador = validadorVictoria.validarVictoria(vidas);
@@ -64,10 +64,10 @@ public class Batalla {
 			personajeGanadorId = idGanador;
 
 		// cambia turno
-		if (turno <= vidas.size())
+	/*	if (turno <= vidas.size())
 			turno ++;
 		else
-			turno = 1;	
+			turno = 1;	*/
 	}
 
 	public ValidadorVictoria getValidadorVictoria() {

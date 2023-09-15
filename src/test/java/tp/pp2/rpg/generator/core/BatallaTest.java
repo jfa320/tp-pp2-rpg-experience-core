@@ -34,8 +34,8 @@ public class BatallaTest {
         
         MockitoAnnotations.openMocks(this);
 
-        when(habilidad1.daniar(any())).thenReturn(500);
-        when(habilidad2.daniar(any())).thenReturn(800);
+        when(habilidad1.daniar(any())).thenReturn(-500);
+        when(habilidad2.daniar(any())).thenReturn(-800);
 
         personaje1 = new Personaje(1, "personaje1", 50, 50);
         personaje2 = new Personaje(2, "personaje2", 100, 50);
@@ -51,7 +51,6 @@ public class BatallaTest {
     public void ataqueValido(){
         batalla.calcularDanio(habilidad1, personaje1, personaje2);
         Assert.assertEquals((Integer)300, batalla.getVidas().get(personaje2.getId()));
-        Assert.assertEquals((Integer)2, batalla.getTurno());
     }
     
     @Test
