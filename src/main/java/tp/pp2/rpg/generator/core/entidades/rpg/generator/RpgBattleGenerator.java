@@ -22,6 +22,12 @@ public class RpgBattleGenerator extends Observable {
 		this.personajes=ParserJSON.parsearPersonajesJSON(datos);
 		this.batalla=ParserJSON.parsearBatallaJSON(datos); //la batalla ahora viene por JSON
 		this.ganador="";
+		try {
+			this.setHabilidades("src.test.resources.plugins");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void jugar(Habilidad habilidad, Personaje personajeAtacante, Personaje personajeAtacado) {
@@ -31,8 +37,6 @@ public class RpgBattleGenerator extends Observable {
 	}
 	
 	public void setHabilidades(String path) throws Exception {
-		//nose si es correcto separar asi pero sino queda todo junto en el constructor y eso puede traer problemas en el test quizas
-		//y quizas violamos SRP de yapa
 		this.habilidadFinder=new HabilidadFinder();
 		this.habilidades=(List<Habilidad>) habilidadFinder.findClasses(path);
 	}
