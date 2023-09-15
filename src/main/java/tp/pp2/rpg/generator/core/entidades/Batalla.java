@@ -69,4 +69,12 @@ public class Batalla {
 		else
 			turno = 1;	
 	}
+
+	public ValidadorVictoria getValidadorVictoria() {
+		return validadorVictoria;
+	}
+
+	public void setValidadorVictoria(ValidadorVictoria validadorVictoria) {
+		this.validadorVictoria = validadorVictoria;
+	}
 }

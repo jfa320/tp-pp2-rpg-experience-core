@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import tp.pp2.rpg.generator.core.entidades.Batalla;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
+import tp.pp2.rpg.generator.core.entidades.ValidadorVictoria;
 
 public class ParserJSON {
 	public static List<Personaje> parsearPersonajesJSON(String json) {
@@ -20,6 +21,8 @@ public class ParserJSON {
 		Gson gson = new Gson();
         Map<String, Object> datos = gson.fromJson(json, Map.class);
         Map<String, Object> batallaData = (Map<String, Object>) datos.get("batalla");
-        return gson.fromJson(gson.toJson(batallaData), Batalla.class);
+        Batalla batallaGenerada=gson.fromJson(gson.toJson(batallaData), Batalla.class);
+        batallaGenerada.setValidadorVictoria(new ValidadorVictoria());
+        return batallaGenerada;
 	}
 }
