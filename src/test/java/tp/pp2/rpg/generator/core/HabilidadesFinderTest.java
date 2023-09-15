@@ -46,12 +46,13 @@ public class HabilidadesFinderTest {
         Assert.assertEquals(1, habilidades.size());
         Assert.assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
-/* 
+ 
     @Test
     public void habilidadesMultiples() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//multiplesHabilidades");
         Assert.assertEquals(2, habilidades.size());
+/*
         Assert.assertEquals("Corte", habilidades.get(0).getClass().getName());
-        Assert.assertEquals("Herir", habilidades.get(1).getClass().getName());
-    }*/
+        Assert.assertEquals("Herir", habilidades.get(1).getClass().getName()); */
+    }
 }
