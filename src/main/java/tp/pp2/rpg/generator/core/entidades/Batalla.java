@@ -8,6 +8,7 @@ public class Batalla {
 	private Integer turno;
 	private Map<Integer, Integer> vidas;
 	private Integer personajeGanadorId;
+	private ValidadorVictoria validadorVictoria;
 	
 	public Batalla() {}
 
@@ -15,6 +16,7 @@ public class Batalla {
 		this.turno = turno;
 		this.vidas = vidas;
 		this.personajeGanadorId = personajeGanadorId;
+		validadorVictoria = new ValidadorVictoria();
 	}
 
 	public Integer getTurno() {
@@ -47,6 +49,24 @@ public class Batalla {
 	};
 	
 	public void calcularDanio(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) {
-		habilidad.daniar(personajeAtacado);
+
+		if(turno != personajeAtacante.getId())
+			throw new ArithmeticException();
+
+		// realiza calculo de danio
+		Integer dañoPorRealizar = habilidad.daniar(personajeAtacado);
+		Integer vidaPersonajeAtacado = vidas.get(personajeAtacado.getId());
+		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado - dañoPorRealizar);
+
+		// valida ganador
+		Integer idGanador = validadorVictoria.validarVictoria(vidas);
+		if (idGanador != -1) 
+			personajeGanadorId = idGanador;
+
+		// cambia turno
+		if (turno <= vidas.size())
+			turno ++;
+		else
+			turno = 1;	
 	}
 }
