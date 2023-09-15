@@ -1,9 +1,10 @@
 package tp.pp2.rpg.generator.core;
 
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +54,12 @@ public class HabilidadesFinderTest {
         List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//multiplesHabilidades");
         Assert.assertEquals(2, habilidades.size());
 
-        Assert.assertEquals("Herir", habilidades.get(0).getClass().getName());
-        Assert.assertEquals("Corte", habilidades.get(1).getClass().getName());    
+        Set<String> nombreDeClases = new HashSet<>();
+
+        for (Habilidad habilidad : habilidades)
+           nombreDeClases.add(habilidad.getClass().getName());
+        
+        Assert.assertTrue(nombreDeClases.contains("Corte"));
+        Assert.assertTrue(nombreDeClases.contains("Herir"));        
     }
 }
