@@ -50,7 +50,7 @@ public class RpgBattleGenerator extends Observable {
 	
 	public void setHabilidades(String path) throws Exception {
 		this.habilidadFinder=new HabilidadFinder();
-		this.habilidades=(List<Habilidad>) habilidadFinder.findClasses(path);
+		this.habilidades= habilidadFinder.findClasses(path);
 	}
 	
 	public List<Habilidad> getHabilidades() {

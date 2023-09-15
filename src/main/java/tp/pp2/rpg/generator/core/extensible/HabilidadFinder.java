@@ -3,17 +3,18 @@ package tp.pp2.rpg.generator.core.extensible;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
 
 public class HabilidadFinder {
 
 	@SuppressWarnings("deprecation")
-	public Set<Habilidad> findClasses(String path) throws Exception {
+	public List<Habilidad> findClasses(String path) throws Exception {
 		String pathPackage=path.replace('.', '/');
-		Set<Habilidad> clasesEncontradas = new HashSet<>();
+		List<Habilidad> clasesEncontradas = new ArrayList<>();
 		File carpeta = new File(pathPackage);
 		if (!carpeta.exists())
 			throw new FileNotFoundException("No se encontro la carpeta en: "+path);
