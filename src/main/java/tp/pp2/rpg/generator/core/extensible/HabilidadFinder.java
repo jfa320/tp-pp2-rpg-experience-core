@@ -15,7 +15,6 @@ public class HabilidadFinder {
 		String pathPackage=path.replace('.', '/');
 		Set<Habilidad> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(pathPackage);
-		System.out.println(pathPackage);
 		if (!carpeta.exists())
 			throw new FileNotFoundException();
 

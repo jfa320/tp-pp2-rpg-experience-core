@@ -23,7 +23,8 @@ public class RpgBattleGenerator extends Observable {
 		this.batalla=ParserJSON.parsearBatallaJSON(datos); //la batalla ahora viene por JSON
 		this.ganador="";
 		try {
-			this.setHabilidades("src.test.resources.plugins");
+			System.out.println(System.getProperty("user.dir")+"src.test.resources.plugins");
+			this.setHabilidades(System.getProperty("user.dir")+"src.test.resources.plugins");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
