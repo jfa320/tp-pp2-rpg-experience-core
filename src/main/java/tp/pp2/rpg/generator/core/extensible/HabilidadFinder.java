@@ -16,10 +16,10 @@ public class HabilidadFinder {
 		Set<Habilidad> clasesEncontradas = new HashSet<>();
 		File carpeta = new File(pathPackage);
 		if (!carpeta.exists())
-			throw new FileNotFoundException();
+			throw new FileNotFoundException("No se encontro la carpeta en: "+path);
 
 		if (!carpeta.isDirectory())
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("No es un directorio: "+path);
 
 		for (File archivo : carpeta.listFiles()) {
 			if (!archivo.getName().endsWith(".class"))
