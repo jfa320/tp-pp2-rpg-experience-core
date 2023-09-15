@@ -19,17 +19,7 @@ public class HabilidadesFinderTest {
     public void setUp(){
         habilidadFinder = new HabilidadFinder();
     }
-/* 
-    @Test
-	public void pruebaFind() throws Exception {
-    	//System.getProperty para pararme donde esta el proyecto
-        String path =  "src.test.resources.plugins";	
-        HabilidadFinder campo = new HabilidadFinder();
-        Set<Habilidad> clases=campo.findClasses(path);
-        //Set<Campo> clases=campo.findClassesJAR(path);
-        clases.forEach(c->System.out.println(c.getClass()));
-	}
-*/    
+      
     @Test(expected = FileNotFoundException.class)
     public void ubicacionInexistente() throws Exception{
         habilidadFinder.findClasses("ubicacionInexistente");
@@ -54,13 +44,14 @@ public class HabilidadesFinderTest {
     public void unaHabilidad() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("src\\test\\resources\\plugins\\unaHabilidad");
         Assert.assertEquals(1, habilidades.size());
+        Assert.assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
 
     @Test
     public void habilidadesMultiples() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("src\\test\\resources\\plugins\\multiplesHabilidades");
         Assert.assertEquals(2, habilidades.size());
-        Assert.assertTrue(habilidades.contains());
-        Assert.assertTrue(habilidades.contains());
+        Assert.assertEquals("Corte", habilidades.get(0).getClass().getName());
+        Assert.assertEquals("Herir", habilidades.get(1).getClass().getName());
     }
 }
