@@ -1,7 +1,11 @@
 package tp.pp2.rpg.generator.core.entidades.rpg.generator;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
+import java.util.Properties;
 
 import tp.pp2.rpg.generator.core.entidades.Batalla;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
@@ -15,18 +19,25 @@ public class RpgBattleGenerator extends Observable {
 	private List<Personaje> personajes;
 	private String ganador;
 	private HabilidadFinder habilidadFinder;
+	private Properties configProperties = new Properties();
 
 	public RpgBattleGenerator() {};
 	
-	public RpgBattleGenerator(String datos) {
-		this.personajes=ParserJSON.parsearPersonajesJSON(datos);
-		this.batalla=ParserJSON.parsearBatallaJSON(datos); //la batalla ahora viene por JSON
+	public RpgBattleGenerator(String pathConfigProperties) {
+		try {
+			configProperties.load(new FileInputStream(pathConfigProperties));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		String datosBatalla=configProperties.getProperty("datos.batalla");
+		this.personajes=ParserJSON.parsearPersonajesJSON(datosBatalla);
+		this.batalla=ParserJSON.parsearBatallaJSON(datosBatalla); //la batalla ahora viene por JSON
 		this.ganador="";
 		try {
-			System.out.println(System.getProperty("user.dir")+"src.test.resources.plugins");
-			this.setHabilidades(System.getProperty("user.dir")+"src.test.resources.plugins");
+			this.setHabilidades(configProperties.getProperty("path.habilidades"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
