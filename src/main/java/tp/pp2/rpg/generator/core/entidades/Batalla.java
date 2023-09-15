@@ -54,9 +54,9 @@ public class Batalla {
 			throw new ArithmeticException();
 
 		// realiza calculo de danio
-		Integer dañoPorRealizar = habilidad.daniar(personajeAtacado);
+		Integer danioPorRealizar = habilidad.daniar(personajeAtacado);
 		Integer vidaPersonajeAtacado = vidas.get(personajeAtacado.getId());
-		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado - dañoPorRealizar);
+		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado - danioPorRealizar);
 
 		// valida ganador
 		Integer idGanador = validadorVictoria.validarVictoria(vidas);
