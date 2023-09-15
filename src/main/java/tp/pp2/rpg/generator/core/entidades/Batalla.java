@@ -3,6 +3,8 @@ package tp.pp2.rpg.generator.core.entidades;
 import java.util.Map;
 
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
+import tp.pp2.rpg.generator.core.excepciones.TurnoInconrrectoException;
 
 public class Batalla {
 	private Integer turno;
@@ -48,10 +50,13 @@ public class Batalla {
 		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", personajeGanadorId=" + personajeGanadorId + "]";
 	};
 	
-	public void calcularDanio(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) {
+	public void calcularDanio(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
+
+		if(habilidad == null)
+			throw new HabilidadInexistenteException();
 
 		if(turno != personajeAtacante.getId())
-			throw new ArithmeticException();
+			throw new TurnoInconrrectoException();
 
 		// realiza calculo de danio
 		Integer danioPorRealizar = habilidad.daniar(personajeAtacado);

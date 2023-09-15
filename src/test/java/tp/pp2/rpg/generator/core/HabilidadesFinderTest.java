@@ -27,7 +27,7 @@ public class HabilidadesFinderTest {
         habilidadFinder.findClasses("ubicacionInexistente");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = FileNotFoundException.class)
     public void ubicacionInvalida() throws Exception{
          habilidadFinder.findClasses("src//test//resources//plugins//archivo.txt");
     }

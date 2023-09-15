@@ -15,6 +15,8 @@ import org.mockito.MockitoAnnotations;
 import tp.pp2.rpg.generator.core.entidades.Batalla;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
+import tp.pp2.rpg.generator.core.excepciones.TurnoInconrrectoException;
 
 public class BatallaTest {
 
@@ -48,24 +50,24 @@ public class BatallaTest {
     }
 
     @Test
-    public void ataqueValido(){
+    public void ataqueValido() throws Exception{
         batalla.calcularDanio(habilidad1, personaje1, personaje2);
         Assert.assertEquals((Integer)300, batalla.getVidas().get(personaje2.getId()));
     }
     
     @Test
-    public void finalizarBatalla(){
+    public void finalizarBatalla() throws Exception{
         batalla.calcularDanio(habilidad2, personaje1, personaje2);
         Assert.assertEquals((Integer)1, batalla.getPersonajeGanadorId());
     }
 
-    @Test(expected = ArithmeticException.class)
-    public void turnoIncorrecto(){
+    @Test(expected = TurnoInconrrectoException.class)
+    public void turnoIncorrecto() throws Exception{
         batalla.calcularDanio(habilidad1, personaje2, personaje1);
     }
 
-    @Test(expected = RuntimeException.class)
-    public void habilidadInexistente(){
+    @Test(expected = HabilidadInexistenteException.class)
+    public void habilidadInexistente() throws Exception{
         batalla.calcularDanio(null, personaje1, personaje2);
     }
 }
