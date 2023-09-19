@@ -21,8 +21,9 @@ public class RpgBattleGenerator extends Observable {
 	private HabilidadFinder habilidadFinder;
 	private Properties configProperties = new Properties();
 
-	public RpgBattleGenerator() {};
-	
+	public RpgBattleGenerator() {
+	};
+
 	public RpgBattleGenerator(String pathConfigProperties) {
 		try {
 			configProperties.load(new FileInputStream(pathConfigProperties));
@@ -31,10 +32,10 @@ public class RpgBattleGenerator extends Observable {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		String datosBatalla=configProperties.getProperty("datos.batalla");
-		this.personajes=ParserJSON.parsearPersonajesJSON(datosBatalla);
-		this.batalla=ParserJSON.parsearBatallaJSON(datosBatalla); //la batalla ahora viene por JSON
-		this.nombreGanador="";
+		String datosBatalla = configProperties.getProperty("datos.batalla");
+		this.personajes = ParserJSON.parsearPersonajesJSON(datosBatalla);
+		this.batalla = ParserJSON.parsearBatallaJSON(datosBatalla); // la batalla ahora viene por JSON
+		this.nombreGanador = "";
 		try {
 			this.setHabilidades(configProperties.getProperty("path.habilidades"));
 		} catch (Exception e) {
@@ -47,16 +48,16 @@ public class RpgBattleGenerator extends Observable {
 		setChanged();
 		notifyObservers(batalla);
 	}
-	
+
 	public void setHabilidades(String path) throws Exception {
-		this.habilidadFinder=new HabilidadFinder();
-		this.habilidades= habilidadFinder.findClasses(path);
+		this.habilidadFinder = new HabilidadFinder();
+		this.habilidades = habilidadFinder.findClasses(path);
 	}
-	
+
 	public List<Habilidad> getHabilidades() {
 		return habilidades;
 	}
-	
+
 	public Batalla getBatalla() {
 		return batalla;
 	}
@@ -66,7 +67,10 @@ public class RpgBattleGenerator extends Observable {
 	}
 
 	public String getNombreGanador() {
-		return this.personajes.stream().filter(personaje->personaje.getId()==batalla.getPersonajeGanadorId()).findFirst().get().getNombre();
+		String nombre = this.personajes.stream()
+				.filter(personaje -> personaje.getId() == batalla.getPersonajeGanadorId()).findFirst().get()
+				.getNombre();
+		return nombre != null ? nombre : "";
 	}
 
 	public void setBatalla(Batalla batalla) {
@@ -80,6 +84,5 @@ public class RpgBattleGenerator extends Observable {
 	public void setNombreGanador(String ganador) {
 		this.nombreGanador = ganador;
 	}
-	
-	
+
 }
