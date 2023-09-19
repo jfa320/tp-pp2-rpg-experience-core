@@ -18,7 +18,7 @@ import tp.pp2.rpg.generator.core.entidades.Batalla;
 import tp.pp2.rpg.generator.core.entidades.Personaje;
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
-import tp.pp2.rpg.generator.core.excepciones.TurnoInconrrectoException;
+import tp.pp2.rpg.generator.core.excepciones.TurnoIncorrectoException;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BatallaTest {
@@ -64,7 +64,7 @@ public class BatallaTest {
         Assert.assertEquals((Integer)1, batalla.getPersonajeGanadorId());
     }
 
-    @Test(expected = TurnoInconrrectoException.class)
+    @Test(expected = TurnoIncorrectoException.class)
     public void CA3_turnoIncorrecto() throws Exception{
         batalla.jugar(habilidad1, personaje2, personaje1);
     }

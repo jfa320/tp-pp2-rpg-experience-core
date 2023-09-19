@@ -4,7 +4,7 @@ import java.util.Map;
 
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
-import tp.pp2.rpg.generator.core.excepciones.TurnoInconrrectoException;
+import tp.pp2.rpg.generator.core.excepciones.TurnoIncorrectoException;
 
 public class Batalla {
 	private Integer turno;
@@ -56,7 +56,7 @@ public class Batalla {
 			throw new HabilidadInexistenteException();
 
 		if(turno != personajeAtacante.getId())
-			throw new TurnoInconrrectoException();
+			throw new TurnoIncorrectoException();
 
 		// realiza calculo de danio
 		Integer danioPorRealizar = habilidad.daniar(personajeAtacado);
