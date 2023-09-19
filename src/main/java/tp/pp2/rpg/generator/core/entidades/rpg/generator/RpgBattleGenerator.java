@@ -17,7 +17,7 @@ public class RpgBattleGenerator extends Observable {
 	private Batalla batalla;
 	private List<Habilidad> habilidades;
 	private List<Personaje> personajes;
-	private String ganador;
+	private String nombreGanador;
 	private HabilidadFinder habilidadFinder;
 	private Properties configProperties = new Properties();
 
@@ -34,7 +34,7 @@ public class RpgBattleGenerator extends Observable {
 		String datosBatalla=configProperties.getProperty("datos.batalla");
 		this.personajes=ParserJSON.parsearPersonajesJSON(datosBatalla);
 		this.batalla=ParserJSON.parsearBatallaJSON(datosBatalla); //la batalla ahora viene por JSON
-		this.ganador="";
+		this.nombreGanador="";
 		try {
 			this.setHabilidades(configProperties.getProperty("path.habilidades"));
 		} catch (Exception e) {
@@ -65,8 +65,8 @@ public class RpgBattleGenerator extends Observable {
 		return personajes;
 	}
 
-	public String getGanador() {
-		return ganador;
+	public String getNombreGanador() {
+		return this.personajes.stream().filter(personaje->personaje.getId()==batalla.getPersonajeGanadorId()).findFirst().get().getNombre();
 	}
 
 	public void setBatalla(Batalla batalla) {
@@ -77,8 +77,8 @@ public class RpgBattleGenerator extends Observable {
 		this.personajes = personajes;
 	}
 
-	public void setGanador(String ganador) {
-		this.ganador = ganador;
+	public void setNombreGanador(String ganador) {
+		this.nombreGanador = ganador;
 	}
 	
 	
