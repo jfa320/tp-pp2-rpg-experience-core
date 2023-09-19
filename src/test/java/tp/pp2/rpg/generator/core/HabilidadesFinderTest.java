@@ -7,12 +7,14 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.generator.core.extensible.HabilidadFinder;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HabilidadesFinderTest {
     
     private HabilidadFinder habilidadFinder;
@@ -23,34 +25,34 @@ public class HabilidadesFinderTest {
     }
       
     @Test(expected = FileNotFoundException.class)
-    public void ubicacionInexistente() throws Exception{
+    public void CA1_ubicacionInexistente() throws Exception{
         habilidadFinder.findClasses("ubicacionInexistente");
     }
 
     @Test(expected = FileNotFoundException.class)
-    public void ubicacionInvalida() throws Exception{
+    public void CA2_ubicacionInvalida() throws Exception{
          habilidadFinder.findClasses("src//test//resources//plugins//archivo.txt");
     }
     
     @Test
-    public void carpetaVacia() throws Exception{
+    public void CA3_carpetaVacia() throws Exception{
         Assert.assertTrue(habilidadFinder.findClasses("src//test//resources//plugins//carpetaVacia").isEmpty());
     }
 
     @Test
-    public void noEsHabilidad() throws Exception{
+    public void CA4_noEsHabilidad() throws Exception{
         Assert.assertTrue(habilidadFinder.findClasses("src//test//resources//plugins//noEsHabilidad").isEmpty());
     }
 
     @Test
-    public void unaHabilidad() throws Exception{
+    public void CA5_unaHabilidad() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//unaHabilidad");
         Assert.assertEquals(1, habilidades.size());
         Assert.assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
  
     @Test
-    public void habilidadesMultiples() throws Exception{
+    public void CA6_habilidadesMultiples() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//multiplesHabilidades");
         Assert.assertEquals(2, habilidades.size());
 

@@ -9,6 +9,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -18,6 +20,7 @@ import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
 import tp.pp2.rpg.generator.core.excepciones.TurnoInconrrectoException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BatallaTest {
 
     @Mock
@@ -50,24 +53,24 @@ public class BatallaTest {
     }
 
     @Test
-    public void ataqueValido() throws Exception{
-        batalla.calcularDanio(habilidad1, personaje1, personaje2);
+    public void CA1_ataqueValido() throws Exception{
+        batalla.jugar(habilidad1, personaje1, personaje2);
         Assert.assertEquals((Integer)300, batalla.getVidas().get(personaje2.getId()));
     }
     
     @Test
-    public void finalizarBatalla() throws Exception{
-        batalla.calcularDanio(habilidad2, personaje1, personaje2);
+    public void CA2_finalizarBatalla() throws Exception{
+        batalla.jugar(habilidad2, personaje1, personaje2);
         Assert.assertEquals((Integer)1, batalla.getPersonajeGanadorId());
     }
 
     @Test(expected = TurnoInconrrectoException.class)
-    public void turnoIncorrecto() throws Exception{
-        batalla.calcularDanio(habilidad1, personaje2, personaje1);
+    public void CA3_turnoIncorrecto() throws Exception{
+        batalla.jugar(habilidad1, personaje2, personaje1);
     }
 
     @Test(expected = HabilidadInexistenteException.class)
-    public void habilidadInexistente() throws Exception{
-        batalla.calcularDanio(null, personaje1, personaje2);
+    public void CA4_habilidadInexistente() throws Exception{
+        batalla.jugar(null, personaje1, personaje2);
     }
 }

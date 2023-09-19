@@ -50,7 +50,7 @@ public class Batalla {
 		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", personajeGanadorId=" + personajeGanadorId + "]";
 	};
 	
-	public void calcularDanio(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
+	public void jugar(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
 
 		if(habilidad == null)
 			throw new HabilidadInexistenteException();

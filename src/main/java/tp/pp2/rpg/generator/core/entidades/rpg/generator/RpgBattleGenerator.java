@@ -43,7 +43,7 @@ public class RpgBattleGenerator extends Observable {
 	}
 
 	public void jugar(Habilidad habilidad, Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
-		batalla.calcularDanio(habilidad, personajeAtacante, personajeAtacado);
+		batalla.jugar(habilidad, personajeAtacante, personajeAtacado);
 		setChanged();
 		notifyObservers(batalla);
 	}
