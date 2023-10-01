@@ -2,12 +2,27 @@ package tp.pp2.rpg.experience.core.entidades;
 
 
 public class Personaje {
+	private int id;
     private String nombre;
 	
 	public Personaje() {}
 
+	public Personaje(int id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	public String getNombre() {
 		return nombre;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setNombre(String nombre) {
@@ -16,7 +31,7 @@ public class Personaje {
 
 	@Override
 	public String toString() {
-		return "Personaje [nombre=" + nombre + "]";
-	};
+		return "Personaje [id=" + id + ", nombre=" + nombre + "]";
+	}
 	
 }

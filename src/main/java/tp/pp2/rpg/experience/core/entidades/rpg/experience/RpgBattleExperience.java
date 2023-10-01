@@ -17,7 +17,6 @@ public class RpgBattleExperience extends Observable {
 	private Batalla batalla;
 	private List<Habilidad> habilidades;
 	private List<Personaje> personajes;
-	private String nombreGanador;
 	private HabilidadFinder habilidadFinder;
 	private Properties configProperties = new Properties();
 
@@ -66,20 +65,12 @@ public class RpgBattleExperience extends Observable {
 		return personajes;
 	}
 
-	public String getNombreGanador() {
-		return nombreGanador;
-	}
-
 	public void setBatalla(Batalla batalla) {
 		this.batalla = batalla;
 	}
 
 	public void setPersonajes(List<Personaje> personajes) {
 		this.personajes = personajes;
-	}
-
-	public void setNombreGanador(String ganador) {
-		this.nombreGanador = ganador;
 	}
 
 }

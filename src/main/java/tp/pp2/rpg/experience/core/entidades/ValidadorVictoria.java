@@ -5,23 +5,25 @@ import java.util.Map.Entry;
 
 public class ValidadorVictoria {
 	Personaje personajeGanador;
-	
+
 	public Personaje validarVictoria(Map<Personaje, Integer> vidas) {
 
 		Integer personajesVivos = 0;
-		Integer noHayGanador = -1;
-        Integer ultimoPersonajeVivo= -1;
-        
-        for (Entry<Personaje, Integer> vidaPorPersonaje : vidas.entrySet()) {
-            Integer vida = vidaPorPersonaje.getValue();
-            if (vida > 0) {
-                personajesVivos++;
-                ultimoPersonajeVivo = vidaPorPersonaje.getKey();
-            }
-        }
-        return personajesVivos == 1 ? ultimoPersonajeVivo : noHayGanador;
-        
-        if (personajeGanador.getNombre() != "Sin ganador aún") 
-			personajeGanadorId = idGanador;
+		Personaje noHayGanador = new Personaje(-1, "Aún no hay ganador");
+		Personaje ultimoPersonajeVivo=new Personaje(-1, "Aún hay varios personajes en batalla");
+		
+		for (Entry<Personaje, Integer> vidaPorPersonaje : vidas.entrySet()) {
+			Integer vida = vidaPorPersonaje.getValue();
+			if (vida > 0) {
+				personajesVivos++;
+				ultimoPersonajeVivo = vidaPorPersonaje.getKey();
+			}
+		}
+
+		if (personajesVivos == 1) {
+			personajeGanador = ultimoPersonajeVivo;
+		}
+		
+		return personajesVivos == 1 ? ultimoPersonajeVivo : noHayGanador;
 	}
 }
