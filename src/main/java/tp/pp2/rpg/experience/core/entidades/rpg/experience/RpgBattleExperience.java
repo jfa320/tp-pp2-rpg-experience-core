@@ -1,4 +1,4 @@
-package tp.pp2.rpg.experience.core.entidades.rpg.generator;
+package tp.pp2.rpg.experience.core.entidades.rpg.experience;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 import tp.pp2.rpg.experience.core.utils.ParserJSON;
 
-public class RpgBattleGenerator extends Observable {
+public class RpgBattleExperience extends Observable {
 	private Batalla batalla;
 	private List<Habilidad> habilidades;
 	private List<Personaje> personajes;
@@ -21,10 +21,10 @@ public class RpgBattleGenerator extends Observable {
 	private HabilidadFinder habilidadFinder;
 	private Properties configProperties = new Properties();
 
-	public RpgBattleGenerator() {
+	public RpgBattleExperience() {
 	};
 
-	public RpgBattleGenerator(String pathConfigProperties) {
+	public RpgBattleExperience(String pathConfigProperties) {
 		try {
 			configProperties.load(new FileInputStream(pathConfigProperties));
 		} catch (FileNotFoundException e1) {
