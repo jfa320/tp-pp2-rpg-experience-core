@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.extensible;
+package tp.pp2.rpg.experience.core.extensible;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 
 public class HabilidadFinder {
 

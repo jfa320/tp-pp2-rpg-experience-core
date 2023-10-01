@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.extensible;
+package tp.pp2.rpg.experience.core.extensible;
 
 import java.net.URL;
 import java.net.URLClassLoader;

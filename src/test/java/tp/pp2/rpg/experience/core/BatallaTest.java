@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core;
+package tp.pp2.rpg.experience.core;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -14,11 +14,11 @@ import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import tp.pp2.rpg.generator.core.entidades.Batalla;
-import tp.pp2.rpg.generator.core.entidades.Personaje;
-import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
-import tp.pp2.rpg.generator.core.excepciones.TurnoIncorrectoException;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.Personaje;
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
+import tp.pp2.rpg.experience.core.excepciones.TurnoIncorrectoException;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BatallaTest {

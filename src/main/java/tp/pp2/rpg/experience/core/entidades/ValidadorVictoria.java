@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.entidades;
+package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.Map;
 import java.util.Map.Entry;

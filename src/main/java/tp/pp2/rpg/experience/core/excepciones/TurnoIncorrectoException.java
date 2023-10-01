@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.excepciones;
+package tp.pp2.rpg.experience.core.excepciones;
 
 public class TurnoIncorrectoException extends Exception {
     

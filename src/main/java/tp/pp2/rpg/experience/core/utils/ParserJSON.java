@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.utils;
+package tp.pp2.rpg.experience.core.utils;
 
 import java.util.List;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import tp.pp2.rpg.generator.core.entidades.Batalla;
-import tp.pp2.rpg.generator.core.entidades.Personaje;
-import tp.pp2.rpg.generator.core.entidades.ValidadorVictoria;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.Personaje;
+import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 
 public class ParserJSON {
 	public static List<Personaje> parsearPersonajesJSON(String json) {

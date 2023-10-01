@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core.entidades.rpg.generator;
+package tp.pp2.rpg.experience.core.entidades.rpg.generator;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Properties;
 
-import tp.pp2.rpg.generator.core.entidades.Batalla;
-import tp.pp2.rpg.generator.core.entidades.Personaje;
-import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.generator.core.extensible.HabilidadFinder;
-import tp.pp2.rpg.generator.core.utils.ParserJSON;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.Personaje;
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
+import tp.pp2.rpg.experience.core.utils.ParserJSON;
 
 public class RpgBattleGenerator extends Observable {
 	private Batalla batalla;

@@ -1,10 +1,10 @@
-package tp.pp2.rpg.generator.core.entidades;
+package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.Map;
 
-import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.generator.core.excepciones.HabilidadInexistenteException;
-import tp.pp2.rpg.generator.core.excepciones.TurnoIncorrectoException;
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
+import tp.pp2.rpg.experience.core.excepciones.TurnoIncorrectoException;
 
 public class Batalla {
 	private Integer turno;

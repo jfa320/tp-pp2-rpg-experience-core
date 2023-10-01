@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.core;
+package tp.pp2.rpg.experience.core;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -11,8 +11,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import tp.pp2.rpg.generator.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.generator.core.extensible.HabilidadFinder;
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HabilidadesFinderTest {
