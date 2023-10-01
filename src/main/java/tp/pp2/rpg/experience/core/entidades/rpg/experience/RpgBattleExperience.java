@@ -43,8 +43,8 @@ public class RpgBattleExperience extends Observable {
 		}
 	}
 
-	public void jugar(Habilidad habilidad, Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
-		batalla.jugar(habilidad, personajeAtacante, personajeAtacado);
+	public void jugar(Habilidad habilidad) throws Exception {
+		batalla.jugar(habilidad);
 		setChanged();
 		notifyObservers(batalla);
 	}
@@ -67,10 +67,7 @@ public class RpgBattleExperience extends Observable {
 	}
 
 	public String getNombreGanador() {
-		String nombre = this.personajes.stream()
-				.filter(personaje -> personaje.getId() == batalla.getPersonajeGanadorId()).findFirst().get()
-				.getNombre();
-		return nombre != null ? nombre : "";
+		return nombreGanador;
 	}
 
 	public void setBatalla(Batalla batalla) {

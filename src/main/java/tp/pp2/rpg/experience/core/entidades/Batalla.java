@@ -1,72 +1,61 @@
 package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.Map;
+import java.util.Set;
 
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
 import tp.pp2.rpg.experience.core.excepciones.TurnoIncorrectoException;
 
 public class Batalla {
-	private Integer turno;
-	private Map<Integer, Integer> vidas;
-	private Integer personajeGanadorId;
+	private Personaje turno;
+	private Map<Personaje, Integer> vidas;
+	private Map<Habilidad, Set<Personaje>> estadoHabilidad;
+	/*private Integer personajeGanadorId;*/
 	private ValidadorVictoria validadorVictoria;
 	
 	public Batalla() {}
 
-	public Batalla(Integer turno, Map<Integer, Integer> vidas, Integer personajeGanadorId) {
-		this.turno = turno;
-		this.vidas = vidas;
-		this.personajeGanadorId = personajeGanadorId;
-		validadorVictoria = new ValidadorVictoria();
-	}
-
-	public Integer getTurno() {
+	public Personaje getTurno() {
 		return turno;
 	}
 
-	public Map<Integer, Integer> getVidas() {
+	public Map<Personaje, Integer> getVidas() {
 		return vidas;
 	}
 
-	public Integer getPersonajeGanadorId() {
-		return personajeGanadorId;
+	public Map<Habilidad, Set<Personaje>> getEstadoHabilidad() {
+		return estadoHabilidad;
 	}
 
-	public void setTurno(Integer turno) {
+	public void setTurno(Personaje turno) {
 		this.turno = turno;
 	}
 
-	public void setVidas(Map<Integer, Integer> vidas) {
+	public void setVidas(Map<Personaje, Integer> vidas) {
 		this.vidas = vidas;
 	}
 
-	public void setPersonajeGanadorId(Integer personajeGanadorId) {
-		this.personajeGanadorId = personajeGanadorId;
+	public void setEstadoHabilidad(Map<Habilidad, Set<Personaje>> estadoHabilidad) {
+		this.estadoHabilidad = estadoHabilidad;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", personajeGanadorId=" + personajeGanadorId + "]";
-	};
-	
-	public void jugar(Habilidad habilidad,Personaje personajeAtacante, Personaje personajeAtacado) throws Exception {
+		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", estadoHabilidad=" + estadoHabilidad + "]";
+	}
+
+	public void jugar(Habilidad habilidad) throws Exception {
 
 		if(habilidad == null)
 			throw new HabilidadInexistenteException();
 
-		if(turno != personajeAtacante.getId())
-			throw new TurnoIncorrectoException();
-
-		// realiza calculo de danio
-		Integer danioPorRealizar = habilidad.daniar(personajeAtacado);
-		Integer vidaPersonajeAtacado = vidas.get(personajeAtacado.getId());
-		vidas.put(personajeAtacado.getId(), vidaPersonajeAtacado + danioPorRealizar);
-
+		// realiza efecto habilidad
+		habilidad.realizarEfecto(this);
+		
 		// valida ganador
-		Integer idGanador = validadorVictoria.validarVictoria(vidas);
-		if (idGanador != -1) 
-			personajeGanadorId = idGanador;
+		Personaje personajeGanador = validadorVictoria.validarVictoria(vidas);
+		
 
 		// cambia turno
 	/*	if (turno <= vidas.size())
