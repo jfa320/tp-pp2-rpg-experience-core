@@ -13,16 +13,18 @@ import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 public class ParserJSON {
 	public static List<Personaje> parsearPersonajesJSON(String json) {
 		Gson gson = new Gson();
-        Map<String, Object> datos = gson.fromJson(json, Map.class);
-        List<Map<String, Object>> personajesData = (List<Map<String, Object>>) datos.get("personajes");
-        return gson.fromJson(gson.toJson(personajesData), new TypeToken<List<Personaje>>(){}.getType());
+		Map<String, Object> datos = gson.fromJson(json, Map.class);
+		List<Map<String, Object>> personajesData = (List<Map<String, Object>>) datos.get("personajes");
+		return gson.fromJson(gson.toJson(personajesData), new TypeToken<List<Personaje>>() {
+		}.getType());
 	}
+
 	public static Batalla parsearBatallaJSON(String json) {
+		// Crear una instancia de Gson
 		Gson gson = new Gson();
-        Map<String, Object> datos = gson.fromJson(json, Map.class);
-        Map<String, Object> batallaData = (Map<String, Object>) datos.get("batalla");
-        Batalla batallaGenerada=gson.fromJson(gson.toJson(batallaData), Batalla.class);
-        batallaGenerada.setValidadorVictoria(new ValidadorVictoria());
-        return batallaGenerada;
+		// Parsear el JSON a una instancia de la clase Batalla
+		Batalla batalla = gson.fromJson(json, Batalla.class);
+		batalla.setValidadorVictoria(new ValidadorVictoria());
+		return batalla;
 	}
 }

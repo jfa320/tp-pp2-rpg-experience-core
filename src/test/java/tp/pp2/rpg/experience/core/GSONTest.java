@@ -1,25 +1,23 @@
 package tp.pp2.rpg.experience.core;
 
-import java.util.Map;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import java.util.Map;
+
 import tp.pp2.rpg.experience.core.entidades.Batalla;
-import tp.pp2.rpg.experience.core.entidades.BatallaContexto;
-import tp.pp2.rpg.experience.core.entidades.Personaje;
+import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 
 public class GSONTest {
 	@Test
-	public void ca1() {
-		String json = "{\"turno\":{\"nombre\":\"NombreDeTurno\"},\"vidas\":{\"Personaje1\":100,\"Personaje2\":100},\"habilidadesActivadas\":null}";
+	public void test1() {
+		String json = "{\"habilidades\":null,\"validadorVictoria\":null,\"contexto\":{\"turno\":{\"id\":1,\"nombre\":\"Personaje1\"},\"vidas\":{\"1\":100,\"2\":100},\"habilidadesActivadas\":{}},\"turnero\":null}";
+		// Crear una instancia de Gson
 		Gson gson = new Gson();
-		BatallaContexto batallaContexto = gson.fromJson(json, BatallaContexto.class);
-		// Ahora puedes trabajar con la instancia de Batalla
-		System.out.println(batallaContexto.toString());
+		// Parsear el JSON a una instancia de la clase Batalla
+		Batalla batalla = gson.fromJson(json, Batalla.class);
+		batalla.setValidadorVictoria(new ValidadorVictoria());
+		System.out.println(batalla.toString());
 	}
 }

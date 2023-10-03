@@ -2,13 +2,12 @@ package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Turnero {
     
     private List<Personaje> orden;
 
-    public Turnero(Set<Personaje> personajes){
+    public Turnero(List<Personaje> personajes){
         orden = new ArrayList<>();
         for (Personaje personaje : personajes) {
             orden.add(personaje);
