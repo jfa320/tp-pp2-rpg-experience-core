@@ -1,29 +1,35 @@
 package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class ValidadorVictoria {
-	Personaje ganador;
+	private Personaje ganador;
+
+	public ValidadorVictoria(){
+		ganador = new Personaje(-1, "Aun no hay ganador");
+	}
 
 	public Personaje validar(Map<Personaje, Integer> vidas) {
 
-		Integer personajesVivos = 0;
-		Personaje noHayGanador = new Personaje(-1, "Aún no hay ganador");
-		Personaje ultimoPersonajeVivo=new Personaje(-1, "Aún hay varios personajes en batalla");
+		int personajesVivos = 0;
 		
-		for (Entry<Personaje, Integer> vidaPorPersonaje : vidas.entrySet()) {
-			Integer vida = vidaPorPersonaje.getValue();
-			if (vida > 0) {
+		for (Personaje p : vidas.keySet())
+			if (vidas.get(p) > 0)
 				personajesVivos++;
-				ultimoPersonajeVivo = vidaPorPersonaje.getKey();
-			}
-		}
-
-		if (personajesVivos == 1) {
-			ganador = ultimoPersonajeVivo;
-		}
 		
-		return personajesVivos == 1 ? ultimoPersonajeVivo : noHayGanador;
+		if(personajesVivos == 1)
+			buscarGanador(vidas);
+
+		return ganador;
+	}
+
+	private void buscarGanador(Map<Personaje, Integer> vidas){
+		for(Personaje p : vidas.keySet())
+			if(vidas.get(p)>0)
+				ganador = p;				
+	}
+
+	public String getGanador(){
+		return ganador.getNombre().toString();
 	}
 }
