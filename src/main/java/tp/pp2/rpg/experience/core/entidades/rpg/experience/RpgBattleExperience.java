@@ -34,7 +34,6 @@ public class RpgBattleExperience extends Observable {
 		String datosBatalla = configProperties.getProperty("datos.batalla");
 		this.personajes = ParserJSON.parsearPersonajesJSON(datosBatalla);
 		this.batalla = ParserJSON.parsearBatallaJSON(datosBatalla); // la batalla ahora viene por JSON
-		this.nombreGanador = "";
 		try {
 			this.setHabilidades(configProperties.getProperty("path.habilidades"));
 		} catch (Exception e) {

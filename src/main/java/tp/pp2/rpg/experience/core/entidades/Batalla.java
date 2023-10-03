@@ -1,6 +1,5 @@
 package tp.pp2.rpg.experience.core.entidades;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -8,42 +7,18 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
 
 public class Batalla {
-	private Personaje turno;
-	private int indexTurno;
-	private Map<Personaje, Integer> vidas;
-	private Map<Habilidad, Set<Personaje>> estadoHabilidad;
+	private Map<Habilidad,Set<Personaje>> habilidades;
 	private ValidadorVictoria validadorVictoria;
+	private BatallaContexto contexto;
 
 	public Batalla() {
 	}
 
-	public Personaje getTurno() {
-		return turno;
-	}
-
-	public Map<Personaje, Integer> getVidas() {
-		return vidas;
-	}
-
-	public Map<Habilidad, Set<Personaje>> getEstadoHabilidad() {
-		return estadoHabilidad;
-	}
-
-	public void setTurno(Personaje turno) {
-		this.turno = turno;
-	}
-
-	public void setVidas(Map<Personaje, Integer> vidas) {
-		this.vidas = vidas;
-	}
-
-	public void setEstadoHabilidad(Map<Habilidad, Set<Personaje>> estadoHabilidad) {
-		this.estadoHabilidad = estadoHabilidad;
-	}
-
-	@Override
-	public String toString() {
-		return "Batalla [turno=" + turno + ", vidas=" + vidas + ", estadoHabilidad=" + estadoHabilidad + "]";
+	public Batalla(Map<Habilidad, Set<Personaje>> habilidades, ValidadorVictoria validadorVictoria,
+			BatallaContexto contexto) {
+		this.habilidades = habilidades;
+		this.validadorVictoria = validadorVictoria;
+		this.contexto = contexto;
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -52,11 +27,11 @@ public class Batalla {
 			throw new HabilidadInexistenteException();
 
 		// realiza efecto habilidad
-		habilidad.realizarEfecto(this);
+		habilidad.realizar(this.getContexto());
 
 		// valida ganador
-		Personaje personajeGanador = validadorVictoria.validarVictoria(vidas);
-
+		validadorVictoria.validar(contexto.getVidas());
+/*
 		// cambia turno
 		if (indexTurno <= vidas.size()) {
 			validadorVictoria.validarVictoria(vidas);
@@ -64,7 +39,23 @@ public class Batalla {
 			indexTurno++;
 		} else {
 			indexTurno = 0;
-		}
+		}*/
+	}
+
+	public Map<Habilidad, Set<Personaje>> getHabilidades() {
+		return habilidades;
+	}
+
+	public BatallaContexto getContexto() {
+		return contexto;
+	}
+
+	public void setHabilidades(Map<Habilidad, Set<Personaje>> habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public void setContexto(BatallaContexto contexto) {
+		this.contexto = contexto;
 	}
 
 	public ValidadorVictoria getValidadorVictoria() {

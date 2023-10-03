@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class ValidadorVictoria {
-	Personaje personajeGanador;
+	Personaje ganador;
 
-	public Personaje validarVictoria(Map<Personaje, Integer> vidas) {
+	public Personaje validar(Map<Personaje, Integer> vidas) {
 
 		Integer personajesVivos = 0;
 		Personaje noHayGanador = new Personaje(-1, "Aún no hay ganador");
@@ -21,7 +21,7 @@ public class ValidadorVictoria {
 		}
 
 		if (personajesVivos == 1) {
-			personajeGanador = ultimoPersonajeVivo;
+			ganador = ultimoPersonajeVivo;
 		}
 		
 		return personajesVivos == 1 ? ultimoPersonajeVivo : noHayGanador;

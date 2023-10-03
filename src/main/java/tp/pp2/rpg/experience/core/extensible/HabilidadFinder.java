@@ -27,8 +27,10 @@ public class HabilidadFinder {
 
 			// aca cargo las clases dinamicamente en runtime
 			URL[] urls = new URL[] { carpeta.toURI().toURL() };
+			
 			DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls, ClassLoader.getSystemClassLoader());
 			// busco las clases
+			System.out.println(archivo.getName());
 			Class<?> claseEncontrada = Class.forName(archivo.getName().replace(".class", ""), false,
 					dynamicClassLoader);
 			clasesEncontradas.add((Habilidad) claseEncontrada.newInstance());
