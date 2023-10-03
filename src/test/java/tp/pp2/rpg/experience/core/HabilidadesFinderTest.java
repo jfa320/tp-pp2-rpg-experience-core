@@ -1,67 +1,71 @@
 package tp.pp2.rpg.experience.core;
 
+import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
+
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
-
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HabilidadesFinderTest {
     
     private HabilidadFinder habilidadFinder;
+    private String path;
 
-    @Before
-    public void setUp(){
+    @BeforeEach
+    public void escenario(){
         habilidadFinder = new HabilidadFinder();
+        path = "src//test//resources//plugins//";
     }
       
-    @Test(expected = FileNotFoundException.class)
-    public void CA1_ubicacionInexistente() throws Exception{
-        habilidadFinder.findClasses("ubicacionInexistente");
+    @Test
+    public void CA1_ubicacionInexistente(){
+        Assertions.assertThrows(FileNotFoundException.class,
+                                () -> habilidadFinder.findClasses(path + "ubicacionInexistente"));
     }
 
-    @Test(expected = FileNotFoundException.class)
-    public void CA2_ubicacionInvalida() throws Exception{
-         habilidadFinder.findClasses("src//test//resources//plugins//archivo.txt");
+    @Test
+    public void CA2_ubicacionInvalida(){
+        Assertions.assertThrows(FileNotFoundException.class,
+                                () -> habilidadFinder.findClasses(path + "archivo.txt"));
     }
     
     @Test
     public void CA3_carpetaVacia() throws Exception{
-        Assert.assertTrue(habilidadFinder.findClasses("src//test//resources//plugins//carpetaVacia").isEmpty());
+        
+        Assertions.assertTrue(habilidadFinder.findClasses(path + "carpetaVacia").isEmpty());
     }
 
     @Test
     public void CA4_noEsHabilidad() throws Exception{
-        Assert.assertTrue(habilidadFinder.findClasses("src//test//resources//plugins//noEsHabilidad").isEmpty());
+        Assertions.assertTrue(habilidadFinder.findClasses(path + "noEsHabilidad").isEmpty());
     }
 
     @Test
     public void CA5_unaHabilidad() throws Exception{
-        List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//unaHabilidad");
-        Assert.assertEquals(1, habilidades.size());
-        Assert.assertEquals("Herir", habilidades.get(0).getClass().getName());
+        List<Habilidad> habilidades= habilidadFinder.findClasses(path + "unaHabilidad");
+        Assertions.assertEquals(1, habilidades.size());
+        Assertions.assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
  
     @Test
     public void CA6_habilidadesMultiples() throws Exception{
-        List<Habilidad> habilidades= habilidadFinder.findClasses("src//test//resources//plugins//multiplesHabilidades");
-        Assert.assertEquals(2, habilidades.size());
+        List<Habilidad> habilidades= habilidadFinder.findClasses(path + "multiplesHabilidades");
+        Assertions.assertEquals(2, habilidades.size());
 
         Set<String> nombreDeClases = new HashSet<>();
+
 
         for (Habilidad habilidad : habilidades)
            nombreDeClases.add(habilidad.getClass().getName());
         
-        Assert.assertTrue(nombreDeClases.contains("Corte"));
-        Assert.assertTrue(nombreDeClases.contains("Herir"));        
+        Assertions.assertTrue(nombreDeClases.contains("Corte"));
+        Assertions.assertTrue(nombreDeClases.contains("Herir"));        
     }
 }
+
