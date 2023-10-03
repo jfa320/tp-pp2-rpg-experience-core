@@ -10,6 +10,7 @@ public class Batalla {
 	private Map<Habilidad,Set<Personaje>> habilidades;
 	private ValidadorVictoria validadorVictoria;
 	private BatallaContexto contexto;
+	private Turnero turnero;
 
 	public Batalla() {
 	}
@@ -19,6 +20,7 @@ public class Batalla {
 		this.habilidades = habilidades;
 		this.validadorVictoria = validadorVictoria;
 		this.contexto = contexto;
+		this.turnero = new Turnero(contexto.getVidas().keySet());
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -31,15 +33,9 @@ public class Batalla {
 
 		// valida ganador
 		validadorVictoria.validar(contexto.getVidas());
-/*
+
 		// cambia turno
-		if (indexTurno <= vidas.size()) {
-			validadorVictoria.validarVictoria(vidas);
-			turno = (new ArrayList<>(vidas.keySet())).get(indexTurno);
-			indexTurno++;
-		} else {
-			indexTurno = 0;
-		}*/
+		turnero.cambiaTurno(contexto);
 	}
 
 	public Map<Habilidad, Set<Personaje>> getHabilidades() {
@@ -66,10 +62,23 @@ public class Batalla {
 		this.validadorVictoria = validadorVictoria;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Batalla [habilidades=" + habilidades + ", validadorVictoria=" + validadorVictoria.toString() + ", contexto="
 				+ contexto.toString() + "]";
 	}
 	
+
+	public int vida(Personaje p){
+		return contexto.getVidas().get(p);
+	}
+
+	public String ganador(){
+		return validadorVictoria.getGanador();
+	}
+
+	public Personaje turno(){
+		return contexto.getTurno();
+	}
 }
