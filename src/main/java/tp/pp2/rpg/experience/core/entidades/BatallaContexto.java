@@ -34,4 +34,10 @@ public class BatallaContexto {
 	public void setHabilidadesActivadas(Map<Personaje, Set<Habilidad>> habilidadesActivadas) {
 		this.habilidadesActivadas = habilidadesActivadas;
 	}
+	@Override
+	public String toString() {
+		return "BatallaContexto [turno=" + turno + ", vidas=" + vidas + ", habilidadesActivadas=" + habilidadesActivadas
+				+ "]";
+	}
+	
  }

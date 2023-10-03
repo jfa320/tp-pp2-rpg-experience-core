@@ -65,4 +65,11 @@ public class Batalla {
 	public void setValidadorVictoria(ValidadorVictoria validadorVictoria) {
 		this.validadorVictoria = validadorVictoria;
 	}
+
+	@Override
+	public String toString() {
+		return "Batalla [habilidades=" + habilidades + ", validadorVictoria=" + validadorVictoria.toString() + ", contexto="
+				+ contexto.toString() + "]";
+	}
+	
 }
