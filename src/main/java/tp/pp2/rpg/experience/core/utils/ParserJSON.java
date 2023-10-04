@@ -8,8 +8,8 @@ import com.google.gson.reflect.TypeToken;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.Personaje;
-import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 import tp.pp2.rpg.experience.core.entidades.estados.CambioTurnoEvent;
+import tp.pp2.rpg.experience.core.entidades.estados.VictoriaEvent;
 
 public class ParserJSON {
 	public static List<Personaje> parsearPersonajesJSON(String json) {
@@ -25,8 +25,8 @@ public class ParserJSON {
 		Gson gson = new Gson();
 		// Parsear el JSON a una instancia de la clase Batalla
 		Batalla batalla = gson.fromJson(json, Batalla.class);
-		batalla.setValidadorVictoria(new ValidadorVictoria());
 		batalla.addObserver(new CambioTurnoEvent(batalla.getPersonajes()));
+		batalla.addObserver(new VictoriaEvent(batalla.getPersonajes()));
 		return batalla;
 	}
 }

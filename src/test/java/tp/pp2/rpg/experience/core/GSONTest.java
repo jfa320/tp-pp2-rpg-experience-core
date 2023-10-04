@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import com.google.gson.Gson;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
-import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 
 public class GSONTest {
 	@Test
@@ -18,7 +17,6 @@ public class GSONTest {
 		Gson gson = new Gson();
 		// Parsear el JSON a una instancia de la clase Batalla
 		Batalla batalla = gson.fromJson(json, Batalla.class);
-		batalla.setValidadorVictoria(new ValidadorVictoria());
 		System.out.println(batalla.toString());
 	}
 }

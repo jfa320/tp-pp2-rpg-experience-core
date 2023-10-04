@@ -33,5 +33,8 @@ public class Personaje {
 	public String toString() {
 		return "Personaje [id=" + id + ", nombre=" + nombre + "]";
 	}
-	
+	@Override
+	public boolean equals(Object per) {
+	    return(((Personaje) per).getId()==this.getId());
+	}
 }

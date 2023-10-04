@@ -19,8 +19,8 @@ import org.mockito.MockitoAnnotations;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.BatallaContexto;
 import tp.pp2.rpg.experience.core.entidades.Personaje;
-import tp.pp2.rpg.experience.core.entidades.ValidadorVictoria;
 import tp.pp2.rpg.experience.core.entidades.estados.CambioTurnoEvent;
+import tp.pp2.rpg.experience.core.entidades.estados.VictoriaEvent;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 
 public class BatallaTest {
@@ -35,12 +35,12 @@ public class BatallaTest {
 
 	private Batalla batalla;
 	private Map<Habilidad, Set<Personaje>> habilidades;
-	private ValidadorVictoria validadorVictoria;
 
 	private BatallaContexto contexto;
 	private Map<Integer, Set<Habilidad>> habilidadesActivadas;
 	private Map<Integer, Integer> vidas;
-
+	private VictoriaEvent victoriaE;
+	private Personaje personajeNoGanador;
 	@BeforeEach
 	public void escenario() {
 
@@ -71,21 +71,23 @@ public class BatallaTest {
 		p2 = new Personaje(2, "Martin");
 		List<Personaje> personajes = Arrays.asList(p1, p2);
 		habilidadesActivadas = new HashMap<>();
-		validadorVictoria = new ValidadorVictoria();
 		vidas = new HashMap<>();
 		vidas.put(p1.getId(), 100);
 		vidas.put(p2.getId(), 80);
 
 		contexto = new BatallaContexto(p1, vidas, habilidadesActivadas);
-		batalla = new Batalla(habilidades, validadorVictoria, personajes, contexto);
+		batalla = new Batalla(habilidades, personajes, contexto);
 		batalla.addObserver(new CambioTurnoEvent(batalla.getPersonajes()));
+		victoriaE = new VictoriaEvent(batalla.getPersonajes());
+		batalla.addObserver(victoriaE);
+		personajeNoGanador=new Personaje(-1,"Aún no hay ganador");
 	}
 
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
 		Assertions.assertEquals(0, batalla.vida(p2));
-		Assertions.assertEquals(p1.getId(), batalla.getGanador());
+		Assertions.assertEquals(p1.getId(), victoriaE.getGanador().getId());
 	}
 
 	@Test
@@ -99,7 +101,7 @@ public class BatallaTest {
 	@Test
 	public void CA3_batallaNoFinalizada() throws Exception {
 		batalla.jugar(invisibilidad);
-		Assertions.assertEquals(-1, batalla.getGanador());
+		Assertions.assertEquals(personajeNoGanador, victoriaE.getGanador());
 	}
 
 }
