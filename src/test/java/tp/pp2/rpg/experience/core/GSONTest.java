@@ -2,6 +2,7 @@ package tp.pp2.rpg.experience.core;
 
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
