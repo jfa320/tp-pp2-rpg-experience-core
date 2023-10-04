@@ -83,7 +83,7 @@ public class BatallaTest {
     public void CA1_ataqueValido() throws Exception{
         batalla.jugar(atacar);
         Assertions.assertEquals(0,batalla.vida(p2));
-        Assertions.assertEquals(batalla.getPersonajes().get(0).getId(),batalla.getGanador());
+        Assertions.assertEquals(p1.getId(),batalla.getGanador());
     }
     
     @Test
