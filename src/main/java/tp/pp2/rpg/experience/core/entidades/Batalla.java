@@ -6,13 +6,13 @@ import java.util.Set;
 
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
+import java.util.Observable;
 
-public class Batalla {
+public class Batalla extends Observable {
 	private Map<Habilidad,Set<Personaje>> habilidades;
 	private List<Personaje> personajes;
 	private ValidadorVictoria validadorVictoria;
 	private BatallaContexto contexto;
-	private Turnero turnero;
 
 	public Batalla() {
 	}
@@ -23,7 +23,6 @@ public class Batalla {
 		this.validadorVictoria = validadorVictoria;
 		this.contexto = contexto;
 		this.personajes=personajes;
-		this.turnero = new Turnero(personajes); 
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -33,12 +32,14 @@ public class Batalla {
 
 		// realiza efecto habilidad
 		habilidad.realizar(this.getContexto());
-
+		//aca aviso a los observers de que se jugo asi cambian turno y validan victoria
+		this.setChanged();
+		this.notifyObservers();
 		// valida ganador
-		validadorVictoria.validar(contexto.getVidas());
+		/*validadorVictoria.validar(contexto.getVidas());
 
 		// cambia turno
-		turnero.cambiaTurno(contexto);
+		turnero.cambiaTurno(contexto);*/
 	}
 
 	public Map<Habilidad, Set<Personaje>> getHabilidades() {
@@ -69,16 +70,8 @@ public class Batalla {
 		return personajes;
 	}
 
-	public Turnero getTurnero() {
-		return turnero;
-	}
-
 	public void setPersonajes(List<Personaje> personajes) {
 		this.personajes = personajes;
-	}
-
-	public void setTurnero(Turnero turnero) {
-		this.turnero = turnero;
 	}
 
 	public int vida(Personaje p){
@@ -96,7 +89,7 @@ public class Batalla {
 	@Override
 	public String toString() {
 		return "Batalla [habilidades=" + habilidades + ", personajes=" + personajes + ", validadorVictoria="
-				+ validadorVictoria + ", contexto=" + contexto + ", turnero=" + turnero + "]";
+				+ validadorVictoria + ", contexto=" + contexto + "]";
 	}
 	
 	
