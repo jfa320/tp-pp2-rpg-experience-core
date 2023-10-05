@@ -5,7 +5,6 @@ import java.util.Set;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.excepciones.HabilidadInexistenteException;
 import java.util.Observable;
 import java.util.Properties;
 
@@ -24,7 +23,7 @@ public class Batalla extends Observable {
 
 	public void jugar(Habilidad habilidad) throws Exception {
 		if (habilidad == null)
-			throw new HabilidadInexistenteException();
+			throw new Exception("Habilidad Inexistente");
 		// realiza efecto habilidad
 		habilidad.realizar(this);
 		//aca aviso a los observers de que se jugo asi cambian turno y validan victoria
