@@ -1,51 +1,54 @@
 package tp.pp2.rpg.experience.core.entidades.estados;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 
-import tp.pp2.rpg.experience.core.entidades.BatallaContexto;
-import tp.pp2.rpg.experience.core.entidades.Personaje;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
 
 public class VictoriaEvent extends BatallaEvent implements Observer  {
-	private Personaje ganador;
-	private List<Personaje> personajes;
+	private String ganador;
+
 	
 	
-	public VictoriaEvent(List<Personaje> personajes) {
-		this.personajes = personajes;
-		ganador=new Personaje(-1,"Aún no hay ganador");
+	public VictoriaEvent() {
+		ganador="Aun no hay ganador";
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		BatallaContexto contexto=(BatallaContexto) arg;
-		this.validar(contexto.getVidas());
+		Batalla contexto=(Batalla) arg;
+		this.validar(contexto.getPersonajes());
 	}
 	
-	public void validar(Map<Integer, Integer> vidas) {
+	public void validar(Map<String, Properties> personajes) {
 		int personajesVivos = 0;
-		for (Integer idPersonajeActual : vidas.keySet())
-			if (vidas.get(idPersonajeActual) > 0)
+
+		for (String personaje : personajes.keySet()){
+			int vida =Integer.parseInt(personajes.get(personaje).getProperty("vida"));
+			if(vida > 0)
 				personajesVivos++;
+		}
 
 		if (personajesVivos == 1)
-			buscarGanador(vidas);
+			buscarGanador(personajes);
 	}
 	
-	private void buscarGanador(Map<Integer, Integer> vidas) {
-		for (Integer idPersonajeActual : vidas.keySet())
-			if (vidas.get(idPersonajeActual) > 0)
-				setGanador(personajes.get(idPersonajeActual-1));
+	private void buscarGanador(Map<String, Properties> personajes) {
+		for (String personaje : personajes.keySet()){
+			int vida =Integer.parseInt(personajes.get(personaje).getProperty("vida"));
+			if(vida > 0)
+				setGanador(personaje);
+		}
 	}
 
-	public Personaje getGanador() {
+	public String getGanador() {
 		return ganador;
 	}
 
-	public void setGanador(Personaje ganador) {
+	public void setGanador(String ganador) {
 		this.ganador = ganador;
 	}
 }

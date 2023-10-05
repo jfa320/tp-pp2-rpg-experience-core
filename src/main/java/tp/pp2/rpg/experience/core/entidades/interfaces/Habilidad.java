@@ -1,9 +1,9 @@
 package tp.pp2.rpg.experience.core.entidades.interfaces;
 
-import tp.pp2.rpg.experience.core.entidades.BatallaContexto;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
 
 public interface Habilidad {
-	void realizar(BatallaContexto contexto);
+	void realizar(Batalla contexto);
 	String getDescripcion();
 	String getNombre();
 }

@@ -12,7 +12,7 @@ public class HabilidadFinder {
 
 	@SuppressWarnings("deprecation")
 	public List<Habilidad> findClasses(String path) throws Exception {
-		//String pathPackage=path.replace('.', '/');
+
 		List<Habilidad> clasesEncontradas = new ArrayList<>();
 		File carpeta = new File(path);
 		if (!carpeta.exists())

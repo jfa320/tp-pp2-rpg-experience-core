@@ -1,16 +1,15 @@
 package tp.pp2.rpg.experience.core.entidades.estados;
 
 import java.util.List;
+
 import java.util.Observable;
 import java.util.Observer;
 
-import tp.pp2.rpg.experience.core.entidades.Personaje;
-
 public class CambioTurnoEvent extends BatallaEvent implements Observer {
-	private Personaje personajeActual;
-	private List<Personaje> personajes;
+	private String personajeActual;
+	private List<String> personajes;
 
-	public CambioTurnoEvent(List<Personaje> personajes) {
+	public CambioTurnoEvent(List<String> personajes) {
 		this.personajes = personajes;
 		this.personajeActual = personajes.get(0);
 	}
@@ -29,7 +28,7 @@ public class CambioTurnoEvent extends BatallaEvent implements Observer {
 			personajeActual= personajes.get(0);
 	}
 
-	public Personaje getPersonajeActual() {
+	public String getPersonajeActual() {
 		return personajeActual;
 	}
 
