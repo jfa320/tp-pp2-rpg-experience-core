@@ -13,9 +13,9 @@ public class RpgBattleExperience extends Observable {
 	};
 
 	public RpgBattleExperience(String pathConfigProperties) {
-		BatallaInicializer BI= new BatallaInicializer();
-		batalla = BI.generarBatalla(pathConfigProperties);
-		BI = null;
+		BatallaInitializer batallaInitializer= new BatallaInitializer();
+		batalla = batallaInitializer.generarBatalla(pathConfigProperties);
+		batallaInitializer = null;
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {

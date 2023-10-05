@@ -14,18 +14,17 @@ import tp.pp2.rpg.experience.core.entidades.estados.VictoriaEvent;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
-public class BatallaInicializer {
+public class BatallaInitializer {
     
     private Map<String,Properties> personajes;
     private List<Habilidad> habilidades;
 
-    public BatallaInicializer(){}
+    public BatallaInitializer(){}
 
     public Batalla generarBatalla(String pathConfigProperties){
         try{
 			PersonajeBuilder pjBuilder = new PersonajeBuilder(pathConfigProperties);
 			personajes = pjBuilder.buildAllPersonajes();
-			
 			HabilidadFinder habilidadFinder = new HabilidadFinder();
 			habilidades = habilidadFinder.findClasses(getHabilidadPath(pathConfigProperties));
 		}

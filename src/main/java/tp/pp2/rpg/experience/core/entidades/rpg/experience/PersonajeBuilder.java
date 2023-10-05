@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
-import tp.pp2.rpg.experience.core.utils.ParserJSON;
+import tp.pp2.rpg.experience.core.utils.LectorPersonajesJSON;
 
 public class PersonajeBuilder {
 
@@ -26,6 +26,6 @@ public class PersonajeBuilder {
 
     public Map<String,Properties> buildAllPersonajes(){
         String jsonValue = properties.getProperty("datos.personaje");
-        return ParserJSON.parsearPersonajesJSON(jsonValue);
+        return LectorPersonajesJSON.parsearPersonajesJSON(jsonValue);
     }
 }

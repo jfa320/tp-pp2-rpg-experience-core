@@ -9,8 +9,6 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 
 public class VictoriaEvent extends BatallaEvent implements Observer  {
 	private String ganador;
-
-	
 	
 	public VictoriaEvent() {
 		ganador="Aun no hay ganador";
