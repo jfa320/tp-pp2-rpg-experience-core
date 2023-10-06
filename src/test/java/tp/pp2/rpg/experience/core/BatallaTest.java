@@ -19,9 +19,9 @@ import org.mockito.MockitoAnnotations;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.BatallaContexto;
 import tp.pp2.rpg.experience.core.entidades.Personaje;
-import tp.pp2.rpg.experience.core.entidades.estados.CambioTurnoEvent;
-import tp.pp2.rpg.experience.core.entidades.estados.VictoriaEvent;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.events.BatallaFinalizadaEvent;
+import tp.pp2.rpg.experience.core.events.Turnero;
 
 public class BatallaTest {
 
@@ -39,7 +39,7 @@ public class BatallaTest {
 	private BatallaContexto contexto;
 	private Map<Integer, Set<Habilidad>> habilidadesActivadas;
 	private Map<Integer, Integer> vidas;
-	private VictoriaEvent victoriaE;
+	private BatallaFinalizadaEvent victoriaE;
 	private Personaje personajeNoGanador;
 	@BeforeEach
 	public void escenario() {
@@ -77,10 +77,10 @@ public class BatallaTest {
 
 		contexto = new BatallaContexto(p1, vidas, habilidadesActivadas);
 		batalla = new Batalla(habilidades, personajes, contexto);
-		batalla.addObserver(new CambioTurnoEvent(batalla.getPersonajes()));
-		victoriaE = new VictoriaEvent(batalla.getPersonajes());
+		batalla.addObserver(new Turnero(batalla.getPersonajes()));
+		victoriaE = new BatallaFinalizadaEvent(batalla.getPersonajes());
 		batalla.addObserver(victoriaE);
-		personajeNoGanador=new Personaje(-1,"Aún no hay ganador");
+		personajeNoGanador=new Personaje(-1,"Aï¿½n no hay ganador");
 	}
 
 	@Test

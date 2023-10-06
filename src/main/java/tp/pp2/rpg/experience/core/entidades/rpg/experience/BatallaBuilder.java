@@ -1,5 +1,6 @@
 package tp.pp2.rpg.experience.core.entidades.rpg.experience;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ public class BatallaBuilder {
         
         Map<Habilidad,Set<String>> habilidadDePjs = new HashMap<>();
         habilidades.forEach(h -> habilidadDePjs.put(h, personajes.keySet()));
-        
-        return new Batalla(habilidadDePjs,personajes);
+        String personajeInicial=new ArrayList<>(personajes.keySet()).get(0);
+        return new Batalla(personajes,personajeInicial);
     }
 
 }
