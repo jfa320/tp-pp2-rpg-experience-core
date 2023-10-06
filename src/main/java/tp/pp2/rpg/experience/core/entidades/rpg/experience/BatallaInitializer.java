@@ -26,7 +26,7 @@ public class BatallaInitializer {
 			PersonajeBuilder pjBuilder = new PersonajeBuilder(pathConfigProperties);
 			personajes = pjBuilder.buildAllPersonajes();
 			HabilidadFinder habilidadFinder = new HabilidadFinder();
-			habilidades = habilidadFinder.findClasses(getHabilidadPath(pathConfigProperties));
+			habilidades = habilidadFinder.findClasses(pathConfigProperties);
 		}
 		catch(Exception e){}
 
@@ -39,15 +39,4 @@ public class BatallaInitializer {
         return batalla;
     }
 
-    private String getHabilidadPath(String pathConfigProperties){
-			Properties p = new Properties();
-			try {
-				p.load(new FileInputStream(pathConfigProperties));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return p.getProperty("path.habilidades");
-	}
 }
