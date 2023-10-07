@@ -8,7 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,38 +27,38 @@ public class HabilidadesFinderTest {
      
     @Test
     public void CA1_ubicacionInexistente(){
-        Assertions.assertThrows(FileNotFoundException.class,
+        assertThrows(FileNotFoundException.class,
                                 () -> habilidadFinder.findClasses("ubicacionInexistente"));
     }
 
     @Test
     public void CA2_ubicacionInvalida(){
-        Assertions.assertThrows(FileNotFoundException.class,
+        assertThrows(FileNotFoundException.class,
                                 () -> habilidadFinder.findClasses("archivo.txt"));
     }
     
     @Test
     public void CA3_carpetaVacia() throws Exception{
         
-        Assertions.assertTrue(habilidadFinder.findClasses("carpetaVacia").isEmpty());
+        assertTrue(habilidadFinder.findClasses("carpetaVacia").isEmpty());
     }
 
     @Test
     public void CA4_noEsHabilidad() throws Exception{
-        Assertions.assertTrue(habilidadFinder.findClasses("noEsHabilidad").isEmpty());
+        assertTrue(habilidadFinder.findClasses("noEsHabilidad").isEmpty());
     }
 
     @Test
     public void CA5_unaHabilidad() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("unaHabilidad");
-        Assertions.assertEquals(1, habilidades.size());
-        Assertions.assertEquals("Herir", habilidades.get(0).getClass().getName());
+        assertEquals(1, habilidades.size());
+        assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
  
     @Test
     public void CA6_habilidadesMultiples() throws Exception{
         List<Habilidad> habilidades= habilidadFinder.findClasses("multiplesHabilidades");
-        Assertions.assertEquals(2, habilidades.size());
+        assertEquals(2, habilidades.size());
 
         Set<String> nombreDeClases = new HashSet<>();
 
@@ -63,8 +66,8 @@ public class HabilidadesFinderTest {
         for (Habilidad habilidad : habilidades)
            nombreDeClases.add(habilidad.getClass().getName());
         
-        Assertions.assertTrue(nombreDeClases.contains("Corte"));
-        Assertions.assertTrue(nombreDeClases.contains("Herir"));        
+        assertTrue(nombreDeClases.contains("Corte"));
+        assertTrue(nombreDeClases.contains("Herir"));        
     }
 }
 
