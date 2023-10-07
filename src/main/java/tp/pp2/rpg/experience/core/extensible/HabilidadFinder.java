@@ -13,9 +13,23 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 
 public class HabilidadFinder {
 
+	Properties properties;
+
+	public HabilidadFinder(String pathConfigProperties){
+		try {
+            properties = new Properties();
+			properties.load(new FileInputStream(pathConfigProperties));
+		} 
+        catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
 	@SuppressWarnings("deprecation")
-	public List<Habilidad> findClasses(String pathConfigProperties) throws Exception {
-		String path=this.getHabilidadPath(pathConfigProperties);
+	public List<Habilidad> findClasses(String dir) throws Exception {
+		String path= getHabilidadPath() + dir;
 		List<Habilidad> clasesEncontradas = new ArrayList<>();
 		File carpeta = new File(path);
 		if (!carpeta.exists())
@@ -42,15 +56,7 @@ public class HabilidadFinder {
 	}
 	
 
-    private String getHabilidadPath(String pathConfigProperties){
-			Properties p = new Properties();
-			try {
-				p.load(new FileInputStream(pathConfigProperties));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return p.getProperty("path.habilidades");
+    private String getHabilidadPath(){
+			return properties.getProperty("path.habilidades");
 	}
 }

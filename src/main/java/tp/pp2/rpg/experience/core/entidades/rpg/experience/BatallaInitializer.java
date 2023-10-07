@@ -19,8 +19,8 @@ public class BatallaInitializer {
         try{
 			PersonajeBuilder pjBuilder = new PersonajeBuilder(pathConfigProperties);
 			personajes = pjBuilder.buildAllPersonajes();
-			HabilidadFinder habilidadFinder = new HabilidadFinder();
-			habilidades = habilidadFinder.findClasses(pathConfigProperties);
+			HabilidadFinder habilidadFinder = new HabilidadFinder(pathConfigProperties);
+			habilidades = habilidadFinder.findClasses("");
 		}
 		catch(Exception e){}
 
