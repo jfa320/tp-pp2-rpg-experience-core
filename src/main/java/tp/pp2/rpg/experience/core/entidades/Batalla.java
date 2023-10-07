@@ -1,5 +1,6 @@
 package tp.pp2.rpg.experience.core.entidades;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
@@ -10,16 +11,14 @@ import tp.pp2.rpg.experience.core.events.Turnero;
 
 public class Batalla extends Observable {
 	private Map<String,Properties> personajes;
+	private List<Habilidad> habilidades;
 	private String personajeActual;
 	private EstadoBatalla estado;
-	
-	public Batalla() {
-		
-	}
-	public Batalla(Map<String,Properties> personajes,String personajeActual) {
+
+	public Batalla(Map<String,Properties> personajes,List<Habilidad> habilidades) {
 		this.personajes=personajes;
+		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
-		this.personajeActual=personajeActual;
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -33,10 +32,6 @@ public class Batalla extends Observable {
 
     public Map<String, Properties> getPersonajes() {
         return personajes;
-    }
-
-    public void setPersonajes(Map<String, Properties> personajes) {
-        this.personajes = personajes;
     }
 
     public EstadoBatalla getEstado() {
