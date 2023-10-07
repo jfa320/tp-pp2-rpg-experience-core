@@ -1,5 +1,6 @@
 package tp.pp2.rpg.experience.core.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -41,7 +42,17 @@ public class Batalla extends Observable {
     public void setPersonajes(Map<String,Properties> personajes) {
         this.personajes=personajes;
     }
+    public String getPersonajeNombre(int index) {
+    	List<String> nombresPersonajes=new ArrayList<String>(this.getPersonajes().keySet());
+    	return nombresPersonajes.get(index);
+    }
 
+	public Integer getPersonajeVida(int index) {
+		List<String> nombresPersonajes = new ArrayList<String>(this.getPersonajes().keySet());
+		String personajeKey = nombresPersonajes.get(index);
+		Properties propiedadesPersonajeElegido = this.getPersonajes().get(personajeKey);
+		return Integer.valueOf(propiedadesPersonajeElegido.getProperty("vida"));
+	}
     public EstadoBatalla getEstado() {
         return estado;
     }
@@ -60,10 +71,6 @@ public class Batalla extends Observable {
 
 	public List<Habilidad> getHabilidades() {
 		return habilidades;
-	}
-
-	public void setHabilidades(List<Habilidad> habilidades) {
-		this.habilidades = habilidades;
 	}
 
 	@Override
