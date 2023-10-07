@@ -13,25 +13,14 @@ import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 public class GSONTest {
 	@Test
 	public void test1() {
-		/*
 		String json = "{\"habilidades\":null,\"validadorVictoria\":null,\"contexto\":{\"turno\":{\"id\":1,\"nombre\":\"Personaje1\"},\"vidas\":{\"1\":100,\"2\":100},\"habilidadesActivadas\":{}},\"turnero\":null}";
 		// Crear una instancia de Gson
 		Gson gson = new Gson();
 		// Parsear el JSON a una instancia de la clase Batalla
 		Batalla batalla = gson.fromJson(json, Batalla.class);
-		System.out.println(batalla.toString());*/
-		Batalla b=new Batalla();
-		System.out.println(b.getPersonajeActual());
-		BA.setearValorNuevo(b);
-		System.out.println(b.getPersonajeActual());
+		System.out.println(batalla.toString());
 	}
 	
-	public static class BA{
-		
-		public static void setearValorNuevo(Batalla b) {
-			b.setPersonajeActual("pepe");
-		}
-	}
 	
 	
 }

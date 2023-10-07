@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.events.BatallaEnProgresoEvent;
 import tp.pp2.rpg.experience.core.events.BatallaFinalizadaEvent;
 import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
@@ -25,6 +26,7 @@ public class BatallaInitializer {
 
 		Batalla batalla = BatallaBuilder.build(habilidades,personajes);
 		
+		batalla.addObserver(new BatallaEnProgresoEvent());
 		batalla.addObserver(new BatallaFinalizadaEvent());
 		
         return batalla;

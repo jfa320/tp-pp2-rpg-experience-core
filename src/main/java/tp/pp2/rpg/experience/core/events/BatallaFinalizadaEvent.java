@@ -8,7 +8,7 @@ import java.util.Properties;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
-public class BatallaFinalizadaEvent extends BatallaEvent implements Observer  {
+public class BatallaFinalizadaEvent implements Observer  {
 	private String ganador;
 
 	@Override

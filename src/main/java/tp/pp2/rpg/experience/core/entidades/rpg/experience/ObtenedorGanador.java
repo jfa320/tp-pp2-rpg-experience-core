@@ -7,10 +7,10 @@ public class ObtenedorGanador {
 	
 	public String obtenerGanador(Batalla contexto) {
 		if(contexto.getEstado().equals(EstadoBatalla.FINALIZADA)) {
-			for (String personaje : contexto.getPersonajes().keySet()){
-				int vida = Integer.parseInt(contexto.getPersonajes().get(personaje).getProperty("vida"));
+			for (String personajeNombre : contexto.getPersonajes().keySet()){
+				int vida = Integer.parseInt(contexto.getPersonajes().get(personajeNombre).getProperty("vida"));
 				if(vida > 0)
-					return personaje;
+					return personajeNombre;
 			}
 		} 
 		return "No hay ganador";

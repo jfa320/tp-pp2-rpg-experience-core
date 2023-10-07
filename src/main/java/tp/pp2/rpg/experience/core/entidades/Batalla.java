@@ -7,25 +7,26 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.events.Turnero;
 
 public class Batalla extends Observable {
 	private Map<String,Properties> personajes;
 	private List<Habilidad> habilidades;
 	private String personajeActual;
 	private EstadoBatalla estado;
+	private ActualizadorTurno actualizadorTurno;
 
 	public Batalla(Map<String,Properties> personajes,List<Habilidad> habilidades) {
 		this.personajes=personajes;
 		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
+		this.actualizadorTurno=new ActualizadorTurno(this);
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
 		// realiza efecto habilidad
 		habilidad.realizar(this);
-		Turnero.cambiarTurno(this);
-		//aca aviso a los observers de que se jugo asi cambian turno y validan victoria
+		actualizadorTurno.cambiarTurno(this);
+		//aca aviso a los observers para validar si finalizo batalla
 		this.setChanged();
 		this.notifyObservers(this);
 	}
