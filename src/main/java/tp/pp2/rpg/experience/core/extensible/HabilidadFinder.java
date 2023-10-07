@@ -18,7 +18,7 @@ public class HabilidadFinder {
 	public HabilidadFinder(String pathConfigProperties){
 		try {
             properties = new Properties();
-			properties.load(new FileInputStream(pathConfigProperties));
+			properties.load(new FileInputStream(pathConfigProperties.replace("\\", File.separator)));
 		} 
         catch (FileNotFoundException e1) {
 			e1.printStackTrace();
@@ -29,9 +29,9 @@ public class HabilidadFinder {
 
 	@SuppressWarnings("deprecation")
 	public List<Habilidad> findClasses(String dir) throws Exception {
-		String path= getHabilidadPath() + dir;
+		String path= getHabilidadPath() + File.separator + dir;
 		List<Habilidad> clasesEncontradas = new ArrayList<>();
-		File carpeta = new File(path);
+		File carpeta = new File(path.replace("\\", File.separator));
 		if (!carpeta.exists())
 			throw new FileNotFoundException("No se encontro una carpeta o un archivo en: "+path);
 

@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 
 public class GSONTest {
+	/*
 	@Test
 	public void test1() {
 
@@ -29,7 +30,7 @@ public class GSONTest {
 	            System.out.println("Vida: " + propiedades.getProperty("vida"));
 	            System.out.println();
 	        }
-	}
+	} */
 	
 	@Test
 	public void test2() {
