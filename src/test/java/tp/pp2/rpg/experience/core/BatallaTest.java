@@ -21,6 +21,7 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -97,6 +98,7 @@ public class BatallaTest {
 		batalla.jugar(atacar);
 		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Fabian").getProperty("vida")), 0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
+		assertEquals(new ObtenedorGanador().obtenerGanador(batalla), "Martin");
 	}
 
 	@Test
