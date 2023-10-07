@@ -4,6 +4,6 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 
 public interface Habilidad {
 	void realizar(Batalla batalla);
-	String getDescripcion();
 	String getNombre();
+	String getDescripcion();
 }
