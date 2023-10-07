@@ -33,7 +33,7 @@ dependencies {
     //Dependencia para parsear JSON a object
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
-    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.5.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

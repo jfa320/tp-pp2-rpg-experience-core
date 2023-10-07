@@ -34,6 +34,9 @@ public class Batalla extends Observable {
     public Map<String, Properties> getPersonajes() {
         return personajes;
     }
+    public void setPersonajes(Map<String,Properties> personajes) {
+        this.personajes=personajes;
+    }
 
     public EstadoBatalla getEstado() {
         return estado;
