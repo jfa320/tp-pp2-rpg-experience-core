@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
+
+import static org.mockito.Answers.valueOf;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,10 +22,12 @@ import org.mockito.stubbing.Answer;
 
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
 public class BatallaTest {
 
 	private Batalla batalla;
+
 	@Mock
 	private Habilidad atacar;
 
@@ -61,6 +67,8 @@ public class BatallaTest {
                 }
             }
             batalla.setPersonajes(personajesAux);
+
+			return null; 
         }).when(atacar).realizar(any(Batalla.class));
         
 		List<Habilidad> habilidades = new ArrayList<Habilidad>();
@@ -68,15 +76,21 @@ public class BatallaTest {
 		batalla = new Batalla(personajes, habilidades);
 
 	}
-	/*
-	 * @Test public void CA1_ataqueValido() throws Exception {
-	 * batalla.jugar(atacar); Assertions.assertEquals(0, batalla.vida(p2));
-	 * Assertions.assertEquals(p1.getId(), victoriaE.getGanador().getId()); }
-	 * 
-	 * @Test public void CA3_batallaNoFinalizada() throws Exception {
-	 * batalla.jugar(invisibilidad); Assertions.assertEquals(personajeNoGanador,
-	 * victoriaE.getGanador()); }
-	 */
+	
+	@Test public void CA1_ataqueValido() throws Exception {
+	  batalla.jugar(atacar); 
+	  assertEquals("20", batalla.getPersonajes().get("Martin").getProperty("vida")); 
+	}
+	  
+	@Test public void CA2_batallaNoFinalizada() throws Exception {
+	  batalla.jugar(atacar); 
+	  assertEquals("Martin",batalla.getPersonajeActual()); 
+	}
 
+	@Test public void CA3_batallaFinalizada() throws Exception {
+	  batalla.jugar(atacar); 
+	  batalla.jugar(atacar);
+	  assertEquals(EstadoBatalla.FINALIZADA,batalla.getEstado()); // falta implemtar logica de batalla finalizada
+	}
 
 }
