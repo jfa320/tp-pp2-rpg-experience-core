@@ -47,7 +47,6 @@ public class HabilidadFinder {
 			
 			DynamicClassLoader dynamicClassLoader = new DynamicClassLoader(urls, ClassLoader.getSystemClassLoader());
 			// busco las clases
-			System.out.println(archivo.getName());
 			Class<?> claseEncontrada = Class.forName(archivo.getName().replace(".class", ""), false,
 					dynamicClassLoader);
 			clasesEncontradas.add((Habilidad) claseEncontrada.newInstance());

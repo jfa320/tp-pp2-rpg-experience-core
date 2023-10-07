@@ -9,7 +9,6 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
 public class BatallaFinalizadaEvent implements Observer  {
-	private String ganador;
 
 	@Override
 	public void update(Observable o, Object arg) {

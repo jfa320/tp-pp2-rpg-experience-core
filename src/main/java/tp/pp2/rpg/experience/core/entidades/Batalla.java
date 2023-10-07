@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.events.BatallaEnProgresoEvent;
+import tp.pp2.rpg.experience.core.events.BatallaFinalizadaEvent;
 
 public class Batalla extends Observable {
 	private Map<String,Properties> personajes;
@@ -20,6 +22,8 @@ public class Batalla extends Observable {
 		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
 		this.actualizadorTurno=new ActualizadorTurno(this);
+		this.addObserver(new BatallaEnProgresoEvent());
+		this.addObserver(new BatallaFinalizadaEvent());
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -54,12 +58,19 @@ public class Batalla extends Observable {
 		this.personajeActual = personajeActual;
 	}
 
+	public List<Habilidad> getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(List<Habilidad> habilidades) {
+		this.habilidades = habilidades;
+	}
+
 	@Override
 	public String toString() {
-		return "Batalla [personajes=" + personajes + ", personajeActual=" + personajeActual + ", estado=" + estado
-				+ "]";
+		return "Batalla [personajes=" + personajes + ", habilidades=" + habilidades + ", personajeActual="
+				+ personajeActual + ", estado=" + estado + "]";
 	}
-	
-	
+
 	
 }
