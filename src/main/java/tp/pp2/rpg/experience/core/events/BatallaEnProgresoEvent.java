@@ -1,22 +1,18 @@
 package tp.pp2.rpg.experience.core.events;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
-public class BatallaEnProgresoEvent implements Observer {
+public class BatallaEnProgresoEvent implements BatallaEvent {
 
 	@Override
-	public void update(Observable o, Object arg) {
-		Batalla contexto=(Batalla) arg;
-		this.cambiarEstadoEnProgreso(contexto);
+	public void onJugar(Batalla batalla) {
+		this.cambiarEstadoEnProgreso(batalla);
 	}
 
 	private void cambiarEstadoEnProgreso(Batalla contexto) {
-		if(contexto.getEstado().equals(EstadoBatalla.INICIADA))
+		if (contexto.getEstado().equals(EstadoBatalla.INICIADA))
 			contexto.setEstado(EstadoBatalla.EN_PROGRESO);
 	}
-	
+
 }

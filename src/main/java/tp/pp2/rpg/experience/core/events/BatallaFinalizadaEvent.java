@@ -1,19 +1,16 @@
 package tp.pp2.rpg.experience.core.events;
 
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
-public class BatallaFinalizadaEvent implements Observer  {
+public class BatallaFinalizadaEvent implements BatallaEvent  {
 
 	@Override
-	public void update(Observable o, Object arg) {
-		Batalla contexto=(Batalla) arg;
-		this.validarFinalizacion(contexto);
+	public void onJugar(Batalla batalla) {
+		this.validarFinalizacion(batalla);
 	}
 	
 	private void validarFinalizacion(Batalla contexto) {
@@ -28,4 +25,6 @@ public class BatallaFinalizadaEvent implements Observer  {
 		if (personajesVivos == 1)
 			contexto.setEstado(EstadoBatalla.FINALIZADA);
 	}
+
+	
 }
