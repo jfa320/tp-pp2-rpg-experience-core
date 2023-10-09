@@ -8,9 +8,9 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.events.BatallaEnProgresoEvent;
-import tp.pp2.rpg.experience.core.events.BatallaEvent;
-import tp.pp2.rpg.experience.core.events.BatallaFinalizadaEvent;
+import tp.pp2.rpg.experience.core.eventos.BatallaEnProgresoEvento;
+import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
+import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
 
 public class Batalla extends Observable {
 	private Map<String, Properties> personajes;
@@ -18,16 +18,16 @@ public class Batalla extends Observable {
 	private String personajeActual;
 	private EstadoBatalla estado;
 	private ActualizadorTurno actualizadorTurno;
-	private List<BatallaEvent> eventListeners;
+	private List<BatallaEvento> eventListeners;
 
 	public Batalla(Map<String, Properties> personajes, List<Habilidad> habilidades) {
 		this.personajes = personajes;
 		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
 		this.actualizadorTurno = new ActualizadorTurno(this);
-		this.eventListeners=new ArrayList<BatallaEvent>();
-		this.eventListeners.add(new BatallaEnProgresoEvent());
-		this.eventListeners.add(new BatallaFinalizadaEvent());
+		this.eventListeners=new ArrayList<BatallaEvento>();
+		this.eventListeners.add(new BatallaEnProgresoEvento());
+		this.eventListeners.add(new BatallaFinalizadaEvento());
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
@@ -40,7 +40,7 @@ public class Batalla extends Observable {
 	}
 
 	private void notificarEvento() {
-		for (BatallaEvent listener : eventListeners) {
+		for (BatallaEvento listener : eventListeners) {
             listener.onJugar(this);
         }
 	}

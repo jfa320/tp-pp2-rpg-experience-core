@@ -1,9 +1,9 @@
-package tp.pp2.rpg.experience.core.events;
+package tp.pp2.rpg.experience.core.eventos;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
-public class BatallaEnProgresoEvent implements BatallaEvent {
+public class BatallaEnProgresoEvento implements BatallaEvento {
 
 	@Override
 	public void onJugar(Batalla batalla) {
