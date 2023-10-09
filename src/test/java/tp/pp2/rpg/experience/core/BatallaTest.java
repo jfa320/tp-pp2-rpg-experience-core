@@ -82,6 +82,7 @@ public class BatallaTest {
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 20);
+		assertEquals(batalla.getPersonajeActual(),"Martin");
 	}
 
 	@Test

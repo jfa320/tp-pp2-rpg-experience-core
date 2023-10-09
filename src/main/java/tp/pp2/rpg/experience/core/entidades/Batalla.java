@@ -34,6 +34,9 @@ public class Batalla extends Observable {
 		habilidad.realizar(this);
 		this.notificarEvento();
 		actualizadorTurno.cambiarTurno(this);
+		// aviso a los observers
+		this.setChanged();
+		this.notifyObservers(this);
 	}
 
 	private void notificarEvento() {
@@ -76,9 +79,6 @@ public class Batalla extends Observable {
 
 	public void setPersonajeActual(String personajeActual) {
 		this.personajeActual = personajeActual;
-		// aviso a los observers
-		this.setChanged();
-		this.notifyObservers(this);
 	}
 
 	public List<Habilidad> getHabilidades() {
