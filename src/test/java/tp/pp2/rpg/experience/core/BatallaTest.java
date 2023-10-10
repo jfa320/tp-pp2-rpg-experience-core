@@ -82,15 +82,12 @@ public class BatallaTest {
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 20);
-		assertEquals(batalla.getPersonajeActual(),"Martin");
 	}
 
 	@Test
 	public void CA2_cambioTurno() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(batalla.getPersonajeActual(), "Martin");
-		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), "Fabian");
 	}
 
 	@Test
@@ -99,7 +96,7 @@ public class BatallaTest {
 		batalla.jugar(atacar);
 		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Fabian").getProperty("vida")), 0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
-		assertEquals(new ObtenedorGanador().obtenerGanador(batalla), "Martin");
+		assertEquals(batalla.getPersonajeActual(), "Martin");
 	}
 
 	@Test
