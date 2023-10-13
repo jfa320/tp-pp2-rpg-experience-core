@@ -91,4 +91,8 @@ public class Batalla extends Observable {
 				+ personajeActual + ", estado=" + estado + "]";
 	}
 
+	public void addHabilidad(Habilidad habilidad) {
+		if(habilidad!=null) habilidades.add(habilidad);
+	}
+
 }
