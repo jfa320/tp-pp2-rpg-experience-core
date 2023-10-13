@@ -26,7 +26,7 @@ public class CargadorHabilidadesTest {
 	@SuppressWarnings("serial")
 	@BeforeEach
 	public void escenario() {
-		path = "src\\main\\resources\\pluginsRuntime\\";
+		path = "src\\test\\resources\\pluginsRuntime\\";
 		//path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
 		Map<String, Properties> personajes = new HashMap<String, Properties>() {
