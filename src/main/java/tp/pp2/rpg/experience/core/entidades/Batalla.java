@@ -25,7 +25,7 @@ public class Batalla extends Observable {
 		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
 		this.actualizadorTurno = new ActualizadorTurno(this);
-		this.eventListeners=new ArrayList<BatallaEvento>();
+		this.eventListeners = new ArrayList<BatallaEvento>();
 		this.eventListeners.add(new BatallaEnProgresoEvento());
 		this.eventListeners.add(new BatallaFinalizadaEvento());
 	}
@@ -41,8 +41,8 @@ public class Batalla extends Observable {
 
 	private void notificarEvento() {
 		for (BatallaEvento listener : eventListeners) {
-            listener.onJugar(this);
-        }
+			listener.onJugar(this);
+		}
 	}
 
 	public Map<String, Properties> getPersonajes() {
@@ -92,7 +92,11 @@ public class Batalla extends Observable {
 	}
 
 	public void addHabilidad(Habilidad habilidad) {
-		if(habilidad!=null) habilidades.add(habilidad);
+		if (habilidad != null)
+			habilidades.add(habilidad);
+		// aviso a los observers
+		this.setChanged();
+		this.notifyObservers(this);
 	}
 
 }

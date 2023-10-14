@@ -11,13 +11,16 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
 import tp.pp2.rpg.experience.core.extensible.CargadorHabilidades;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class CargadorHabilidadesTest {
 	private CargadorHabilidades cargadorHabilidades;
 	private String path;
@@ -26,8 +29,8 @@ public class CargadorHabilidadesTest {
 	@SuppressWarnings("serial")
 	@BeforeEach
 	public void escenario() {
-		path = "src\\test\\resources\\pluginsRuntime\\";
-		//path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
+		//path = "src\\test\\resources\\pluginsRuntime\\";
+		path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
 		Map<String, Properties> personajes = new HashMap<String, Properties>() {
 			{
@@ -70,7 +73,7 @@ public class CargadorHabilidadesTest {
 	}
 
 	@Test
-	public void CA4_multiplesHabilidadesCargadas() throws Exception {
+	public void CA4_habilidadDuplicada() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Corte.class");
 		cargadorHabilidades.cargar(batalla, path + "Corte.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
