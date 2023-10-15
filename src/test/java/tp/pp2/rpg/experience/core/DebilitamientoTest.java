@@ -36,13 +36,13 @@ public class DebilitamientoTest {
 			{
 				put("Fabian", new Properties() {
 					{
-						setProperty("ataque", "9");
+						setProperty("ataque", "10");
 						setProperty("vida", "100");
 					}
 				});
 				put("Martin", new Properties() {
 					{
-						setProperty("ataque", "50");
+						setProperty("ataque", "1");
 						setProperty("vida", "100");
 					}
 				});
@@ -96,11 +96,28 @@ public class DebilitamientoTest {
 	@Test
 	public void CA1_debilitacionValida() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 91);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 90);
 		batalla.jugar(debilitar);
 		batalla.jugar(atacar);
-		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 86);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 85);
 	}
 
-	
+	@Test
+	public void CA2_multiplesDebilitaciones()  throws Exception {
+		batalla.jugar(atacar);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 90);
+		batalla.jugar(debilitar);
+		batalla.jugar(atacar);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 85);
+		batalla.jugar(debilitar);
+		batalla.jugar(atacar);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Martin").getProperty("vida")), 82);
+	}
+
+	@Test
+	public void CA3_limiteDebilitacion() throws Exception {
+		batalla.jugar(debilitar);
+		batalla.jugar(atacar);
+		assertEquals(Integer.valueOf(batalla.getPersonajes().get("Fabian").getProperty("vida")), 99);
+	}
 }
