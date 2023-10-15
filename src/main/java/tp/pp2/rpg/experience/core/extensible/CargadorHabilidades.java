@@ -46,7 +46,7 @@ public class CargadorHabilidades {
 			break;
 		}
 		if (clasesEncontradas.isEmpty()) {
-			throw new FileNotFoundException("No se encontro un archivo con ese nombre en el path: " + path);
+			throw new FileNotFoundException("No se encontro un archivo .class en el path: " + path);
 		}
 		return clasesEncontradas.get(0);
 	}
@@ -55,6 +55,9 @@ public class CargadorHabilidades {
 		boolean existe = false;
 		for (Habilidad habilidadAux : habilidades) {
 			existe = habilidad.getClass().toString().equals(habilidadAux.getClass().toString());
+			if(existe) {
+				break;
+			}
 		}
 		return existe;
 	}

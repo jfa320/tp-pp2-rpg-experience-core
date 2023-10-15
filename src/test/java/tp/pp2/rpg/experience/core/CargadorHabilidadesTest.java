@@ -29,8 +29,8 @@ public class CargadorHabilidadesTest {
 	@SuppressWarnings("serial")
 	@BeforeEach
 	public void escenario() {
-		//path = "src\\test\\resources\\pluginsRuntime\\";
-		path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
+		path = "src\\test\\resources\\pluginsRuntime\\";
+		//path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
 		Map<String, Properties> personajes = new HashMap<String, Properties>() {
 			{
@@ -58,7 +58,7 @@ public class CargadorHabilidadesTest {
 		assertEquals(batalla.getHabilidades().size(), 0);
 	}
 
-	@Test
+   @Test
 	public void CA2_habilidadCargada() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
@@ -77,5 +77,14 @@ public class CargadorHabilidadesTest {
 		cargadorHabilidades.cargar(batalla, path + "Corte.class");
 		cargadorHabilidades.cargar(batalla, path + "Corte.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
+	}
+	@Test
+	public void CA5_multiplesHabilidadesIgualesCargadas() throws Exception {
+		cargadorHabilidades.cargar(batalla, path + "Herir.class");
+		cargadorHabilidades.cargar(batalla, path + "Herir.class");
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
+		cargadorHabilidades.cargar(batalla, path + "Herir.class");
+		assertEquals(batalla.getHabilidades().size(), 3);
 	}
 }
