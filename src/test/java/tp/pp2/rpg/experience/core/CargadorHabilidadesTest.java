@@ -26,7 +26,7 @@ public class CargadorHabilidadesTest {
 	private String path;
 	private Batalla batalla;
 
-	@SuppressWarnings("serial")
+	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
 		path = "src\\test\\resources\\pluginsRuntime\\";
@@ -57,8 +57,10 @@ public class CargadorHabilidadesTest {
 		assertEquals(batalla.getHabilidades().size(), 0);
 	}
 
-   @Test
+	@Test
 	public void CA2_habilidadCargada() throws Exception {
+		System.out.println(batalla.getEstado());
+		System.out.println(path + "Atacar.class");
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
 	}
@@ -77,6 +79,7 @@ public class CargadorHabilidadesTest {
 		cargadorHabilidades.cargar(batalla, path + "Corte.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
 	}
+
 	@Test
 	public void CA5_multiplesHabilidadesIgualesCargadas() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Herir.class");
