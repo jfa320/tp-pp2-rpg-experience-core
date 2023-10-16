@@ -30,7 +30,6 @@ public class CargadorHabilidadesTest {
 	@BeforeEach
 	public void escenario() {
 		path = "src\\test\\resources\\pluginsRuntime\\";
-		//path="C:\\Users\\Fabián\\Documents\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
 		Map<String, Properties> personajes = new HashMap<String, Properties>() {
 			{
