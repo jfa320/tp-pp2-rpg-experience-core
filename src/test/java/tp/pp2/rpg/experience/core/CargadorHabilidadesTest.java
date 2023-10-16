@@ -59,8 +59,6 @@ public class CargadorHabilidadesTest {
 
 	@Test
 	public void CA2_habilidadCargada() throws Exception {
-		System.out.println(batalla.getEstado());
-		System.out.println(path + "Atacar.class");
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
 	}

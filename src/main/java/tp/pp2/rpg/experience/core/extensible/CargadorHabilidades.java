@@ -22,10 +22,10 @@ public class CargadorHabilidades {
 	public Habilidad findClass(String path) throws Exception {
 		List<Habilidad> clasesEncontradas = new ArrayList<>();
 
-		File archivoArg = new File(path);
+		File archivoArg = new File(path.replace("\\", File.separator));
 		String pathCarpeta = archivoArg.getParent();
 		String nombreArchivo = archivoArg.getName();
-		File carpeta = new File(pathCarpeta.replace("\\", File.separator));
+		File carpeta = new File(pathCarpeta);
 		if (!carpeta.exists())
 			throw new FileNotFoundException("No se encontro una carpeta o un archivo en: " + path);
 
