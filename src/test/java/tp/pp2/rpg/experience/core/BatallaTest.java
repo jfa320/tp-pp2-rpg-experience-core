@@ -21,7 +21,6 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
