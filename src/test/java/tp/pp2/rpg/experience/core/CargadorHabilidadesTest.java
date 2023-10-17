@@ -35,13 +35,13 @@ public class CargadorHabilidadesTest {
 			{
 				put("Fabian", new Properties() {
 					{
-						setProperty("ataque", "80");
+						setProperty("ataque", "10");
 						setProperty("vida", "100");
 					}
 				});
 				put("Martin", new Properties() {
 					{
-						setProperty("ataque", "100");
+						setProperty("ataque", "1");
 						setProperty("vida", "100");
 					}
 				});
@@ -66,25 +66,24 @@ public class CargadorHabilidadesTest {
 	@Test
 	public void CA3_multiplesHabilidadesCargadas() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
-		cargadorHabilidades.cargar(batalla, path + "Herir.class");
-		cargadorHabilidades.cargar(batalla, path + "Corte.class");
-		assertEquals(batalla.getHabilidades().size(), 3);
+		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
+		assertEquals(batalla.getHabilidades().size(), 2);
 	}
 
 	@Test
 	public void CA4_habilidadDuplicada() throws Exception {
-		cargadorHabilidades.cargar(batalla, path + "Corte.class");
-		cargadorHabilidades.cargar(batalla, path + "Corte.class");
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
 	}
 
 	@Test
 	public void CA5_multiplesHabilidadesIgualesCargadas() throws Exception {
-		cargadorHabilidades.cargar(batalla, path + "Herir.class");
-		cargadorHabilidades.cargar(batalla, path + "Herir.class");
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
-		cargadorHabilidades.cargar(batalla, path + "Herir.class");
-		assertEquals(batalla.getHabilidades().size(), 3);
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
+		assertEquals(batalla.getHabilidades().size(), 2);
 	}
 }
