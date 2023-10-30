@@ -36,7 +36,7 @@ public class HabilidadFinder {
 			throw new FileNotFoundException("No se encontro una carpeta o un archivo en: "+path);
 
 		if (!carpeta.isDirectory())
-			throw new FileNotFoundException("No es una carpeta: "+path);
+			throw new IllegalArgumentException("No es un argumento valido: "+path);
 
 		for (File archivo : carpeta.listFiles()) {
 			if (!archivo.getName().endsWith(".class"))

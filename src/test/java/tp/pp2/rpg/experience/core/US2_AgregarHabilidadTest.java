@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class HabilidadesFinderTest {
+public class US2_AgregarHabilidadTest {
     
     private HabilidadFinder habilidadFinder;
     private String pathConfigProperties;
@@ -36,7 +36,7 @@ public class HabilidadesFinderTest {
 
     @Test
     public void CA2_ubicacionInvalida(){
-        assertThrows(FileNotFoundException.class,
+        assertThrows(IllegalArgumentException.class,
                                 () -> habilidadFinder.findClasses("archivo.txt"));
     }
     
