@@ -33,23 +33,24 @@ public class US1_AtaqueTest {
 	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
-		Map<String, Properties> personajes = new HashMap<String, Properties>() {
+		Properties c1 = new Properties() {
 			{
-				put("Fabian", new Properties() {
-					{
-						setProperty("ataque", "80");
-						setProperty("vida", "100");
-					}
-				});
-				put("Martin", new Properties() {
-					{
-						setProperty("ataque", "100");
-						setProperty("vida", "100");
-					}
-				});
+				setProperty("ataque", "80");
+				setProperty("vida", "100");
 			}
 		};
-
+		Properties c2 = new Properties() {
+			{
+				setProperty("ataque", "100");
+				setProperty("vida", "100");
+			}
+		};
+		Map<String, Properties> personajes = new HashMap<String, Properties>() {
+			{
+				put("Fabian", c1);
+				put("Martin", c2);
+			}
+		};
 		MockitoAnnotations.openMocks(this);
 		doAnswer(invocation -> {
 			Batalla batalla = invocation.getArgument(0);
@@ -101,6 +102,22 @@ public class US1_AtaqueTest {
 	public void CA4_batallaNoFinalizada() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(batalla.getEstado(), EstadoBatalla.EN_PROGRESO);
+	}
+
+	@Test
+	public void CA5_ataqueBatallaFinalizada() throws Exception {
+		assertEquals(batalla.getEstado(), EstadoBatalla.INICIADA);
+	}
+	@Test
+	public void CA6_retornoTurno() throws Exception {
+		batalla.jugar(atacar);
+		batalla.jugar(atacar);
+		//assertEquals(batalla.getPersonajeActual(), "Fabian");
+		//TODO ver falla de turnero
+	}
+	@Test
+	public void CA7_ataqueBatallaFinalizada() throws Exception {
+		//TODO
 	}
 
 }
