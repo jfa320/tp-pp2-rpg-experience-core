@@ -23,10 +23,10 @@ public class US1_AtaqueTest {
 	private String path;
 	private Habilidad atacar;
 
-	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
+		System.out.println(initializer.toString());
 		path = "src\\test\\resources\\archivos\\test.properties";
 		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
