@@ -29,6 +29,7 @@ public class US1_AtaqueTest {
 		initializer = new BatallaInitializer();
 		path = "src\\test\\resources\\archivos\\test.properties";
 		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		System.out.println(batalla.toString());
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
