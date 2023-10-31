@@ -13,7 +13,9 @@ public class BatallaInitializer {
     public Batalla generarBatalla(String pathConfigProperties){
 		PersonajeBuilder personajesBuilder = new PersonajeBuilder(pathConfigProperties);
 		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
+		System.out.println(personajes);
 		HabilidadFinder habilidadFinder = new HabilidadFinder(pathConfigProperties);
+		System.out.println(habilidadFinder.toString());
 		List<Habilidad> habilidades = null;
 		try {
 			habilidades = habilidadFinder.findClasses("");
@@ -21,7 +23,8 @@ public class BatallaInitializer {
 			e.printStackTrace();
 		}
 
-		Batalla batalla = BatallaBuilder.build(habilidades,personajes);			
+		Batalla batalla = BatallaBuilder.build(habilidades,personajes);		
+		System.out.println(batalla.getHabilidades());
         return batalla;
     }
 
