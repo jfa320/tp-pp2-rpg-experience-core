@@ -70,6 +70,14 @@ public class Batalla extends Observable {
 		return Integer.valueOf(propiedadesPersonajeElegido.getProperty("vida"));
 	}
 
+	public Object getCaracteristicaPj(String pj,String caract){
+		try {
+			return Integer.valueOf(personajes.get(pj).getProperty(caract));	
+		} catch (Exception e) {
+			return personajes.get(pj).getProperty(caract);
+		}
+	}
+
 	public EstadoBatalla getEstado() {
 		return estado;
 	}
