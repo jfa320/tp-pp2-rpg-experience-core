@@ -36,6 +36,7 @@ public class US1_AtaqueTest {
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(batalla.getCaracteristicaPj("Martin", "vida"), 50);
+		assertEquals(batalla.getEstado(),EstadoBatalla.EN_PROGRESO);
 	}
 
 	@Test
