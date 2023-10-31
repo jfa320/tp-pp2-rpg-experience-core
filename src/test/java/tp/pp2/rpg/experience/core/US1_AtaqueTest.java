@@ -22,7 +22,8 @@ public class US1_AtaqueTest {
 	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
-		batalla = new BatallaInitializer().generarBatalla("src\\main\\resources\\test.properties");
+		BatallaInitializer b = new BatallaInitializer();
+		batalla = b.generarBatalla("src\\main\\resources\\test.properties");
 		atacar = batalla.getHabilidades().get(0);
 	}
 
