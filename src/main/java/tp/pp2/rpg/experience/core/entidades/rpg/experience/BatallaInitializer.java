@@ -23,7 +23,7 @@ public class BatallaInitializer {
 			e.printStackTrace();
 		}
 
-		Batalla batalla = BatallaBuilder.build(habilidades,personajes);			
+		Batalla batalla = BatallaBuilder.build(habilidades,personajes);		
         return batalla;
     }
 
