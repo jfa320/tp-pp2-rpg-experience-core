@@ -10,6 +10,8 @@ import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
 public class BatallaInitializer {
 
+	public BatallaInitializer(){}
+
     public Batalla generarBatalla(String pathConfigProperties){
 		PersonajeBuilder personajesBuilder = new PersonajeBuilder(pathConfigProperties);
 		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
