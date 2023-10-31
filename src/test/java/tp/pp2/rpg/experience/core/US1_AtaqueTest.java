@@ -42,10 +42,10 @@ public class US1_AtaqueTest {
 		path = "src\\test\\resources\\archivos\\test.properties";
 		//batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		
-		logger.debug("path: "+path.replace("\\", File.separator));
+		logger.warn("path: "+path.replace("\\", File.separator));
 		PersonajeBuilder personajesBuilder = new PersonajeBuilder(path.replace("\\", File.separator));
 		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
-		logger.debug("Personajes: "+ personajes.toString());
+		logger.warn("Personajes: "+ personajes.toString());
 		HabilidadFinder habilidadFinder = new HabilidadFinder(path.replace("\\", File.separator));
 		List<Habilidad> habilidades = null;
 		try {
@@ -53,8 +53,8 @@ public class US1_AtaqueTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		logger.debug("habilidades: ");
-		habilidades.forEach(h-> logger.debug("habilidad nombre: "+ h.getNombre()));
+		logger.warn("habilidades: ");
+		habilidades.forEach(h-> logger.warn("habilidad nombre: "+ h.getNombre()));
 		
 		//batalla = BatallaBuilder.build(habilidades,personajes);	
 		batalla = (new BatallaBuilder()).build(habilidades, personajes);
