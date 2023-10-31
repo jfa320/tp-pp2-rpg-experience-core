@@ -36,9 +36,9 @@ public class US1_AtaqueTest {
 		path = "src\\test\\resources\\archivos\\test.properties";
 		//batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		
-		PersonajeBuilder personajesBuilder = new PersonajeBuilder(path);
+		PersonajeBuilder personajesBuilder = new PersonajeBuilder(path.replace("\\", File.separator));
 		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
-		HabilidadFinder habilidadFinder = new HabilidadFinder(path);
+		HabilidadFinder habilidadFinder = new HabilidadFinder(path.replace("\\", File.separator));
 		List<Habilidad> habilidades = null;
 		try {
 			habilidades = habilidadFinder.findClasses("");
@@ -48,7 +48,6 @@ public class US1_AtaqueTest {
 
 		batalla = BatallaBuilder.build(habilidades,personajes);	
 		atacar = batalla.getHabilidades().get(0);
-		System.out.println(atacar);
 	}
 	@Test
 	public void CA1_ataqueValido() throws Exception {
