@@ -31,12 +31,17 @@ public class Batalla extends Observable {
 	}
 
 	public void jugar(Habilidad habilidad) throws Exception {
+		this.validarFinalizacion();
 		habilidad.realizar(this);
 		this.notificarEvento();
 		actualizadorTurno.cambiarTurno(this);
 		// aviso a los observers
 		this.setChanged();
 		this.notifyObservers(this);
+	}
+
+	private void validarFinalizacion() throws Exception {
+		if(this.getEstado().equals(EstadoBatalla.FINALIZADA)) throw new Exception("Batalla finalizada! No se permite seguir jugando");
 	}
 
 	private void notificarEvento() {

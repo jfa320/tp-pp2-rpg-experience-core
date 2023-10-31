@@ -1,6 +1,7 @@
 package tp.pp2.rpg.experience.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 
@@ -26,6 +27,7 @@ import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
 public class US1_AtaqueTest {
 
 	private Batalla batalla;
+	private Batalla batallaFinalizada;
 
 	@Mock
 	private Habilidad atacar;
@@ -74,7 +76,8 @@ public class US1_AtaqueTest {
 		List<Habilidad> habilidades = new ArrayList<Habilidad>();
 		habilidades.add(atacar);
 		batalla = (new BatallaBuilder()).build(habilidades, personajes);
-
+		batallaFinalizada = (new BatallaBuilder()).build(habilidades, personajes);
+		batallaFinalizada.setEstado(EstadoBatalla.FINALIZADA);
 	}
 
 	@Test
@@ -112,12 +115,12 @@ public class US1_AtaqueTest {
 	public void CA6_retornoTurno() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		//assertEquals(batalla.getPersonajeActual(), "Fabian");
-		//TODO ver falla de turnero
+		assertEquals(batalla.getPersonajeActual(), "Fabian");
 	}
 	@Test
-	public void CA7_ataqueBatallaFinalizada() throws Exception {
-		//TODO
+	public void CA7_ataqueBatallaFinalizada(){
+		assertThrows(Exception.class,
+                () -> batallaFinalizada.jugar(atacar));
 	}
 
 }
