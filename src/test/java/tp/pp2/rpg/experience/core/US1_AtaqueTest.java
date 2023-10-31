@@ -26,9 +26,11 @@ public class US1_AtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
-		System.out.println(initializer.toString());
+		initializer.toString();
 		path = "src\\test\\resources\\archivos\\test.properties";
-		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		initializer.getClass();
+		String pathLoco=path.replace("\\", File.separator);
+		batalla = initializer.generarBatalla(pathLoco);
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
