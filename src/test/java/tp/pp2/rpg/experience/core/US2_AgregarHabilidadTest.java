@@ -24,7 +24,7 @@ public class US2_AgregarHabilidadTest {
     private String pathConfigProperties;
     @BeforeEach
     public void escenario(){
-        pathConfigProperties = "src\\main\\resources\\test2.properties";
+        pathConfigProperties = "src\\test\\resources\\archivos\\test2.properties";
         habilidadFinder = new HabilidadFinder(pathConfigProperties);
     }
      
