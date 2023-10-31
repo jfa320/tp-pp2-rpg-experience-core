@@ -3,6 +3,8 @@ package tp.pp2.rpg.experience.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.File;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,8 @@ public class US1_AtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		BatallaInitializer b = new BatallaInitializer();
-		batalla = b.generarBatalla("src\\main\\resources\\test.properties");
+		String path = "src\\main\\resources\\test.properties";
+		batalla = b.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
 	}
 
