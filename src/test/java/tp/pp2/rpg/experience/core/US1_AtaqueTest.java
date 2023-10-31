@@ -46,7 +46,8 @@ public class US1_AtaqueTest {
 			e.printStackTrace();
 		}
 
-		batalla = BatallaBuilder.build(habilidades,personajes);	
+		//batalla = BatallaBuilder.build(habilidades,personajes);	
+		batalla = new Batalla(personajes,habilidades);
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
