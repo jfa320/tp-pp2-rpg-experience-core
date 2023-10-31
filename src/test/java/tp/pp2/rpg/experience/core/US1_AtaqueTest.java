@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -14,7 +17,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.PersonajeBuilder;
+import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class US1_AtaqueTest {
@@ -28,8 +34,21 @@ public class US1_AtaqueTest {
 	public void escenario() {
 		initializer = new BatallaInitializer();
 		path = "src\\test\\resources\\archivos\\test.properties";
-		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		//batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		
+		PersonajeBuilder personajesBuilder = new PersonajeBuilder(path);
+		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
+		HabilidadFinder habilidadFinder = new HabilidadFinder(path);
+		List<Habilidad> habilidades = null;
+		try {
+			habilidades = habilidadFinder.findClasses("");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		batalla = BatallaBuilder.build(habilidades,personajes);	
 		atacar = batalla.getHabilidades().get(0);
+		System.out.println(atacar);
 	}
 	@Test
 	public void CA1_ataqueValido() throws Exception {
