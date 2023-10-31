@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.File;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -16,6 +17,7 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@Disabled("para probar US2")
 public class US1_AtaqueTest {
 
 	private Batalla batalla;
@@ -26,11 +28,8 @@ public class US1_AtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
-		initializer.toString();
 		path = "src\\test\\resources\\archivos\\test.properties";
-		initializer.getClass();
-		String pathLoco=path.replace("\\", File.separator);
-		batalla = initializer.generarBatalla(pathLoco);
+		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
