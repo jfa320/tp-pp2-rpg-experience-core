@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build -XX:+ShowCodeDetailsInExceptionMessages
 
     - name: Archive Test Results
       uses: actions/upload-artifact@v2

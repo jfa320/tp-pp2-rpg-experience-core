@@ -31,7 +31,6 @@ public class US1_AtaqueTest {
 		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
 	}
-
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
