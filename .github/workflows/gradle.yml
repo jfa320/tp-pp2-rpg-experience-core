@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         
     - name: Build with Gradle
-      run: JAVA_OPTS="-XX:+ShowCodeDetailsInExceptionMessages" ./gradlew build
+      run: ./gradlew build
 
 
     - name: Archive Test Results
