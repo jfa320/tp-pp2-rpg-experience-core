@@ -17,7 +17,6 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-@Disabled("para probar US2")
 public class US1_AtaqueTest {
 
 	private Batalla batalla;
@@ -28,7 +27,7 @@ public class US1_AtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
-		path = "src\\test\\resources\\archivos\\test.properties";
+		path = "src\\test\\resources\\archivos\\test2.properties";
 		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
 	}
