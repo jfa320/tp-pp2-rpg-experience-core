@@ -22,6 +22,10 @@ import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.PersonajeBuilder;
 import tp.pp2.rpg.experience.core.extensible.HabilidadFinder;
 
+
+import org.gradle.api.logging.Logger;
+import org.gradle.api.logging.Logging;
+
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class US1_AtaqueTest {
 
@@ -30,14 +34,18 @@ public class US1_AtaqueTest {
 	private String path;
 	private Habilidad atacar;
 
+	Logger logger = Logging.getLogger(US1_AtaqueTest.class);
+	
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
 		path = "src\\test\\resources\\archivos\\test.properties";
 		//batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		
+		logger.error("path: "+path.replace("\\", File.separator));
 		PersonajeBuilder personajesBuilder = new PersonajeBuilder(path.replace("\\", File.separator));
 		Map<String,Properties> personajes = personajesBuilder.buildAllPersonajes();
+		logger.error("Personajes: "+ personajes.toString());
 		HabilidadFinder habilidadFinder = new HabilidadFinder(path.replace("\\", File.separator));
 		List<Habilidad> habilidades = null;
 		try {
@@ -45,9 +53,11 @@ public class US1_AtaqueTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		logger.error("habilidades: ");
+		habilidades.forEach(h-> logger.error("habilidad nombre: "+ h.getNombre()));
+		
 		//batalla = BatallaBuilder.build(habilidades,personajes);	
-		batalla = new Batalla(personajes,habilidades);
+		batalla = (new BatallaBuilder()).build(habilidades, personajes);
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
