@@ -27,11 +27,11 @@ public class US1_AtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		initializer = new BatallaInitializer();
-		path = "src\\main\\resources\\test.properties";
+		path = "src\\test\\resources\\archivos\\test.properties";
 		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		System.out.println(batalla.toString());
 		atacar = batalla.getHabilidades().get(0);
 	}
-
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
