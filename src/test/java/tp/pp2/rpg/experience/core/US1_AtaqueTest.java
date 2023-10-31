@@ -19,14 +19,16 @@ import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 public class US1_AtaqueTest {
 
 	private Batalla batalla;
+	private BatallaInitializer initializer;
+	private String path;
 	private Habilidad atacar;
 
 	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
-		BatallaInitializer b = new BatallaInitializer();
-		String path = "src\\main\\resources\\test.properties";
-		batalla = b.generarBatalla(path.replace("\\", File.separator));
+		initializer = new BatallaInitializer();
+		path = "src\\main\\resources\\test.properties";
+		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
 		atacar = batalla.getHabilidades().get(0);
 	}
 
