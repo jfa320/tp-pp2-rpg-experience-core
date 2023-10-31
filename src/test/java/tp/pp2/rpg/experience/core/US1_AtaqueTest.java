@@ -28,8 +28,8 @@ public class US1_AtaqueTest {
 	public void escenario() {
 		initializer = new BatallaInitializer();
 		path = "src\\test\\resources\\archivos\\test.properties";
-		batalla = initializer.generarBatalla(path.replace("\\", File.separator));
-		System.out.println(batalla.toString());
+		//batalla = initializer.generarBatalla(path.replace("\\", File.separator));
+		batalla=new Batalla(null, null);
 		atacar = batalla.getHabilidades().get(0);
 	}
 	@Test
