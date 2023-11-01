@@ -15,7 +15,7 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class US1_AtaqueTest {
+public class US1_JugarAtaqueTest {
 
 	private Batalla batalla;
 	private Habilidad atacar;
