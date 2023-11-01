@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.elementOptions_return;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.eventos.BatallaEnProgresoEvento;
@@ -96,6 +97,25 @@ public class Batalla extends Observable {
 
 	public List<Habilidad> getHabilidades() {
 		return habilidades;
+	}
+
+	public Habilidad getHabilidad(String nombreHabilidad) throws Exception{
+		
+		if(habilidades == null)
+			throw new Exception("No existe la habilidad: " + nombreHabilidad + " en batalla");
+
+		Habilidad habilidad = null;
+		for (Habilidad h : habilidades) {
+			if(h.getNombre().equals(nombreHabilidad)){
+				habilidad = h;
+				break;
+			}
+		}
+
+		if (habilidad == null)
+			throw new Exception("No existe la habilidad: " + nombreHabilidad + " en batalla");
+		
+		return habilidad;
 	}
 
 	@Override

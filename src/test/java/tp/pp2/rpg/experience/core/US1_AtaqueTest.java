@@ -22,9 +22,13 @@ public class US1_AtaqueTest {
 	
 	@BeforeEach
 	public void escenario() {
-		BatallaInitializer batallaInitializer = new BatallaInitializer();
-		batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
-		atacar = batalla.getHabilidades().get(0);
+		try {
+			BatallaInitializer batallaInitializer = new BatallaInitializer();
+			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
+			atacar = batalla.getHabilidad("Atacar");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 	@Test
 	public void CA1_ataqueValido() throws Exception {
@@ -40,7 +44,25 @@ public class US1_AtaqueTest {
 	}
 
 	@Test
-	public void CA3_batallaFinalizada() throws Exception {
+	public void CA3_retornoTurno() throws Exception {
+		batalla.jugar(atacar);
+		batalla.jugar(atacar);
+		assertEquals(batalla.getPersonajeActual(), "Fabian");
+	}
+
+	@Test
+	public void CA4_batallaSinJugar() throws Exception {
+		assertEquals(batalla.getEstado(), EstadoBatalla.INICIADA);
+	}
+
+	@Test
+	public void CA5_batallaNoFinalizada() throws Exception {
+		batalla.jugar(atacar);
+		assertEquals(batalla.getEstado(), EstadoBatalla.EN_PROGRESO);
+	}
+
+	@Test
+	public void CA6_batallaFinalizada() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
@@ -48,22 +70,6 @@ public class US1_AtaqueTest {
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 	}
 
-	@Test
-	public void CA4_batallaNoFinalizada() throws Exception {
-		batalla.jugar(atacar);
-		assertEquals(batalla.getEstado(), EstadoBatalla.EN_PROGRESO);
-	}
-
-	@Test
-	public void CA5_batallaSinJugar() throws Exception {
-		assertEquals(batalla.getEstado(), EstadoBatalla.INICIADA);
-	}
-	@Test
-	public void CA6_retornoTurno() throws Exception {
-		batalla.jugar(atacar);
-		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), "Fabian");
-	}
 	@Test
 	public void CA7_ataqueBatallaFinalizada() throws Exception{
 		batalla.jugar(atacar);
@@ -74,5 +80,4 @@ public class US1_AtaqueTest {
 		assertThrows(Exception.class,
                 () -> batalla.jugar(atacar));
 	}
-
 }
