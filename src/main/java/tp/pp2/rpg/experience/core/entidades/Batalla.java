@@ -53,6 +53,10 @@ public class Batalla extends Observable {
 		return personajes;
 	}
 
+	public Properties getPersonaje(int p){
+		return personajes.get(p-1);
+	}
+
 	public EstadoBatalla getEstado() {
 		return estado;
 	}
@@ -90,18 +94,6 @@ public class Batalla extends Observable {
 			throw new Exception("No existe la habilidad: " + nombreHabilidad + " en batalla");
 		
 		return habilidad;
-	}
-
-	public Object getCaracteristicaPj(String caract,int index) throws Exception{
-
-		if (personajes.isEmpty())
-			throw new Exception("No existe el personaje " + index);
-
-		try {
-			return Integer.valueOf(personajes.get(index-1).getProperty(caract));	
-		} catch (Exception e) {
-			return personajes.get(index-1).getProperty(caract);
-		}
 	}
 
 	public void setPersonajes(ArrayList<Properties> personajes) {
