@@ -2,11 +2,9 @@ package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
 
-import groovyjarjarantlr4.v4.parse.ANTLRParser.elementOptions_return;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 import tp.pp2.rpg.experience.core.eventos.BatallaEnProgresoEvento;
@@ -104,6 +102,10 @@ public class Batalla extends Observable {
 		} catch (Exception e) {
 			return personajes.get(index-1).getProperty(caract);
 		}
+	}
+
+	public void setPersonajes(ArrayList<Properties> personajes) {
+		this.personajes = personajes;
 	}
 
 	@Override
