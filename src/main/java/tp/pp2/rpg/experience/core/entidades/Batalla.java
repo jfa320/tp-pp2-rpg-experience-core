@@ -14,14 +14,14 @@ import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
 
 public class Batalla extends Observable {
-	private Map<String, Properties> personajes;
+	private ArrayList<Properties> personajes;
 	private List<Habilidad> habilidades;
-	private String personajeActual;
+	private int personajeActual;
 	private EstadoBatalla estado;
 	private ActualizadorTurno actualizadorTurno;
 	private List<BatallaEvento> eventListeners;
 
-	public Batalla(Map<String, Properties> personajes, List<Habilidad> habilidades) {
+	public Batalla(ArrayList<Properties> personajes, List<Habilidad> habilidades) {
 		this.personajes = personajes;
 		this.habilidades = habilidades;
 		this.estado = EstadoBatalla.INICIADA;
@@ -51,32 +51,8 @@ public class Batalla extends Observable {
         }
 	}
 
-	public Map<String, Properties> getPersonajes() {
+	public ArrayList<Properties> getPersonajes() {
 		return personajes;
-	}
-
-	public void setPersonajes(Map<String, Properties> personajes) {
-		this.personajes = personajes;
-	}
-
-	public String getPersonajeNombre(int index) {
-		List<String> nombresPersonajes = new ArrayList<String>(this.getPersonajes().keySet());
-		return nombresPersonajes.get(index);
-	}
-
-	public Integer getPersonajeVida(int index) {
-		List<String> nombresPersonajes = new ArrayList<String>(this.getPersonajes().keySet());
-		String personajeKey = nombresPersonajes.get(index);
-		Properties propiedadesPersonajeElegido = this.getPersonajes().get(personajeKey);
-		return Integer.valueOf(propiedadesPersonajeElegido.getProperty("vida"));
-	}
-
-	public Object getCaracteristicaPj(String pj,String caract){
-		try {
-			return Integer.valueOf(personajes.get(pj).getProperty(caract));	
-		} catch (Exception e) {
-			return personajes.get(pj).getProperty(caract);
-		}
 	}
 
 	public EstadoBatalla getEstado() {
@@ -87,11 +63,11 @@ public class Batalla extends Observable {
 		this.estado = estado;
 	}
 
-	public String getPersonajeActual() {
+	public int getPersonajeActual() {
 		return personajeActual;
 	}
 
-	public void setPersonajeActual(String personajeActual) {
+	public void setPersonajeActual(int personajeActual) {
 		this.personajeActual = personajeActual;
 	}
 
@@ -101,7 +77,7 @@ public class Batalla extends Observable {
 
 	public Habilidad getHabilidad(String nombreHabilidad) throws Exception{
 		
-		if(habilidades == null)
+		if(habilidades.isEmpty())
 			throw new Exception("No existe la habilidad: " + nombreHabilidad + " en batalla");
 
 		Habilidad habilidad = null;
@@ -116,6 +92,18 @@ public class Batalla extends Observable {
 			throw new Exception("No existe la habilidad: " + nombreHabilidad + " en batalla");
 		
 		return habilidad;
+	}
+
+	public Object getCaracteristicaPj(String caract,int index) throws Exception{
+
+		if (personajes.isEmpty())
+			throw new Exception("No existe el personaje " + index);
+
+		try {
+			return Integer.valueOf(personajes.get(index-1).getProperty(caract));	
+		} catch (Exception e) {
+			return personajes.get(index-1).getProperty(caract);
+		}
 	}
 
 	@Override

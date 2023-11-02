@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.utils.LectorPersonajesJSON;
@@ -25,7 +25,7 @@ public class PersonajeBuilder {
 		}
     }
 
-    public Map<String,Properties> buildAllPersonajes(){
+    public ArrayList<Properties> buildAllPersonajes(){
         String jsonValue = properties.getProperty("datos.personaje").replace("\\", File.separator);
         return LectorPersonajesJSON.parsearPersonajesJSON(jsonValue);
     }

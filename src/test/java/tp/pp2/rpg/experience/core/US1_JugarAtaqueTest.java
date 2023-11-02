@@ -33,21 +33,21 @@ public class US1_JugarAtaqueTest {
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(batalla.getCaracteristicaPj("Martin", "vida"), 50);
+		assertEquals(batalla.getCaracteristicaPj("vida",2), 50);
 		assertEquals(batalla.getEstado(),EstadoBatalla.EN_PROGRESO);
 	}
 
 	@Test
 	public void CA2_cambioTurno() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), "Martin");
+		assertEquals(batalla.getPersonajeActual(), 2);
 	}
 
 	@Test
 	public void CA3_retornoTurno() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), "Fabian");
+		assertEquals(batalla.getPersonajeActual(), 1);
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class US1_JugarAtaqueTest {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(batalla.getCaracteristicaPj("Martin", "vida"),0);
+		assertEquals(batalla.getCaracteristicaPj("vida",2),0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 	}
 
@@ -75,7 +75,7 @@ public class US1_JugarAtaqueTest {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(batalla.getCaracteristicaPj("Martin", "vida"),0);
+		assertEquals(batalla.getCaracteristicaPj("vida",2),0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 		assertThrows(Exception.class,
                 () -> batalla.jugar(atacar));
