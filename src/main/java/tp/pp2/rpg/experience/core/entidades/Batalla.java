@@ -2,6 +2,7 @@ package tp.pp2.rpg.experience.core.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Properties;
 
@@ -12,16 +13,18 @@ import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
 
 public class Batalla extends Observable {
-	private ArrayList<Properties> personajes;
+	private ArrayList<String> personajes;
 	private List<Habilidad> habilidades;
-	private int personajeActual;
+	private String personajeActual;
 	private EstadoBatalla estado;
+	private Map<String,Properties> caracteristicas;
 	private ActualizadorTurno actualizadorTurno;
 	private List<BatallaEvento> eventListeners;
 
-	public Batalla(ArrayList<Properties> personajes, List<Habilidad> habilidades) {
+	public Batalla(ArrayList<String> personajes, Map<String,Properties> caracteristicas,List<Habilidad> habilidades) {
 		this.personajes = personajes;
 		this.habilidades = habilidades;
+		this.caracteristicas=caracteristicas;
 		this.estado = EstadoBatalla.INICIADA;
 		this.actualizadorTurno = new ActualizadorTurno(this);
 		this.eventListeners=new ArrayList<BatallaEvento>();
@@ -49,12 +52,12 @@ public class Batalla extends Observable {
         }
 	}
 
-	public ArrayList<Properties> getPersonajes() {
+	public ArrayList<String> getPersonajes() {
 		return personajes;
 	}
 
-	public Properties getPersonaje(int p){
-		return personajes.get(p-1);
+	public Properties getCaracteristicasPersonaje(String p){
+		return caracteristicas.get(p);
 	}
 
 	public EstadoBatalla getEstado() {
@@ -65,11 +68,11 @@ public class Batalla extends Observable {
 		this.estado = estado;
 	}
 
-	public int getPersonajeActual() {
+	public String getPersonajeActual() {
 		return personajeActual;
 	}
 
-	public void setPersonajeActual(int personajeActual) {
+	public void setPersonajeActual(String personajeActual) {
 		this.personajeActual = personajeActual;
 	}
 
@@ -96,8 +99,16 @@ public class Batalla extends Observable {
 		return habilidad;
 	}
 
-	public void setPersonajes(ArrayList<Properties> personajes) {
+	public void setPersonajes(ArrayList<String> personajes) {
 		this.personajes = personajes;
+	}
+
+	public Map<String, Properties> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(Map<String, Properties> caracteristicas) {
+		this.caracteristicas = caracteristicas;
 	}
 
 	@Override
