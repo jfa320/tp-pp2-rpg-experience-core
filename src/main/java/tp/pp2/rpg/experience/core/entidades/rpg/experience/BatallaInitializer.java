@@ -3,6 +3,7 @@ package tp.pp2.rpg.experience.core.entidades.rpg.experience;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
@@ -15,7 +16,7 @@ public class BatallaInitializer {
 
     public Batalla generarBatalla(String pathConfigProperties){
     	PersonajeBuilder personajesBuilder = new PersonajeBuilder(pathConfigProperties.replace("\\", File.separator));
-		ArrayList<Properties> personajes = personajesBuilder.buildAllPersonajes();
+		Map<String,Properties> personajesCaracteristicas = personajesBuilder.buildAllPersonajes();
 		HabilidadFinder habilidadFinder = new HabilidadFinder(pathConfigProperties.replace("\\", File.separator));
 		List<Habilidad> habilidades = null;
 		try {
@@ -23,8 +24,8 @@ public class BatallaInitializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		Batalla batalla = BatallaBuilder.build(habilidades,personajes);		
+		List<String> personajes = new ArrayList<>(personajesCaracteristicas.keySet());
+		Batalla batalla = BatallaBuilder.build(personajes,personajesCaracteristicas,habilidades);		
         return batalla;
     }
 

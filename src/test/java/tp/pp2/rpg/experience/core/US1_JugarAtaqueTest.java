@@ -19,15 +19,17 @@ public class US1_JugarAtaqueTest {
 
 	private Batalla batalla;
 	private Habilidad atacar;
+	private String p1;
+	private String p2;
 	
 	@BeforeEach
 	public void escenario() {
 		try {
-			//TODO: aca tendriamos que tener p1 y p2 para que trace con lo del documento. 
-			//Podriamos hacer p1=batalla.getPersonaje(0). Que opinas? Aunque siento que todavia no traza bien con el test...
 			BatallaInitializer batallaInitializer = new BatallaInitializer();
 			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
 			atacar = batalla.getHabilidad("Atacar");
+			p1=batalla.getPersonajes().get(0);
+			p2=batalla.getPersonajes().get(1);
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -35,21 +37,21 @@ public class US1_JugarAtaqueTest {
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p1).getProperty("vida"), 50);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida")), 50);
 		assertEquals(batalla.getEstado(),EstadoBatalla.EN_PROGRESO);
 	}
 
 	@Test
 	public void CA2_cambioTurno() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), 2);
+		assertEquals(batalla.getPersonajeActual(), "Martin");
 	}
 
 	@Test
 	public void CA3_retornoTurno() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(batalla.getPersonajeActual(), 1);
+		assertEquals(batalla.getPersonajeActual(), "Fabian");
 	}
 
 	@Test
@@ -68,7 +70,7 @@ public class US1_JugarAtaqueTest {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida"),0);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida")),0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 	}
 

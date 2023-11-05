@@ -13,7 +13,7 @@ import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
 
 public class Batalla extends Observable {
-	private ArrayList<String> personajes;
+	private List<String> personajes;
 	private List<Habilidad> habilidades;
 	private String personajeActual;
 	private EstadoBatalla estado;
@@ -21,7 +21,7 @@ public class Batalla extends Observable {
 	private ActualizadorTurno actualizadorTurno;
 	private List<BatallaEvento> eventListeners;
 
-	public Batalla(ArrayList<String> personajes, Map<String,Properties> caracteristicas,List<Habilidad> habilidades) {
+	public Batalla(List<String> personajes, Map<String,Properties> caracteristicas,List<Habilidad> habilidades) {
 		this.personajes = personajes;
 		this.habilidades = habilidades;
 		this.caracteristicas=caracteristicas;
@@ -52,7 +52,7 @@ public class Batalla extends Observable {
         }
 	}
 
-	public ArrayList<String> getPersonajes() {
+	public List<String> getPersonajes() {
 		return personajes;
 	}
 

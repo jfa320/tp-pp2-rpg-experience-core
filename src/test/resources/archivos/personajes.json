@@ -1,12 +1,10 @@
-[
-	{
-		"Fabian": {
-			"ataque": 50,
-			"vida": 100
-		},
-		"Martin": {
-			"ataque": 60,
-			"vida": 100
-		}
+{
+	"Fabian": {
+		"ataque": "50",
+		"vida": "100"
+	},
+	"Martin": {
+		"ataque": "60",
+		"vida": "100"
 	}
-]
+}

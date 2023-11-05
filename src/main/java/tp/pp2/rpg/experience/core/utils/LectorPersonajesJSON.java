@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class LectorPersonajesJSON {
-	public static ArrayList<Properties> parsearPersonajesJSON(String pathJSON) {
+	public static Map<String,Properties> parsearPersonajesCaracteristicasJSON(String pathJSON) {
 		Gson gson = new Gson();
 		Path path = Paths.get(pathJSON);
 		String json = null;
@@ -20,7 +20,8 @@ public class LectorPersonajesJSON {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Properties> personajes = gson.fromJson(json, new TypeToken<ArrayList<Properties>>(){}.getType());
-		return personajes;
+		
+		Map<String,Properties> personajesCaracteristicas = gson.fromJson(json, new TypeToken<Map<String,Properties>>(){}.getType());
+		return personajesCaracteristicas;
 	}
 }
