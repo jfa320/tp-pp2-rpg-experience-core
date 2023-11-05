@@ -23,6 +23,8 @@ public class US1_JugarAtaqueTest {
 	@BeforeEach
 	public void escenario() {
 		try {
+			//TODO: aca tendriamos que tener p1 y p2 para que trace con lo del documento. 
+			//Podriamos hacer p1=batalla.getPersonaje(0). Que opinas? Aunque siento que todavia no traza bien con el test...
 			BatallaInitializer batallaInitializer = new BatallaInitializer();
 			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
 			atacar = batalla.getHabilidad("Atacar");
@@ -33,7 +35,7 @@ public class US1_JugarAtaqueTest {
 	@Test
 	public void CA1_ataqueValido() throws Exception {
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getPersonaje(2).getProperty("vida")), 50);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p1).getProperty("vida"), 50);
 		assertEquals(batalla.getEstado(),EstadoBatalla.EN_PROGRESO);
 	}
 
@@ -66,7 +68,7 @@ public class US1_JugarAtaqueTest {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getPersonaje(2).getProperty("vida")),0);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida"),0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 	}
 
@@ -75,7 +77,6 @@ public class US1_JugarAtaqueTest {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getPersonaje(2).getProperty("vida")),0);
 		assertEquals(batalla.getEstado(), EstadoBatalla.FINALIZADA);
 		assertThrows(Exception.class,
                 () -> batalla.jugar(atacar));
