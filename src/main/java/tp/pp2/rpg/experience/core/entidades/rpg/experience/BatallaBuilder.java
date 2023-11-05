@@ -10,9 +10,7 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 public class BatallaBuilder {
     
     public static Batalla build(List<Habilidad> habilidades, ArrayList<Properties> personajes){
-    
-       // return new Batalla(personajes,habilidades);
-    	return null;
+       return new Batalla(personajes,habilidades);	
     }
 
 }
