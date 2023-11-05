@@ -8,7 +8,7 @@ import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 public class ObtenedorGanador {
 	
 	public String obtenerGanador(Batalla contexto) {
-		if(contexto.getEstado().equals(EstadoBatalla.FINALIZADA)) {
+		/*if(contexto.getEstado().equals(EstadoBatalla.FINALIZADA)) {
 
 			for (Properties personaje : contexto.getPersonajes()){
 				int vida = Integer.valueOf(personaje.getProperty("vida"));
@@ -16,7 +16,8 @@ public class ObtenedorGanador {
 					return personaje.getProperty("nombre");
 			}
 		} 
-		return "No hay ganador";
+		return "No hay ganador";*/
+		return null;
 	}
 	
 }

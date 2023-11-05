@@ -11,7 +11,8 @@ public class BatallaBuilder {
     
     public static Batalla build(List<Habilidad> habilidades, ArrayList<Properties> personajes){
     
-        return new Batalla(personajes,habilidades);
+       // return new Batalla(personajes,habilidades);
+    	return null;
     }
 
 }

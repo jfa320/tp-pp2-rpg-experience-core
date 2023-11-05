@@ -12,7 +12,7 @@ public class BatallaFinalizadaEvento implements BatallaEvento  {
 		this.validarFinalizacion(batalla);
 	}
 	
-	private void validarFinalizacion(Batalla contexto) {
+	private void validarFinalizacion(Batalla contexto) {/*
 		int personajesVivos = 0;
 
 		for (Properties personaje : contexto.getPersonajes()){
@@ -21,6 +21,6 @@ public class BatallaFinalizadaEvento implements BatallaEvento  {
 				personajesVivos++;
 		}
 		if (personajesVivos == 1)
-			contexto.setEstado(EstadoBatalla.FINALIZADA);
+			contexto.setEstado(EstadoBatalla.FINALIZADA);*/
 	}	
 }
