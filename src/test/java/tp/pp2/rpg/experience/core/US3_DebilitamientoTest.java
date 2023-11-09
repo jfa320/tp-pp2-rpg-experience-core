@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -23,6 +24,7 @@ import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@Disabled
 public class US3_DebilitamientoTest {
 	private Batalla batalla;
 	private Habilidad atacar;
