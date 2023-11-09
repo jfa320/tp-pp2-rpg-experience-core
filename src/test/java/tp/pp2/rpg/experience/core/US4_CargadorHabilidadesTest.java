@@ -38,8 +38,6 @@ public class US4_CargadorHabilidadesTest {
 		try {
 			BatallaInitializer batallaInitializer = new BatallaInitializer();
 			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\testIt1.properties");
-			atacar = batalla.getHabilidad("Atacar");
-			debilitar = batalla.getHabilidad("Debilitar");
 			p1=batalla.getPersonajes().get(0);
 			p2=batalla.getPersonajes().get(1);
 		} catch (Exception e) {
