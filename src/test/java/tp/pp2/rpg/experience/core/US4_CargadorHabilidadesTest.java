@@ -17,38 +17,34 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 import tp.pp2.rpg.experience.core.extensible.CargadorHabilidades;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class CargadorHabilidadesTest {
+public class US4_CargadorHabilidadesTest {
 	private CargadorHabilidades cargadorHabilidades;
-	private String path;
 	private Batalla batalla;
+	private Habilidad atacar;
+	private Habilidad debilitar;
+	private String p1;
+	private String p2;
+	private String path;
 
 	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
 		path = "src\\test\\resources\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
-		Map<String, Properties> personajes = new HashMap<String, Properties>() {
-			{
-				put("Fabian", new Properties() {
-					{
-						setProperty("ataque", "10");
-						setProperty("vida", "100");
-					}
-				});
-				put("Martin", new Properties() {
-					{
-						setProperty("ataque", "1");
-						setProperty("vida", "100");
-					}
-				});
-			}
-		};
-		List<Habilidad> habilidades = new ArrayList<Habilidad>();
-		batalla = (new BatallaBuilder()).build(habilidades, personajes);
+		try {
+			BatallaInitializer batallaInitializer = new BatallaInitializer();
+			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\testIt1.properties");
+			atacar = batalla.getHabilidad("Atacar");
+			debilitar = batalla.getHabilidad("Debilitar");
+			p1=batalla.getPersonajes().get(0);
+			p2=batalla.getPersonajes().get(1);
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
 	@Test

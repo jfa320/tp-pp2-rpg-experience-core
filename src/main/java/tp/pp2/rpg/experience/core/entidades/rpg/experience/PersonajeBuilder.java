@@ -1,5 +1,6 @@
 package tp.pp2.rpg.experience.core.entidades.rpg.experience;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class PersonajeBuilder {
     }
 
     public Map<String,Properties> buildAllPersonajes(){
-        String jsonValue = properties.getProperty("datos.personaje");
-        return LectorPersonajesJSON.parsearPersonajesJSON(jsonValue);
+        String jsonValue = properties.getProperty("datos.personaje").replace("\\", File.separator);
+        return LectorPersonajesJSON.parsearPersonajesCaracteristicasJSON(jsonValue);
     }
 }
