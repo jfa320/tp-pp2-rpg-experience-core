@@ -50,6 +50,7 @@ public class US4_CargadorHabilidadesTest {
 	public void CA2_habilidadCargada() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
+		assertTrue(existeHabilidad(batalla,"Atacar"));
 	}
 
 	@Test
