@@ -20,8 +20,6 @@ import tp.pp2.rpg.experience.core.extensible.CargadorHabilidades;
 public class US4_CargadorHabilidadesTest {
 	private CargadorHabilidades cargadorHabilidades;
 	private Batalla batalla;
-	private Habilidad atacar;
-	private Habilidad debilitar;
 	private String p1;
 	private String p2;
 	private String path;
