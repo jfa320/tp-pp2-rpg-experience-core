@@ -11,20 +11,15 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-@Disabled
 public class US3_DebilitamientoTest {
 	private Batalla batalla;
 	private Habilidad atacar;
@@ -32,7 +27,6 @@ public class US3_DebilitamientoTest {
 	private String p1;
 	private String p2;
 	
-	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
 		try {
@@ -68,9 +62,12 @@ public class US3_DebilitamientoTest {
 	}
 
 	@Test
-	public void CA3_limiteDebilitacion() throws Exception {
+	public void CA3_debilitacionSinEfecto() throws Exception {
 		batalla.jugar(debilitar);
 		batalla.jugar(atacar);
-		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida")), 99);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p1).getProperty("vida")), 99);
+		batalla.jugar(debilitar);
+		batalla.jugar(atacar);
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p1).getProperty("vida")), 98);
 	}
 }
