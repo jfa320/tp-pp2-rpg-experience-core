@@ -1,6 +1,5 @@
 package tp.pp2.rpg.experience.core.entidades.rpg.experience;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;

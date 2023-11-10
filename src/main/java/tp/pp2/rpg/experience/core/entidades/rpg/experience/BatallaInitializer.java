@@ -15,8 +15,8 @@ public class BatallaInitializer {
 	public BatallaInitializer(){}
 
     public Batalla generarBatalla(String pathConfigProperties){
-    	PersonajeBuilder personajesBuilder = new PersonajeBuilder(pathConfigProperties.replace("\\", File.separator));
-		Map<String,Properties> personajesCaracteristicas = personajesBuilder.buildAllPersonajes();
+    	CaracteristicasBuilder personajesBuilder = new CaracteristicasBuilder(pathConfigProperties.replace("\\", File.separator));
+		Map<String,Properties> caracteristicas = personajesBuilder.buildAllCaracteristicas();
 		HabilidadFinder habilidadFinder = new HabilidadFinder(pathConfigProperties.replace("\\", File.separator));
 		List<Habilidad> habilidades = null;
 		try {
@@ -24,8 +24,8 @@ public class BatallaInitializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List<String> personajes = new ArrayList<>(personajesCaracteristicas.keySet());
-		Batalla batalla = BatallaBuilder.build(personajes,personajesCaracteristicas,habilidades);		
+		List<String> personajes = new ArrayList<>(caracteristicas.keySet());
+		Batalla batalla = BatallaBuilder.build(personajes,caracteristicas,habilidades);		
         return batalla;
     }
 

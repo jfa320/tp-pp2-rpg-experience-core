@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
-import tp.pp2.rpg.experience.core.utils.LectorPersonajesJSON;
+import tp.pp2.rpg.experience.core.utils.LectorCaracteristicasJSON;
 
-public class PersonajeBuilder {
+public class CaracteristicasBuilder {
 
     private Properties properties;    
     
-    public PersonajeBuilder(String pathConfigProperties){
+    public CaracteristicasBuilder(String pathConfigProperties){
         try {
             properties = new Properties();
 			properties.load(new FileInputStream(pathConfigProperties));
@@ -25,8 +25,8 @@ public class PersonajeBuilder {
 		}
     }
 
-    public Map<String,Properties> buildAllPersonajes(){
+    public Map<String,Properties> buildAllCaracteristicas(){
         String jsonValue = properties.getProperty("datos.personaje").replace("\\", File.separator);
-        return LectorPersonajesJSON.parsearPersonajesCaracteristicasJSON(jsonValue);
+        return LectorCaracteristicasJSON.parsearCaracteristicasJSON(jsonValue);
     }
 }
