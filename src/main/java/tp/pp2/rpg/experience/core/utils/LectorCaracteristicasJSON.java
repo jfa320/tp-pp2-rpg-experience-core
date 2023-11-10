@@ -10,8 +10,8 @@ import java.util.Properties;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class LectorPersonajesJSON {
-	public static Map<String,Properties> parsearPersonajesCaracteristicasJSON(String pathJSON) {
+public class LectorCaracteristicasJSON {
+	public static Map<String,Properties> parsearCaracteristicasJSON(String pathJSON) {
 		Gson gson = new Gson();
 		Path path = Paths.get(pathJSON);
 		String json = null;
@@ -21,7 +21,7 @@ public class LectorPersonajesJSON {
 			e.printStackTrace();
 		}
 		
-		Map<String,Properties> personajesCaracteristicas = gson.fromJson(json, new TypeToken<Map<String,Properties>>(){}.getType());
-		return personajesCaracteristicas;
+		Map<String,Properties> caracteristicas = gson.fromJson(json, new TypeToken<Map<String,Properties>>(){}.getType());
+		return caracteristicas;
 	}
 }
