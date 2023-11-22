@@ -15,6 +15,8 @@ public class CargadorHabilidades {
 		Habilidad habilidadAgregar = this.findClass(path);
 		if (!validarExistenciaHabilidad(habilidadAgregar, batalla.getHabilidades())) {
 			batalla.addHabilidad(habilidadAgregar);
+		}else {
+			throw new Exception("La habilidad ya existe en Batalla!");
 		}
 	}
 

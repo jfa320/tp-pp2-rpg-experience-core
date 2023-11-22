@@ -1,0 +1,10 @@
+{
+	"Fabian": {
+		"ataque": "10",
+		"vida": "100"
+	},
+	"Martin": {
+		"ataque": "1",
+		"vida": "100"
+	}
+}

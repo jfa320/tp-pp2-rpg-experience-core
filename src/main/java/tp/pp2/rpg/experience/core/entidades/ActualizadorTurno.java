@@ -1,6 +1,5 @@
 package tp.pp2.rpg.experience.core.entidades;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
@@ -9,10 +8,10 @@ public class ActualizadorTurno {
 	private List<String> personajes;
 
 	public ActualizadorTurno(Batalla batalla) {
-		this.personajes = new ArrayList<>(batalla.getPersonajes().keySet());
+		this.personajes=batalla.getPersonajes();
 		batalla.setPersonajeActual(this.personajes.get(0));
 	}
-
+	
 	public void cambiarTurno(Batalla batalla) {
 		if (!batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
 			String personajeActual = batalla.getPersonajeActual();

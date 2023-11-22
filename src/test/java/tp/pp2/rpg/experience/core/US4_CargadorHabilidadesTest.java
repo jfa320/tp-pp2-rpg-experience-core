@@ -2,13 +2,9 @@ package tp.pp2.rpg.experience.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -17,38 +13,29 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaBuilder;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
 import tp.pp2.rpg.experience.core.extensible.CargadorHabilidades;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class CargadorHabilidadesTest {
+public class US4_CargadorHabilidadesTest {
 	private CargadorHabilidades cargadorHabilidades;
-	private String path;
 	private Batalla batalla;
+	private String p1;
+	private String p2;
+	private String path;
 
-	@SuppressWarnings({ "serial", "static-access" })
 	@BeforeEach
 	public void escenario() {
 		path = "src\\test\\resources\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
-		Map<String, Properties> personajes = new HashMap<String, Properties>() {
-			{
-				put("Fabian", new Properties() {
-					{
-						setProperty("ataque", "10");
-						setProperty("vida", "100");
-					}
-				});
-				put("Martin", new Properties() {
-					{
-						setProperty("ataque", "1");
-						setProperty("vida", "100");
-					}
-				});
-			}
-		};
-		List<Habilidad> habilidades = new ArrayList<Habilidad>();
-		batalla = (new BatallaBuilder()).build(habilidades, personajes);
+		try {
+			BatallaInitializer batallaInitializer = new BatallaInitializer();
+			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\testIt1US4.properties");
+			p1=batalla.getPersonajes().get(0);
+			p2=batalla.getPersonajes().get(1);
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
 	@Test
@@ -61,29 +48,51 @@ public class CargadorHabilidadesTest {
 	public void CA2_habilidadCargada() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
+		assertTrue(existeHabilidad(batalla,"Atacar"));
 	}
 
 	@Test
 	public void CA3_multiplesHabilidadesCargadas() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+		assertEquals(batalla.getHabilidades().size(), 1);
+		assertTrue(existeHabilidad(batalla,"Atacar"));
 		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
 		assertEquals(batalla.getHabilidades().size(), 2);
+		assertTrue(existeHabilidad(batalla,"Debilitar"));
 	}
 
 	@Test
 	public void CA4_habilidadDuplicada() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
-		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
 		assertEquals(batalla.getHabilidades().size(), 1);
+		assertTrue(existeHabilidad(batalla,"Atacar"));
+		assertThrows(Exception.class, () -> cargadorHabilidades.cargar(batalla, path + "Atacar.class"));
+		assertEquals(batalla.getHabilidades().size(), 1);
+	}
+	
+	@Test
+	public void CA5_jugarDespuesDeCargar() throws Exception {
+		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+		batalla.jugar(batalla.getHabilidad("Atacar"));
+		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida")), 90);
 	}
 
 	@Test
-	public void CA5_multiplesHabilidadesIgualesCargadas() throws Exception {
-		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
-		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
+	public void CA6_cargaDeHabilidadeDespuesDeArchivoNoValido() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
+		assertThrows(FileNotFoundException.class, () -> cargadorHabilidades.cargar(batalla, path + "image.gif"));
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
-		cargadorHabilidades.cargar(batalla, path + "Debilitar.class");
 		assertEquals(batalla.getHabilidades().size(), 2);
 	}
+	
+
+	private boolean existeHabilidad(Batalla batalla, String nombreHabilidad) {
+		for(Habilidad habilidad:batalla.getHabilidades()){
+			if(habilidad.getClass().getSimpleName()==nombreHabilidad) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
