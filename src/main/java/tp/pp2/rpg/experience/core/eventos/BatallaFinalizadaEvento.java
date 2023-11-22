@@ -16,10 +16,10 @@ public class BatallaFinalizadaEvento implements BatallaEvento  {
 	
 	@Override
 	public void onJugar() {
-		this.validarFinalizacion(batalla);
+		this.validarFinalizacion();
 	}
 	
-	private void validarFinalizacion(Batalla batalla) {
+	private void validarFinalizacion() {
 		int personajesVivos = 0;
 		for (Entry<String, Properties> entry : batalla.getCaracteristicas().entrySet()) {
             Properties caracteristica = entry.getValue();

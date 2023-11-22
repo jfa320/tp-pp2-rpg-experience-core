@@ -13,12 +13,12 @@ public class BatallaEnProgresoEvento implements BatallaEvento {
 	
 	@Override
 	public void onJugar() {
-		this.cambiarEstadoEnProgreso(batalla);
+		this.cambiarEstadoEnProgreso();
 	}
 
-	private void cambiarEstadoEnProgreso(Batalla contexto) {
-		if (contexto.getEstado().equals(EstadoBatalla.INICIADA))
-			contexto.setEstado(EstadoBatalla.EN_PROGRESO);
+	private void cambiarEstadoEnProgreso() {
+		if (batalla.getEstado().equals(EstadoBatalla.INICIADA))
+			batalla.setEstado(EstadoBatalla.EN_PROGRESO);
 	}
 
 }

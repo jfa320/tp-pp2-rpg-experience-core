@@ -16,10 +16,10 @@ public class BatallaCambioTurnoEvento implements BatallaEvento {
 
 	@Override
 	public void onJugar() {
-		this.cambiarTurno(batalla);
+		this.cambiarTurno();
 	}
 	
-	private void cambiarTurno(Batalla batalla) {
+	private void cambiarTurno() {
 		if (!batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
 			String personajeActual = batalla.getPersonajeActual();
 			int i = personajes.indexOf(personajeActual);
