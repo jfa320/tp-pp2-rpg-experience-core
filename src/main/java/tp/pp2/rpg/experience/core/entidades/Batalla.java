@@ -34,7 +34,7 @@ public class Batalla extends Observable {
 
 	public void jugar(Habilidad habilidad) throws Exception {
 		this.validarFinalizacion();
-		habilidad.realizar(this);
+		habilidad.realizar();
 		this.notificarEvento();
 		actualizadorTurno.cambiarTurno(this);
 		// aviso a los observers

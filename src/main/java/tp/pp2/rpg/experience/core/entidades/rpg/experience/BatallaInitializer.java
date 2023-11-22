@@ -23,8 +23,8 @@ public class BatallaInitializer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Batalla batalla = BatallaBuilder.build(caracteristicas,habilidades);		
+		Batalla batalla = BatallaBuilder.build(caracteristicas,habilidades);
+		batalla.getHabilidades().forEach(habilidad->habilidad.setBatallaInicial(batalla));
         return batalla;
     }
-
 }
