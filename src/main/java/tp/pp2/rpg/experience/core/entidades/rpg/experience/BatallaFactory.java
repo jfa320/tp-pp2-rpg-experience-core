@@ -19,16 +19,13 @@ public class BatallaFactory {
 	public BatallaFactory(){}
 
     public Batalla generarBatalla(String pathConfigProperties){
-		System.out.println("se esta por cargar el properties");
 		Properties p = cargarConfig(pathConfigProperties);
-		System.out.println("se cargo el properties ");
 		String pathHabilidades = getPath(p, "path.habilidades");
 		String pathCaracteriticas = getPath(p, "path.caracteristicas");
 
 
     	CaracteristicasReader reader = new CaracteristicasReader();
 		Map<String,Properties> caracteristicas = reader.readCaracteristicas(pathCaracteriticas);
-		System.out.println("se crea caracteristica");
 		HabilidadFinder habilidadFinder = new HabilidadFinder();
 		List<Habilidad> habilidades = null;
 		try {
@@ -36,7 +33,6 @@ public class BatallaFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("se cargaron habildiaes");
 
 		List<String> personajes = new ArrayList<>(caracteristicas.keySet());
 		Batalla batalla = new Batalla(personajes, caracteristicas, habilidades);
