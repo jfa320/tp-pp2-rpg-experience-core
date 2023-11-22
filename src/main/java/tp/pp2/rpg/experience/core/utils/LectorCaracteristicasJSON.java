@@ -20,7 +20,6 @@ public class LectorCaracteristicasJSON {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		Map<String,Properties> caracteristicas = gson.fromJson(json, new TypeToken<Map<String,Properties>>(){}.getType());
 		return caracteristicas;
 	}
