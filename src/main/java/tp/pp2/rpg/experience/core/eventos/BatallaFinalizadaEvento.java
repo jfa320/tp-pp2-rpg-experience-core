@@ -8,14 +8,20 @@ import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
 public class BatallaFinalizadaEvento implements BatallaEvento  {
 
+	private Batalla batalla;
+	
+	public BatallaFinalizadaEvento(Batalla batalla) {
+		this.batalla = batalla;
+	}
+	
 	@Override
-	public void onJugar(Batalla batalla) {
+	public void onJugar() {
 		this.validarFinalizacion(batalla);
 	}
 	
-	private void validarFinalizacion(Batalla contexto) {
+	private void validarFinalizacion(Batalla batalla) {
 		int personajesVivos = 0;
-		for (Entry<String, Properties> entry : contexto.getCaracteristicas().entrySet()) {
+		for (Entry<String, Properties> entry : batalla.getCaracteristicas().entrySet()) {
             Properties caracteristica = entry.getValue();
             String vida = caracteristica.getProperty("vida");
             if (Integer.valueOf(vida) > 0) {
@@ -23,6 +29,6 @@ public class BatallaFinalizadaEvento implements BatallaEvento  {
             }
         }
 		if (personajesVivos == 1)
-			contexto.setEstado(EstadoBatalla.FINALIZADA);
+			batalla.setEstado(EstadoBatalla.FINALIZADA);
 	}	
 }

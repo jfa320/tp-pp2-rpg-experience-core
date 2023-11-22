@@ -5,8 +5,14 @@ import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
 public class BatallaEnProgresoEvento implements BatallaEvento {
 
+	private Batalla batalla;
+
+	public BatallaEnProgresoEvento(Batalla batalla) {
+		this.batalla = batalla;
+	}
+	
 	@Override
-	public void onJugar(Batalla batalla) {
+	public void onJugar() {
 		this.cambiarEstadoEnProgreso(batalla);
 	}
 

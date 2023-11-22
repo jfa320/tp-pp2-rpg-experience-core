@@ -28,9 +28,9 @@ public class Batalla extends Observable {
 		this.estado = EstadoBatalla.INICIADA;
 		this.eventListeners=new ArrayList<BatallaEvento>();
 		this.setPersonajeActual(personajes.get(0));
-		this.eventListeners.add(new BatallaCambioTurnoEvento(this.personajes));
-		this.eventListeners.add(new BatallaEnProgresoEvento());
-		this.eventListeners.add(new BatallaFinalizadaEvento());
+		this.eventListeners.add(new BatallaCambioTurnoEvento(this));
+		this.eventListeners.add(new BatallaEnProgresoEvento(this));
+		this.eventListeners.add(new BatallaFinalizadaEvento(this));
 	}
 
 	public void jugar(String habilidad) throws Exception {
@@ -56,7 +56,7 @@ public class Batalla extends Observable {
 
 	private void notificarEvento() {
 		for (BatallaEvento listener : eventListeners) {
-            listener.onJugar(this);
+            listener.onJugar();
         }
 	}
 

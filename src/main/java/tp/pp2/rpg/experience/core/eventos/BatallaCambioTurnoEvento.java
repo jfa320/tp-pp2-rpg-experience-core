@@ -7,13 +7,15 @@ import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 
 public class BatallaCambioTurnoEvento implements BatallaEvento {
 	private List<String> personajes;
+	private Batalla batalla;
 	
-	public BatallaCambioTurnoEvento(List<String> personajes) {
-		this.personajes = personajes;
+	public BatallaCambioTurnoEvento(Batalla batalla) {
+		this.batalla = batalla;
+		this.personajes=batalla.getPersonajes();
 	}
 
 	@Override
-	public void onJugar(Batalla batalla) {
+	public void onJugar() {
 		this.cambiarTurno(batalla);
 	}
 	
@@ -27,5 +29,4 @@ public class BatallaCambioTurnoEvento implements BatallaEvento {
 				batalla.setPersonajeActual(personajes.get(0));
 		}
 	}
-
 }
