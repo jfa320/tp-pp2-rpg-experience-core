@@ -54,6 +54,7 @@ public class HabilidadFinder {
 		return clasesEncontradas;
 	}
 	
+ 
     private String getHabilidadPath(){
 			return properties.getProperty("path.habilidades");
 	}
