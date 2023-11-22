@@ -11,23 +11,22 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
-import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaFactory;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class US1_JugarAtaqueTest {
 
 	private Batalla batalla;
-	private Habilidad atacar;
+	private String atacar;
 	private String p1;
 	private String p2;
 	
 	@BeforeEach
 	public void escenario() {
 		try {
-			BatallaInitializer batallaInitializer = new BatallaInitializer();
-			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
-			atacar = batalla.getHabilidad("Atacar");
+			BatallaFactory batallaFactory = new BatallaFactory();
+			batalla = batallaFactory.generarBatalla("src\\test\\resources\\archivos\\test.properties");
+			atacar = "Atacar";
 			p1=batalla.getPersonajes().get(0);
 			p2=batalla.getPersonajes().get(1);
 		} catch (Exception e) {

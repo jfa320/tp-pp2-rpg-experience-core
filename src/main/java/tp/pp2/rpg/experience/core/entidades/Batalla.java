@@ -32,14 +32,22 @@ public class Batalla extends Observable {
 		this.eventListeners.add(new BatallaFinalizadaEvento());
 	}
 
-	public void jugar(Habilidad habilidad) throws Exception {
+	public void jugar(String habilidad) throws Exception {
 		this.validarFinalizacion();
-		habilidad.realizar();
+		getHabilidadPorNombre(habilidad).realizar();
 		this.notificarEvento();
 		actualizadorTurno.cambiarTurno(this);
 		// aviso a los observers
 		this.setChanged();
 		this.notifyObservers(this);
+	}
+
+	private Habilidad getHabilidadPorNombre(String nombreHabilidad) throws Exception{
+		for (Habilidad h : habilidades) 
+			if (h.getNombre().equals(nombreHabilidad))
+				return h;
+		
+		throw new Exception("La habilidad: "+ nombreHabilidad+ " no existe");
 	}
 
 	private void validarFinalizacion() throws Exception {
