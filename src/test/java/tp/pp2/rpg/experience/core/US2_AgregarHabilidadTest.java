@@ -21,46 +21,46 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class US2_AgregarHabilidadTest {
     
     private HabilidadFinder habilidadFinder;
-    private String pathConfigProperties;
+    private String pathHabilidades;
     @BeforeEach
     public void escenario(){
-        pathConfigProperties = "src\\test\\resources\\archivos\\test2.properties";
-        habilidadFinder = new HabilidadFinder(pathConfigProperties);
+        pathHabilidades = "src\\test\\resources\\plugins\\";
+        habilidadFinder = new HabilidadFinder();
     }
      
     @Test
     public void CA1_ubicacionInexistente(){
         assertThrows(FileNotFoundException.class,
-                                () -> habilidadFinder.findClasses("ubicacionInexistente"));
+                                () -> habilidadFinder.findClasses(pathHabilidades + "ubicacionInexistente"));
     }
 
     @Test
     public void CA2_ubicacionInvalida(){
         assertThrows(IllegalArgumentException.class,
-                                () -> habilidadFinder.findClasses("archivo.txt"));
+                                () -> habilidadFinder.findClasses(pathHabilidades +"archivo.txt"));
     }
     
     @Test
     public void CA3_carpetaVacia() throws Exception{
         
-        assertTrue(habilidadFinder.findClasses("carpetaVacia").isEmpty());
+        assertTrue(habilidadFinder.findClasses(pathHabilidades +"carpetaVacia").isEmpty());
     }
 
     @Test
     public void CA4_noEsHabilidad() throws Exception{
-        assertTrue(habilidadFinder.findClasses("noEsHabilidad").isEmpty());
+        assertTrue(habilidadFinder.findClasses(pathHabilidades +"noEsHabilidad").isEmpty());
     }
 
     @Test
     public void CA5_unaHabilidad() throws Exception{
-        List<Habilidad> habilidades= habilidadFinder.findClasses("unaHabilidad");
+        List<Habilidad> habilidades= habilidadFinder.findClasses(pathHabilidades + "unaHabilidad");
         assertEquals(1, habilidades.size());
         assertEquals("Herir", habilidades.get(0).getClass().getName());
     }
  
     @Test
     public void CA6_habilidadesMultiples() throws Exception{
-        List<Habilidad> habilidades= habilidadFinder.findClasses("multiplesHabilidades");
+        List<Habilidad> habilidades= habilidadFinder.findClasses(pathHabilidades +"multiplesHabilidades");
         assertEquals(2, habilidades.size());
 
         Set<String> nombreDeClases = new HashSet<>();
