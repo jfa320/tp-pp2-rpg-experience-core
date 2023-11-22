@@ -27,7 +27,8 @@ public class Batalla extends Observable {
 		this.caracteristicas=caracteristicas;
 		this.estado = EstadoBatalla.INICIADA;
 		this.eventListeners=new ArrayList<BatallaEvento>();
-		this.eventListeners.add(new BatallaCambioTurnoEvento());
+		this.setPersonajeActual(personajes.get(0));
+		this.eventListeners.add(new BatallaCambioTurnoEvento(this.personajes));
 		this.eventListeners.add(new BatallaEnProgresoEvento());
 		this.eventListeners.add(new BatallaFinalizadaEvento());
 	}
