@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.eventos.BatallaCambioTurnoEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaEnProgresoEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
@@ -18,7 +19,6 @@ public class Batalla extends Observable {
 	private String personajeActual;
 	private EstadoBatalla estado;
 	private Map<String,Properties> caracteristicas;
-	private ActualizadorTurno actualizadorTurno;
 	private List<BatallaEvento> eventListeners;
 
 	public Batalla(List<String> personajes, Map<String,Properties> caracteristicas,List<Habilidad> habilidades) {
@@ -26,8 +26,8 @@ public class Batalla extends Observable {
 		this.habilidades = habilidades;
 		this.caracteristicas=caracteristicas;
 		this.estado = EstadoBatalla.INICIADA;
-		this.actualizadorTurno = new ActualizadorTurno(this);
 		this.eventListeners=new ArrayList<BatallaEvento>();
+		this.eventListeners.add(new BatallaCambioTurnoEvento());
 		this.eventListeners.add(new BatallaEnProgresoEvento());
 		this.eventListeners.add(new BatallaFinalizadaEvento());
 	}
@@ -36,7 +36,6 @@ public class Batalla extends Observable {
 		this.validarFinalizacion();
 		habilidad.realizar();
 		this.notificarEvento();
-		actualizadorTurno.cambiarTurno(this);
 		// aviso a los observers
 		this.setChanged();
 		this.notifyObservers(this);
