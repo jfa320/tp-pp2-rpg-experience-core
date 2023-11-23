@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
+import tp.pp2.rpg.experience.core.eventos.BatallaCambioTurnoEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaEnProgresoEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaEvento;
 import tp.pp2.rpg.experience.core.eventos.BatallaFinalizadaEvento;
@@ -18,7 +19,6 @@ public class Batalla extends Observable {
 	private String personajeActual;
 	private EstadoBatalla estado;
 	private Map<String,Properties> caracteristicas;
-	private ActualizadorTurno actualizadorTurno;
 	private List<BatallaEvento> eventListeners;
 
 	public Batalla(List<String> personajes, Map<String,Properties> caracteristicas,List<Habilidad> habilidades) {
@@ -26,20 +26,28 @@ public class Batalla extends Observable {
 		this.habilidades = habilidades;
 		this.caracteristicas=caracteristicas;
 		this.estado = EstadoBatalla.INICIADA;
-		this.actualizadorTurno = new ActualizadorTurno(this);
-		this.eventListeners = new ArrayList<BatallaEvento>();
-		this.eventListeners.add(new BatallaEnProgresoEvento());
-		this.eventListeners.add(new BatallaFinalizadaEvento());
+		this.eventListeners=new ArrayList<BatallaEvento>();
+		this.setPersonajeActual(personajes.get(0));
+		this.eventListeners.add(new BatallaCambioTurnoEvento(this));
+		this.eventListeners.add(new BatallaEnProgresoEvento(this));
+		this.eventListeners.add(new BatallaFinalizadaEvento(this));
 	}
 
-	public void jugar(Habilidad habilidad) throws Exception {
+	public void jugar(String habilidad) throws Exception {
 		this.validarFinalizacion();
-		habilidad.realizar(this);
+		getHabilidadPorNombre(habilidad).realizar();
 		this.notificarEvento();
-		actualizadorTurno.cambiarTurno(this);
 		// aviso a los observers
 		this.setChanged();
 		this.notifyObservers(this);
+	}
+
+	private Habilidad getHabilidadPorNombre(String nombreHabilidad) throws Exception{
+		for (Habilidad h : habilidades) 
+			if (h.getNombre().equals(nombreHabilidad))
+				return h;
+		
+		throw new Exception("La habilidad: "+ nombreHabilidad+ " no existe");
 	}
 
 	private void validarFinalizacion() throws Exception {
@@ -48,8 +56,8 @@ public class Batalla extends Observable {
 
 	private void notificarEvento() {
 		for (BatallaEvento listener : eventListeners) {
-			listener.onJugar(this);
-		}
+            listener.onJugar();
+        }
 	}
 
 	public List<String> getPersonajes() {

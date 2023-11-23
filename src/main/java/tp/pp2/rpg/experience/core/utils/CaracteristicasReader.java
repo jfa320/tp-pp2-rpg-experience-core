@@ -2,7 +2,6 @@ package tp.pp2.rpg.experience.core.utils;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Properties;
@@ -10,13 +9,12 @@ import java.util.Properties;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class LectorCaracteristicasJSON {
-	public static Map<String,Properties> parsearCaracteristicasJSON(String pathJSON) {
+public class CaracteristicasReader {
+	public Map<String,Properties> readCaracteristicas(String path) {
 		Gson gson = new Gson();
-		Path path = Paths.get(pathJSON);
 		String json = null;
 		try {
-			json = new String(Files.readAllBytes(path));
+			json = new String(Files.readAllBytes(Paths.get(path)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

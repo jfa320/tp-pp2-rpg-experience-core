@@ -11,23 +11,22 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
-import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaFactory;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class US1_JugarAtaqueTest {
 
 	private Batalla batalla;
-	private Habilidad atacar;
+	private String atacar;
 	private String p1;
 	private String p2;
 	
 	@BeforeEach
 	public void escenario() {
 		try {
-			BatallaInitializer batallaInitializer = new BatallaInitializer();
-			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\test.properties");
-			atacar = batalla.getHabilidad("Atacar");
+			BatallaFactory batallaFactory = new BatallaFactory();
+			batalla = batallaFactory.generarBatalla("src\\test\\resources\\archivos\\test.properties");
+			atacar = "Atacar";
 			p1=batalla.getPersonajes().get(0);
 			p2=batalla.getPersonajes().get(1);
 		} catch (Exception e) {
@@ -42,31 +41,38 @@ public class US1_JugarAtaqueTest {
 	}
 
 	@Test
-	public void CA2_cambioTurno() throws Exception {
+	public void CA2_habilidadInvalida() throws Exception {
+		String golpe = "golpe";
+		assertThrows(Exception.class,
+                () -> batalla.jugar(golpe));
+	}
+
+	@Test
+	public void CA3_cambioTurno() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(batalla.getPersonajeActual(), "Martin");
 	}
 
 	@Test
-	public void CA3_retornoTurno() throws Exception {
+	public void CA4_retornoTurno() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		assertEquals(batalla.getPersonajeActual(), "Fabian");
 	}
 
 	@Test
-	public void CA4_batallaSinJugar() throws Exception {
+	public void CA5_batallaSinJugar() throws Exception {
 		assertEquals(batalla.getEstado(), EstadoBatalla.INICIADA);
 	}
 
 	@Test
-	public void CA5_batallaNoFinalizada() throws Exception {
+	public void CA6_batallaNoFinalizada() throws Exception {
 		batalla.jugar(atacar);
 		assertEquals(batalla.getEstado(), EstadoBatalla.EN_PROGRESO);
 	}
 
 	@Test
-	public void CA6_batallaFinalizada() throws Exception {
+	public void CA7_batallaFinalizada() throws Exception {
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
@@ -75,7 +81,7 @@ public class US1_JugarAtaqueTest {
 	}
 
 	@Test
-	public void CA7_ataqueBatallaFinalizada() throws Exception{
+	public void CA8_ataqueBatallaFinalizada() throws Exception{
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
 		batalla.jugar(atacar);
