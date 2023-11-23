@@ -13,7 +13,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaInitializer;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.BatallaFactory;
 import tp.pp2.rpg.experience.core.extensible.CargadorHabilidades;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -29,8 +29,8 @@ public class US4_CargadorHabilidadesTest {
 		path = "src\\test\\resources\\pluginsRuntime\\";
 		cargadorHabilidades = new CargadorHabilidades();
 		try {
-			BatallaInitializer batallaInitializer = new BatallaInitializer();
-			batalla = batallaInitializer.generarBatalla("src\\test\\resources\\archivos\\testIt1US4.properties");
+			BatallaFactory batallaFactory = new BatallaFactory();
+			batalla = batallaFactory.generarBatalla("src\\test\\resources\\archivos\\testIt1US4.properties");
 			p1=batalla.getPersonajes().get(0);
 			p2=batalla.getPersonajes().get(1);
 		} catch (Exception e) {
@@ -73,7 +73,7 @@ public class US4_CargadorHabilidadesTest {
 	@Test
 	public void CA5_jugarDespuesDeCargar() throws Exception {
 		cargadorHabilidades.cargar(batalla, path + "Atacar.class");
-		batalla.jugar(batalla.getHabilidad("Atacar"));
+		batalla.jugar("Atacar");
 		assertEquals(Integer.parseInt(batalla.getCaracteristicasPersonaje(p2).getProperty("vida")), 90);
 	}
 
