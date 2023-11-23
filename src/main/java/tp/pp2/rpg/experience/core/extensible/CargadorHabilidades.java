@@ -12,7 +12,7 @@ import tp.pp2.rpg.experience.core.entidades.interfaces.Habilidad;
 public class CargadorHabilidades {
 
 	public void cargar(Batalla batalla, String path) throws Exception {
-		Habilidad habilidadAgregar = this.findClass(path);
+		Habilidad habilidadAgregar = this.findClass(batalla, path);
 		if (!validarExistenciaHabilidad(habilidadAgregar, batalla.getHabilidades())) {
 			batalla.addHabilidad(habilidadAgregar);
 		}else {
@@ -21,7 +21,7 @@ public class CargadorHabilidades {
 	}
 
 	@SuppressWarnings("deprecation")
-	public Habilidad findClass(String path) throws Exception {
+	private Habilidad findClass(Batalla batalla, String path) throws Exception {
 		List<Habilidad> clasesEncontradas = new ArrayList<>();
 
 		File archivoArg = new File(path.replace("\\", File.separator));
@@ -44,7 +44,9 @@ public class CargadorHabilidades {
 			// busco las clases
 			Class<?> claseEncontrada = Class.forName(archivo.getName().replace(".class", ""), false,
 					dynamicClassLoader);
-			clasesEncontradas.add((Habilidad) claseEncontrada.newInstance());
+			Habilidad nuevaHabilidad=(Habilidad) claseEncontrada.newInstance();
+			nuevaHabilidad.setBatallaInicial(batalla);
+			clasesEncontradas.add(nuevaHabilidad);
 			break;
 		}
 		if (clasesEncontradas.isEmpty()) {
